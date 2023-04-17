@@ -1,6 +1,3 @@
-<?php
-    require "../conn.php";
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,10 +10,10 @@
 <body>
 
     <p>Login</p>
-    <form action="" method="post" id="formLogin">
-        Login: <input type="text" id="nomeLogin">
+    <form action="../signin.php" method="post" id="formLogin">
+        Email: <input type="email" id="nomeLogin" name="email">
         <br>
-        Senha: <input type="password" name="senha" id="senhaLogin">
+        Senha: <input type="password" name="password" id="senhaLogin">
         <br>
         <input type="submit" value="Entrar" id="submitLogin" name="SubmitLogin">
     </form>
@@ -24,6 +21,7 @@
     <br>
 
     <!-- Implementar Confirmar Senha, mandar somente a senha confirmada para o PHP -->
+    <!-- Implementar espaços para mensagens de erro -->
 
     <p>Cadastro</p>
     <form action="../signup.php" method="post" id="formCad">
@@ -31,7 +29,7 @@
         <br>
         Email: <input type="email" name="email" id="emailCad">
         <br>
-        Senha: <input type="password" name="senha" id="senhaCad">
+        Senha: <input type="password" name="password" id="senhaCad">
         <br>
         <input type="submit" value="Criar conta" id="submitCad">
     </form>

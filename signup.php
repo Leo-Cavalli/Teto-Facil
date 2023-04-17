@@ -1,21 +1,12 @@
 <?php
-
     //Get data from form
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = md5($_POST['senha']);
-
+    $password = md5($_POST['password']);
 
     //Connect to database
-    require "conn.php";
+    require "generalFunctions.php";
 
-    //Insert data into database
-
-    $sql = "INSERT INTO `tetofacil`.`usuarios` (`nome`, `email`, `senha`) VALUES ('$name', '$email', '$password');";
-
-    if($conn-> query($sql) === TRUE){
-        echo "New record created successfully";
-    }else{
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    //Call function to insert new user
+    signUpUser($name, $email, $password);
 ?>
