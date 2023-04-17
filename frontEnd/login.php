@@ -1,3 +1,7 @@
+<?php
+    require "../conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,20 +11,27 @@
     <title>Teto Facil</title>
 </head>
 <body>
+
     <p>Login</p>
     <form action="" method="post" id="formLogin">
-        Login: <input type="text" id="nomeLogin" placeholder = "Digite seu login: ">
+        Login: <input type="text" id="nomeLogin">
         <br>
-        SSenha: <input type="password" name="senha" id="senhaLogin">
+        Senha: <input type="password" name="senha" id="senhaLogin">
         <br>
         <input type="submit" value="Entrar" id="submitLogin" name="SubmitLogin">
     </form>
-    <form action="" method="post" id="formCad">
-        Nome: <input type="text" placeholder="Digite seu nome:">
+
+    <br>
+
+    <!-- Implementar Confirmar Senha, mandar somente a senha confirmada para o PHP -->
+
+    <p>Cadastro</p>
+    <form action="../signup.php" method="post" id="formCad">
+        Nome: <input type="text" placeholder="Digite seu nome:" name="name">
         <br>
-        Email: <input type="email" name="email" id="emailCad" placeholder="Digite seu email:">
+        Email: <input type="email" name="email" id="emailCad">
         <br>
-        Senha: <input type="password" name="senha" id="senhaCad" placeholder="Digite sua senha:">
+        Senha: <input type="password" name="senha" id="senhaCad">
         <br>
         <input type="submit" value="Criar conta" id="submitCad">
     </form>

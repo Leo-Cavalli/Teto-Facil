@@ -6,14 +6,14 @@ CREATE TABLE IF NOT EXISTS usuarios(
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    senha VARCHAR(100) NOT NULL
+    senha CHAR(32) NOT NULL
     );
     
 CREATE TABLE IF NOT EXISTS corretores(
 	id_corretor INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    senha VARCHAR(100) NOT NULL,
+    senha CHAR(32) NOT NULL,
     creci VARCHAR(100) NOT NULL
 );
 
