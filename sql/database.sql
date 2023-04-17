@@ -52,3 +52,13 @@ ALTER TABLE favoritos ADD CONSTRAINT
 	REFERENCES imoveisDefinitivos(id_imovel)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
+
+
+
+
+
+	
+
+
+
+
