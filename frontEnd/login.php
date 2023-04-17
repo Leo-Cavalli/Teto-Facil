@@ -7,13 +7,22 @@
     <title>Teto Facil</title>
 </head>
 <body>
-    <p>Página de Login</p>
-    <form action="" method="post">
-        Login: <input type="text" placeholder = "Digite seu login: ">
+    <p>Login</p>
+    <form action="" method="post" id="formLogin">
+        Login: <input type="text" id="nomeLogin" placeholder = "Digite seu login: ">
         <br>
-        Senha: <input type="text" placeholder = "Digite sua senha: "> 
+        SSenha: <input type="password" name="senha" id="senhaLogin">
         <br>
         <input type="submit" value="Entrar" id="submitLogin" name="SubmitLogin">
+    </form>
+    <form action="" method="post" id="formCad">
+        Nome: <input type="text" placeholder="Digite seu nome:">
+        <br>
+        Email: <input type="email" name="email" id="emailCad" placeholder="Digite seu email:">
+        <br>
+        Senha: <input type="password" name="senha" id="senhaCad" placeholder="Digite sua senha:">
+        <br>
+        <input type="submit" value="Criar conta" id="submitCad">
     </form>
 </body>
 </html>
