@@ -2,8 +2,8 @@
 
 //Change if Necessary
 $servernameBD = "localhost";
-$usernameBD = 'tetofacil';
-$passwordBD = 'tetofacil';
+$usernameBD = 'root';
+$passwordBD = '';
 
 // Create connection
 $conn = new mysqli($servernameBD, $usernameBD, $passwordBD);

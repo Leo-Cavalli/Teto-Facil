@@ -95,7 +95,9 @@ function signUpUser($name, $email, $password){
 //Start Session
 function startUserSession($id, $name, $email){
     session_start();
-    $_SESSION['user'] = new User($id, $name, $email);
+    $_SESSION['id'] = $id;
+    $_SESSION['name'] = $name;
+    $_SESSION['email'] = $email;
     header("Location: frontEnd/homepage.php");
 }
 
