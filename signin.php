@@ -15,7 +15,7 @@
         $passwordBd = searchUserPasswordById($id);
 
         if($password == $passwordBd){
-            startSession($id, $name, $email);
+            startUserSession($id, $name, $email);
         }else{
             echo "Senha incorreta";
         }

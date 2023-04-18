@@ -84,7 +84,7 @@ function signUpUser($name, $email, $password){
             $id = $result;
 
             //Start session after sign up
-            startSession($id, $name, $email);
+            startUserSession($id, $name, $email);
         }
     }
     else{
@@ -93,22 +93,24 @@ function signUpUser($name, $email, $password){
 }
 
 //Start Session
-function startSession($id, $name, $email){
+function startUserSession($id, $name, $email){
     session_start();
-    $_SESSION['id'] = $id;
-    $_SESSION['name'] = $name;
-    $_SESSION['email'] = $email;
+    $_SESSION['user'] = new User($id, $name, $email);
     header("Location: frontEnd/homepage.php");
 }
 
 //Verify if session is started
 function verifySession(){
     session_start();
-    if(!isset($_SESSION['id'])){
+    if(!isset($_SESSION['user'])){
         echo "Sessão não iniciada";
     }else{
         echo "Sessão iniciada";
     }
+}
+
+function Printecho(){
+    echo "echo";
 }
 
 
