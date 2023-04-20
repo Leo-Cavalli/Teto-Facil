@@ -10,12 +10,12 @@
 <body>
 
     <p>Login</p>
-    <form action="../signin.php" method="post" id="formLogin">
+    <form action="../login.php" method="post" id="formLogin">
         Email: <input type="email" id="nomeLogin" name="email">
         <br>
         Senha: <input type="password" name="password" id="senhaLogin">
         <br>
-        <input type="submit" value="Entrar" id="submitLogin" name="SubmitLogin">
+        <button type="submit" name="acao" value="logar">Cadastrar</button>
     </form>
 
     <br>
@@ -24,14 +24,14 @@
     <!-- Implementar espaços para mensagens de erro -->
 
     <p>Cadastro</p>
-    <form action="../signup.php" method="post" id="formCad">
+    <form action="../login.php" method="post" id="formCad">
         Nome: <input type="text" placeholder="Digite seu nome:" name="name">
         <br>
         Email: <input type="email" name="email" id="emailCad">
         <br>
         Senha: <input type="password" name="password" id="senhaCad">
         <br>
-        <input type="submit" value="Criar conta" id="submitCad">
+        <button type="submit" name="acao" value="cadastrar">Entrar</button>
     </form>
 </body>
 </html>
