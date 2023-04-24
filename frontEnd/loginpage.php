@@ -20,8 +20,6 @@
 
     <br>
 
-    <!-- Implementar Confirmar Senha, mandar somente a senha confirmada para o PHP -->
-    <!-- Implementar espaços para mensagens de erro -->
 
     <p>Cadastro</p>
     <form action="../login.php" method="post" id="formCad">
