@@ -29,7 +29,7 @@
         <br>
         Senha: <input type="password" name="password" id="senhaCad">
         <br>
-        Confirme senha: <input type="password" id="senhaConf">
+        Confirme senha: <input type="password" id="senhaConf" >
         <br>
         <button type="submit" name="acao" value="cadastrar">cadastrar</button>
     </form>
@@ -37,12 +37,11 @@
 </html>
 
 <script>
-    let senha = document.getElementById("senhaCad")
-    let senhaConf = document.getElementById("senhaConf")
-
-    if(senha != senhaConfCad){
-        alert("As senhas devem ser iguais")
-        senha = ''
-        senhaConf = ''
+    let senha = document.getElementById("senhaCad").value
+    let senhaConf = document.getElementById("senhaConf").value
+    if(senha != senhaConf){
+        alert("As senhas nao estao iguais \nDigite senhas iguais !")
+    }else{
+        document.formaCad.submit()
     }
 </script>
