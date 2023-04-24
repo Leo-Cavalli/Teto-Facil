@@ -15,13 +15,11 @@
         <br>
         Senha: <input type="password" name="password" id="senhaLogin">
         <br>
-        <button type="submit" name="acao" value="logar">Cadastrar</button>
+        <button type="submit" name="acao" value="logar">Entrar</button>
     </form>
 
     <br>
 
-    <!-- Implementar Confirmar Senha, mandar somente a senha confirmada para o PHP -->
-    <!-- Implementar espaços para mensagens de erro -->
 
     <p>Cadastro</p>
     <form action="../login.php" method="post" id="formCad">
@@ -31,7 +29,20 @@
         <br>
         Senha: <input type="password" name="password" id="senhaCad">
         <br>
-        <button type="submit" name="acao" value="cadastrar">Entrar</button>
+        Confirme senha: <input type="password" id="senhaConf">
+        <br>
+        <button type="submit" name="acao" value="cadastrar">cadastrar</button>
     </form>
 </body>
 </html>
+
+<script>
+    let senha = document.getElementById("senhaCad")
+    let senhaConf = document.getElementById("senhaConf")
+
+    if(senha != senhaConfCad){
+        alert("As senhas devem ser iguais")
+        senha = ''
+        senhaConf = ''
+    }
+</script>
