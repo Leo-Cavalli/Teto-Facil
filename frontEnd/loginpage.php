@@ -41,5 +41,7 @@
     let senhaConf = document.getElementById("senhaConf").value
     if(senha != senhaConf){
         alert("As senhas nao estao iguais \nDigite senhas iguais !")
+    }else{
+        document.formaCad.submit()
     }
 </script>
