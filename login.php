@@ -1,42 +1,43 @@
 <?php
 
-$name = $_POST['name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
 $acao = $_POST['acao'];
 
 require "classUsuario.php";
 require "classSession.php";
 
 if($acao == 'cadastrar'){
+
     $usuario = new classUsuario();
-    $usuario->setUser($name, $email, $password);
+    $usuario->setUser($_POST['name'], $_POST['email'], $_POST['password']);
     $usuario->signUp();
-    classSession::setSession($usuario->getId(), $name, $email);
+
+    classSession::setSession($usuario->getId(), $_POST['name'], $_POST['email']);
     header('Location: frontEnd/homepage.php');
     exit;
 }
 
 if($acao == 'logar'){
-    $usuario = classUsuario::getUserByEmail($email);
-    if($usuario == null) {
-        echo "Usuario não existe";
+
+    //echo $_POST['password'];
+
+    $obusuario = classUsuario::getUserByEmail($_POST['email']);
+
+    if(!$obusuario instanceof classUsuario){
+        echo "<script>alert('Usuário não encontrado')</script>";
         exit;
     }
+    
+    //print_r($obusuario);
 
-    if($usuario->getPassword() != md5($password)){
-        echo "Senha incorreta";
-        echo "<br>";
-        echo "classe password". $usuario->getPassword();
-        echo "<br>";
-        echo "senha digitada". md5($password);
-        exit;
+    print_r($obusuario->getPassword());
+
+    echo "<script>alert('Logado com sucesso')</script>";
+
+
+
+
     }
 
-    classSession::setSession($usuario->getId(), $usuario->getName(), $email);
-    header('Location: frontEnd/homepage.php');
-    exit;
-}
 
 
 

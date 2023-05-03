@@ -7,12 +7,12 @@ class classUsuario{
     private $id;
     private $name;
     private $email;
-    private $password;
+    public $password;
 
     public function setUser($name, $email, $password){
         $this->name = $name;
         $this->email = $email;
-        $this->password = md5($password);
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     public function getId(){
