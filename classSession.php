@@ -2,11 +2,15 @@
 
 class classSession{
 
-    public static function setSession($id, $name, $email){
+    //Metodo responsavel por iniciar a sessão
+    //Level 0 : Usuario Comum
+    //Level 1 : Corretor
+    public static function setSession($id, $name, $email, $level){
         session_start();
         $_SESSION['id'] = $id;
         $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
+        $_SESSION['level'] = $level;
         return true;
     }
 
@@ -22,7 +26,13 @@ class classSession{
         exit();
     }
 
-
+    public static function verifySession(){
+        session_start();
+        if(isset($_SESSION['id'])){
+            return true;
+        }
+        return false;
+    }
 
 
 
