@@ -86,12 +86,13 @@ class classUsuario{
 class classCorretor extends classUsuario{
     private $creci;
 
+    //Metodo responsavel por retornar o valor do atributo creci
     public function getCreci(){
         return $this->creci;
     }
 
     //Metodo responsavel por setar os valores do objeto corretor, utilizado para login
-    public function setUserFromDatabase($id, $name, $email, $password, $creci){
+    public function setUserFromDatabase($id, $name, $email, $password, $creci = null){
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
@@ -100,7 +101,7 @@ class classCorretor extends classUsuario{
     }
 
     //Metodo responsavel por setar os atributos do objeto corretor
-    public function setUser($name, $email, $password, $creci){
+    public function setUser($name, $email, $password, $creci = null){
         $this->name = $name;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
@@ -123,21 +124,29 @@ class classCorretor extends classUsuario{
     //Metodo responsavel por retornar um objeto do tipo corretor por seu email
     public static function getUserByEmail($email){
 
+        //Cria uma instancia de database na tabela corretores
         $database = new database('corretores');
 
+        //Realiza o select no banco de dados
         $result = $database->select('email = "'.$email.'"');
 
-        if($result->rowCount > 0){
+        //Verifica se o select retornou algum resultado
+        if($result->rowCount() > 0){
 
+            //Pega o resultado do select
             $row = $result->fetch();
 
+            //Cria um objeto corretor
             $auxStateAgent = new classCorretor();
 
+            //Seta os valores do objeto corretor
             $auxStateAgent->setUserFromDatabase($row['id_corretor'], $row['nome'], $row['email'], $row['senha'], $row['creci']);
 
+            //Retorna o objeto corretor
             return $auxStateAgent;
 
         }
+        //Retorna falso caso não encontre o corretor
         return false;
     }
 }

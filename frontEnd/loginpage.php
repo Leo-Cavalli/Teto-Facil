@@ -29,7 +29,7 @@
         <br>
         Senha: <input type="password" name="password" id="senhaCad">
         <br>
-        Confirme senha: <input type="password" id="senhaConf" >
+        Confirme senha: <input type="password" id="senhaConf" name="passwordconfirm">
         <br>
         <button type="submit" name="acao" value="cadastrar">cadastrar</button>
     </form>

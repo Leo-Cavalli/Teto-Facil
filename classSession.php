@@ -14,11 +14,13 @@ class classSession{
         return true;
     }
 
+    //Metodo responsavel por retornar a sessão
     public static function getSession(){
         session_start();
         return $_SESSION;
     }
 
+    //Metodo responsavel por destruir a sessão
     public static function destroySession(){
         session_start();
         session_destroy();
@@ -26,6 +28,7 @@ class classSession{
         exit();
     }
 
+    //Metodo responsavel por verificar se a sessão esta ativa
     public static function verifySession(){
         session_start();
         if(isset($_SESSION['id'])){
