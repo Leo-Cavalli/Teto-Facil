@@ -1,7 +1,7 @@
 <?php
 
-require "users.php";
-require "classSession.php";
+require_once "users.php";
+require_once "classSession.php";
 
 //Verifica se o usuario ja esta logado, caso esteja, redireciona para a homepage.php
 //if(classSession::verifySession()){
@@ -40,13 +40,13 @@ if($acao == 'cadastrar'){
     $usuario = new classUsuario();
 
     //Seta os valores do objeto usuario
-    $usuario->setUser($_POST['name'], $_POST['email'], $_POST['password']);
+    $usuario->setUser($_POST['name'], $_POST['email'], $_POST['password'], $_POST['cpf']);
 
     //Cadastra o usuario no banco de dados
     $usuario->signUp();
 
     //Inicia a sessão, redireciona para a homepage.php e encerra o script
-    classSession::setSession($usuario->getId(), $_POST['name'], $_POST['email'], 0);
+    classSession::setSession($usuario->getId(), $_POST['name'], $_POST['email'], 0, $_POST['cpf']);
     header('Location: frontEnd/homepage.php');
     exit;
 }
@@ -67,7 +67,7 @@ if($acao == 'logar'){
             exit;
         }
         //Inicia a sessão, redireciona para a homepage.php e encerra o script
-        classSession::setSession($obusuario->getId(), $obusuario->getName(), $obusuario->getEmail(), 0);
+        classSession::setSession($obusuario->getId(), $obusuario->getName(), $obusuario->getEmail(), 0, $obusuario->getCpf());
         header('Location: frontEnd/homepage.php');
         exit;
     }
@@ -81,7 +81,7 @@ if($acao == 'logar'){
             exit;
         }
         //Inicia a sessão, redireciona para a homepage.php e encerra o script
-        classSession::setSession($obcorretor->getId(), $obcorretor->getName(), $obcorretor->getEmail(), 1);
+        classSession::setSession($obcorretor->getId(), $obcorretor->getName(), $obcorretor->getEmail(), 1, $obcorretor->getCpf());
         header('Location: frontEnd/homepage.php');
         exit;
     }

@@ -1,5 +1,7 @@
 <?php
 
+require_once "database/database.php";
+
 class classImovel{
     private $id;
     private $id_anunciante;
@@ -113,6 +115,91 @@ class classImovel{
     }
     public function setSituacao($value) {
         $this->situacao = $value;
+    }
+
+    public function setImovel($id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao){
+        $this->id_anunciante = $id_anunciante;
+        $this->id_corretor = $id_corretor;
+        $this->tipo_imovel = $tipo_imovel;
+        $this->cep = $cep;
+        $this->rua = $rua;
+        $this->numero = $numero;
+        $this->bairro = $bairro;
+        $this->cidade = $cidade;
+        $this->estado = $estado;
+        $this->valor = $valor;
+        $this->complemento = $complemento;
+        $this->descricao = $descricao;
+        $this->situacao = $situacao;
+    }
+
+    public function ImovelToBd(){
+        $database = new database('imoveisdefinitivos');
+        
+        $this->id = $database->insert([
+            'id_anunciante' => $this->id_anunciante,
+            'id_corretor' => $this->id_corretor,
+            'tipo_imovel' => $this->tipo_imovel,
+            'cep' => $this->cep,
+            'rua' => $this->rua,
+            'numero' => $this->numero,
+            'bairro' => $this->bairro,
+            'cidade' => $this->cidade,
+            'estado' => $this->estado,
+            'valor' => $this->valor,
+            'complemento' => $this->complemento,
+            'descricao' => $this->descricao,
+            'situacao' => $this->situacao
+        ]);
+        return true;
+    }
+
+    public function setImovelFromBD($id, $id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao){
+        $this->id = $id;
+        $this->id_anunciante = $id_anunciante;
+        $this->id_corretor = $id_corretor;
+        $this->tipo_imovel = $tipo_imovel;
+        $this->cep = $cep;
+        $this->rua = $rua;
+        $this->numero = $numero;
+        $this->bairro = $bairro;
+        $this->cidade = $cidade;
+        $this->estado = $estado;
+        $this->valor = $valor;
+        $this->complemento = $complemento;
+        $this->descricao = $descricao;
+        $this->situacao = $situacao;
+    }
+
+    public static function getImovelByUserId($userID){
+        $database = new database('imoveisdefinitivos');
+        
+        $result = $database->select('id_anunciante = "'.$userID.'"');
+
+        $imoveis = array();
+
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+                $imovelAux = new classImovel();
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+                array_push($imoveis, $imovelAux);
+            }
+        }
+        return $imoveis;
+    }
+
+    public static function getAllImoveis(){
+        $database = new database('imoveisdefinitivos');
+        $result = $database->select();
+        $imoveis = array();
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+                $imovelAux = new classImovel();
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+                array_push($imoveis, $imovelAux);
+            }
+        }
+        return $imoveis;
     }
     
 }

@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS usuarios(
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    senha CHAR(255) NOT NULL
+    senha CHAR(255) NOT NULL,
+    cpf VARCHAR(100) NOT NULL
     );
     
 CREATE TABLE IF NOT EXISTS corretores(
@@ -14,7 +15,8 @@ CREATE TABLE IF NOT EXISTS corretores(
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     senha CHAR(255) NOT NULL,
-    creci VARCHAR(100) NOT NULL
+    creci VARCHAR(100) NOT NULL,
+    cpf VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS imoveisDefinitivos(

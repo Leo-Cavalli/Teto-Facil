@@ -5,12 +5,13 @@ class classSession{
     //Metodo responsavel por iniciar a sessão
     //Level 0 : Usuario Comum
     //Level 1 : Corretor
-    public static function setSession($id, $name, $email, $level){
+    public static function setSession($id, $name, $email, $level, $cpf){
         session_start();
         $_SESSION['id'] = $id;
         $_SESSION['name'] = $name;
         $_SESSION['email'] = $email;
         $_SESSION['level'] = $level;
+        $_SESSION['cpf'] = $cpf;
         return true;
     }
 
