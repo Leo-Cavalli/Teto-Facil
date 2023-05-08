@@ -69,7 +69,7 @@ class Database{
     //@param string $order
     //@param string $limit
     //@param string $fields
-    public function select($where = null, $order = null, $limit = null, $fields = '*'){
+    public function select($where = null, $order = null, $limit = null, $fields = null){
 
         //Query data
         //Caso o where seja passado, ele vai concatenar com o where, caso contrario ele vai concatenar com uma string vazia
@@ -81,6 +81,9 @@ class Database{
         //Caso o limit seja passado, ele vai concatenar com o limit, caso contrario ele vai concatenar com uma string vazia
         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
         
+        //Caso o fields seja passado, ele vai concatenar com o fields, caso contrario ele vai concatenar com uma string vazia
+        $fields = strlen($fields) ? $fields : '*';
+
         //Query
         //SELECT * FROM table...
         $query = 'SELECT '.$fields.' FROM '.$this->table.' '.$where.' '.$order.' '.$limit;
