@@ -1,5 +1,6 @@
 <?php
 
-    print_r($_POST);
+    require "database/database.php";
+    
 
 ?>
