@@ -22,8 +22,6 @@
 
 <script>
   function editProfile(){
-    <?php 
-    header(Location: editProfile.php);
-    ?>
+    window.location.href = "editprofile.php"  
   }
 </script>
