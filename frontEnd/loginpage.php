@@ -33,17 +33,19 @@
         <br>
         CPF: <input type="text" placeholder="Digite seu cpf:" id="cpfCad" name="cpf" >
         <br>
-        <button type="submit" name="acao" value="cadastrar" id="sendCadButton">cadastrar</button>
+        <button type="submit" name="acao" value="cadastrar" id="sendCadButton" onclick="passwordConfirm()">cadastrar</button>
     </form>
 </body>
 </html>
 
 <script>
-    let senha = document.getElementById("senhaCad").value
-    let senhaConf = document.getElementById("senhaConf").value
-    if(senha != senhaConf){
-        alert("As senhas nao estao iguais \nDigite senhas iguais !")
-    }else{
-        document.formaCad.submit()
+    function passwordConfirm(){
+        let senha = document.getElementById("senhaCad").value
+        let senhaConf = document.getElementById("senhaConf").value
+        if(senha != senhaConf){
+            alert("As senhas nao estao iguais \nDigite senhas iguais !")
+        }else{
+            document.formaCad.submit()
+        }
     }
 </script>
