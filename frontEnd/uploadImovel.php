@@ -1,7 +1,7 @@
 
 <?php
 
-  require "../classSession.php";
+  require_once "../classSession.php";
   if(!classSession::verifySession()){
     header("Location: loginpage.php");
     exit();
@@ -40,10 +40,10 @@
     <input type="text" id="bairro" name="bairro" placeholder="Digite o nome do Bairro" required>
     <br>
 
-    <input type="text" id="cidade" name="cidade" placeholder="Digite o nome da cidade">
+    <input type="text" id="cidade" name="cidade" placeholder="Digite o nome da cidade" required>
     <br>
 
-    <select id="estado" name="estado">
+    <select id="estado" name="estado" required>
       <option value="AC">Acre</option>
       <option value="AL">Alagoas</option>
       <option value="AP">Amapá</option>
@@ -77,7 +77,7 @@
     <input type="text" id="complemento" placeholder="Digite o complemento: " name="complemento">
     <br>
 
-    <select name="tipoImovel" id="tipoImovel" required>
+    <select name="tipo_imovel" id="tipoImovel" required>
       <option value="Casa" id="casa">Casa</option>
       <option value="Apartamento" id="apartamento">Apartamento</option>
       <option value="Sobrado" id="sobrado">Sobrado</option>
@@ -89,8 +89,10 @@
     </select>
     <br>
 
-    <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Digite uma descricao de seu imovel" required>
-    </textarea>
+    <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Digite uma descricao de seu imovel" required></textarea>
+    <br>
+
+    <input type="text" name="valor" placeholder="Digite o valor do Imóvel" required>
     <br>
 
     <input type="submit" value="Enviar">

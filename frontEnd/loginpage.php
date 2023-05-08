@@ -31,7 +31,7 @@
         <br>
         Confirme senha: <input type="password" id="senhaConf" name="passwordconfirm" placeholder="Confirme sua senha: ">
         <br>
-        CPF: <input type="text" placeholder="Digite seu cpf:" id="cpfCad" name="cpfUser" >
+        CPF: <input type="text" placeholder="Digite seu cpf:" id="cpfCad" name="cpf" >
         <br>
         <button type="submit" name="acao" value="cadastrar" id="sendCadButton">cadastrar</button>
     </form>
