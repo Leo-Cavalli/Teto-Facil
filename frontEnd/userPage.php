@@ -23,6 +23,6 @@
 <script>
   function editProfile(){
     let btn = getElementById("btnEditProfile").remove()
-    window.location.href("editprofile.php")
+    window.location.href = "editprofile.php"
   }
 </script>
