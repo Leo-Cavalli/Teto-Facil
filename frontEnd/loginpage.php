@@ -33,7 +33,7 @@
         <br>
         CPF: <input type="text" placeholder="Digite seu cpf:" id="cpfCad" name="cpfUser" >
         <br>
-        <button type="submit" name="acao" value="cadastrar" id="sendCadButton" onClick="passwordConfirm()">cadastrar</button>
+        <button type="submit" name="acao" value="cadastrar" id="sendCadButton" onclick="passwordConfirm()">cadastrar</button>
     </form>
 </body>
 </html>
