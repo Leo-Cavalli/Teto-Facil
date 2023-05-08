@@ -26,9 +26,9 @@
     <!-- Colocar uma aba de navegacao entre paginas !-->
   </nav>
 
-  <form action="" method="post">
+  <form action="../imovelform.php" method="post">
 
-    <input type="text" id="cep" placeholder="Digite seu CEP: " required>
+    <input type="text" id="cep" placeholder="Digite seu CEP: " name="cep" required>
     <br>
 
     <input type="text" name="rua" id="rua" placeholder="Digite o nome da rua" required>
@@ -78,14 +78,14 @@
     <br>
 
     <select name="tipoImovel" id="tipoImovel" required>
-      <option value="casa" id="casa">Casa</option>
-      <option value="apartamento" id="apartamento">Apartamento</option>
-      <option value="sobrado" id="sobrado">Sobrado</option>
-      <option value="duplex" id="duplex">Duplex</option>
-      <option value="casaCondominio" id="casaCondominio">Casa em Condominio</option>
-      <option value="kitnet" id="kitnet">Kitnet</option>2
-      <option value="estudio" id="estudio">Estudio</option>
-      <option value="loft" id="loft">Loft</option>
+      <option value="Casa" id="casa">Casa</option>
+      <option value="Apartamento" id="apartamento">Apartamento</option>
+      <option value="Sobrado" id="sobrado">Sobrado</option>
+      <option value="Duplex" id="duplex">Duplex</option>
+      <option value="CasaCondominio" id="casaCondominio">Casa em Condominio</option>
+      <option value="Kitnet" id="kitnet">Kitnet</option>2
+      <option value="Estudio" id="estudio">Estudio</option>
+      <option value="Loft" id="loft">Loft</option>
     </select>
     <br>
 
