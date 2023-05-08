@@ -22,7 +22,8 @@
 
 <script>
   function editProfile(){
-    let btn = getElementById("btnEditProfile").remove()
-    window.location.href = "editprofile.php"
+    <?php 
+    header(Location: editProfile.php);
+    ?>
   }
 </script>
