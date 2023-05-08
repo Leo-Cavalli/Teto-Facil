@@ -13,6 +13,10 @@
   <h1>Bem vindo ...... <!-- nome do usuario !--></h1>
   <input type="button" value="Edit profile" onclick = "editProfile()" id="btnEditProfile">
   
+  <h3>Seus anuncios </h3>
+  <ul>
+    <!-- lista de anuncios do usuario !-->
+  </ul>
 </body>
 </html>
 
