@@ -11,7 +11,14 @@
 </nav>
 <body>
   <h1>Bem vindo ...... <!-- nome do usuario !--></h1>
-  <button>edit profile</button>
+  <input type="button" value="Edit profile" onclick = "editProfile()" id="btnEditProfile">
   
 </body>
 </html>
+
+<script>
+  function editProfile(){
+    let btn = getElementById("btnEditProfile").remove()
+    window.location.href("editprofile.php")
+  }
+</script>
