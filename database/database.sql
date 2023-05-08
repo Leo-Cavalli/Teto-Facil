@@ -20,7 +20,18 @@ CREATE TABLE IF NOT EXISTS corretores(
 CREATE TABLE IF NOT EXISTS imoveisDefinitivos(
 	id_imovel INT PRIMARY KEY AUTO_INCREMENT,
     id_anunciante INT NOT NULL,
-    id_corretor INT
+    id_corretor INT,
+    tipo_imovel VARCHAR(100) NOT NULL,
+    cep VARCHAR(100) NOT NULL,
+    rua VARCHAR(100) NOT NULL,
+    numero VARCHAR(100) NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    estado VARCHAR(100) NOT NULL,
+    valor VARCHAR(32),
+    complemento VARCHAR(100),
+    descricao VARCHAR(256),
+    situacao BOOLEAN NOT NULL
 );
 
 ALTER TABLE imoveisDefinitivos ADD CONSTRAINT
@@ -52,13 +63,3 @@ ALTER TABLE favoritos ADD CONSTRAINT
 	REFERENCES imoveisDefinitivos(id_imovel)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
-
-
-
-
-
-	
-
-
-
-

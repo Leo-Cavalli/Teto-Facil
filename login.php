@@ -4,10 +4,10 @@ require "users.php";
 require "classSession.php";
 
 //Verifica se o usuario ja esta logado, caso esteja, redireciona para a homepage.php
-if(classSession::verifySession()){
-    header('Location: frontEnd/homepage.php');
-    exit;
-}
+//if(classSession::verifySession()){
+//    header('Location: frontEnd/homepage.php');
+//    exit;
+//}
 
 //Ação a ser realizada
 $acao = $_POST['acao'];
