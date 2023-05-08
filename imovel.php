@@ -117,6 +117,7 @@ class classImovel{
         $this->situacao = $value;
     }
 
+    //Metodo responsavel por setar os valores do objeto imovel, sem id.
     public function setImovel($id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao){
         $this->id_anunciante = $id_anunciante;
         $this->id_corretor = $id_corretor;
@@ -133,6 +134,7 @@ class classImovel{
         $this->situacao = $situacao;
     }
 
+    //Metodo responsavel por cadastrar um imovel no banco de dados
     public function ImovelToBd(){
         $database = new database('imoveisdefinitivos');
         
@@ -154,6 +156,7 @@ class classImovel{
         return true;
     }
 
+    //Metodo responsavel por setar os valores do objeto imovel, com id.
     public function setImovelFromBD($id, $id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao){
         $this->id = $id;
         $this->id_anunciante = $id_anunciante;
@@ -171,6 +174,7 @@ class classImovel{
         $this->situacao = $situacao;
     }
 
+    //Retorna uma lista com os imoveis de um usuario pelo seu ID
     public static function getImovelByUserId($userID){
         $database = new database('imoveisdefinitivos');
         
@@ -179,23 +183,34 @@ class classImovel{
         $imoveis = array();
 
         if($result->rowCount() > 0){
+
             while($row = $result->fetch()){
+
                 $imovelAux = new classImovel();
+
                 $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+
                 array_push($imoveis, $imovelAux);
             }
         }
         return $imoveis;
     }
 
+    //Retorna uma lista com todos os imoveis cadastrados no banco de dados
     public static function getAllImoveis(){
         $database = new database('imoveisdefinitivos');
+
         $result = $database->select();
+
         $imoveis = array();
+
         if($result->rowCount() > 0){
+
             while($row = $result->fetch()){
                 $imovelAux = new classImovel();
+
                 $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+                
                 array_push($imoveis, $imovelAux);
             }
         }
