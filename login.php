@@ -3,38 +3,71 @@
 require_once "users.php";
 require_once "classSession.php";
 
-//Verifica se o usuario ja esta logado, caso esteja, redireciona para a homepage.php
-//if(classSession::verifySession()){
-//    header('Location: frontEnd/homepage.php');
-//    exit;
-//}
-
 //Ação a ser realizada
 $acao = $_POST['acao'];
+
+$CadStateAgent = false;
+if(isset($_POST['CadStateAgent'])){
+    $CadStateAgent = true;
+}
+
+//Verifica se o usuario ja esta logado, caso esteja, redireciona para a homepage.php, não funciona no caso de cadastro de corretor
+if(classSession::verifySession() && !$CadStateAgent){
+    header('Location: frontEnd/homepage.php');
+    exit;
+ }
 
 //Se a ação for cadastrar
 if($acao == 'cadastrar'){
 
     //Verifica se o email ja esta cadastrado para algum usuario
     if(classUsuario::getUserByEmail($_POST['email']) instanceof classUsuario){
-        echo "<script>alert('Email já cadastrado')</script>";
-        header("Location: frontEnd/loginpage.php");
+
+        if($CadStateAgent){
+            header("Location: frontEnd/adminPage.php?msgCad=Email já cadastrado");
+            exit;
+        }
+
+        header("Location: frontEnd/loginpage.php?msgCad=Email já cadastrado");
         exit;
     }
 
     //Verifica se o email ja esta cadastrado para algum corretor
     if(classCorretor::getUserByEmail($_POST['email']) instanceof classCorretor){
-        echo "<script>alert('Email já cadastrado')</script>";
-        header("Location: frontEnd/loginpage.php");
+        
+        if($CadStateAgent){
+            header("Location: frontEnd/adminPage.php?msgCad=Email já cadastrado");
+            exit;
+        }
+
+        header("Location: frontEnd/loginpage.php?msgCad=Email já cadastrado");
         exit;
     }
 
     //Verifica se as senhas são iguais
     if($_POST['password'] != $_POST['passwordconfirm']){
-        echo "<script>alert('As senhas não estão iguais')</script>";
-        header("Location: frontEnd/loginpage.php");
+        
+        if($CadStateAgent){
+            header("Location: frontEnd/adminPage.php?msgCad=As senhas não estão iguais");
+            exit;
+        }
+        header("Location: frontEnd/loginpage.php?msgCad=As senhas não estão iguais");
         exit;
     }
+
+    if($CadStateAgent){
+        $stateAgent = new classCorretor();
+
+        $stateAgent->setUser($_POST['name'], $_POST['email'], $_POST['password'], $_POST['cpf'], $_POST['telefone'], $_POST['creci']);
+
+        $stateAgent->signUp();
+
+        header('Location: frontEnd/adminPage.php?msgCad=Corretor cadastrado com sucesso');
+        exit;
+    }
+
+
+
 
     //Cria um objeto usuario
     $usuario = new classUsuario();
@@ -63,11 +96,11 @@ if($acao == 'logar'){
         //Verifica se a senha esta correta
         if(!password_verify($_POST['password'], $obusuario->getPassword())){
             echo "<script>alert('Email ou senha Inválidos')</script>";
-            header('Location: frontEnd/loginpage.php');
+            header('Location: frontEnd/loginpage.php?msgLogin=Email ou senha Inválidos');
             exit;
         }
         //Inicia a sessão, redireciona para a homepage.php e encerra o script
-        classSession::setSession($obusuario->getId(), $obusuario->getName(), $obusuario->getEmail(), 0, $obusuario->getCpf());
+        classSession::setSession($obusuario->getId(), $obusuario->getName(), $obusuario->getEmail(), 0, $obusuario->getCpf(). $obusuario->getTelefone());
         header('Location: frontEnd/homepage.php');
         exit;
     }
@@ -77,18 +110,18 @@ if($acao == 'logar'){
         //Verifica se a senha esta correta
         if(!password_verify($_POST['password'], $obcorretor->getPassword())){
             echo "<script>alert('Email ou senha Inválidos')</script>";
-            header('Location: frontEnd/loginpage.php');
+            header('Location: frontEnd/loginpage.php?msgLogin=Email ou senha Inválidos');
             exit;
         }
         //Inicia a sessão, redireciona para a homepage.php e encerra o script
-        classSession::setSession($obcorretor->getId(), $obcorretor->getName(), $obcorretor->getEmail(), 1, $obcorretor->getCpf());
+        classSession::setSession($obcorretor->getId(), $obcorretor->getName(), $obcorretor->getEmail(), 1, $obcorretor->getCpf(), $obcorretor->getTelefone());
         header('Location: frontEnd/homepage.php');
         exit;
     }
 
     //Se não encontrar o usuario ou corretor, redireciona para a loginpage.php
     echo "<script>alert('Email ou senha Inválidos')</script>";
-    header('Location: frontEnd/loginpage.php');
+    header('Location: frontEnd/loginpage.php?msgLogin=Email ou senha Inválidos');
     exit;
 }
 ?>

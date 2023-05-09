@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS usuarios(
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     senha CHAR(255) NOT NULL,
-    cpf VARCHAR(100) NOT NULL
+    cpf VARCHAR(100) NOT NULL,
+    telefone VARCHAR(100)
     );
     
 CREATE TABLE IF NOT EXISTS corretores(
@@ -16,7 +17,8 @@ CREATE TABLE IF NOT EXISTS corretores(
     email VARCHAR(100) NOT NULL,
     senha CHAR(255) NOT NULL,
     creci VARCHAR(100) NOT NULL,
-    cpf VARCHAR(100) NOT NULL
+    cpf VARCHAR(100) NOT NULL,
+    telefone VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS imoveisDefinitivos(
@@ -65,3 +67,7 @@ ALTER TABLE favoritos ADD CONSTRAINT
 	REFERENCES imoveisDefinitivos(id_imovel)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
+
+
+INSERT INTO corretores(nome, email, senha, creci, cpf, telefone) VALUES
+('ADMINISTRADOR', 'admin@tfadmin', '$2y$10$.UnGwtF0zG/I6YxPT6eoyunkpE13/ZbzYw52RWF.Y7rGr2CukjG8q', '000', '000', '000');
