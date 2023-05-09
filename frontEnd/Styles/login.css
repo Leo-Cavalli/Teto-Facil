@@ -3,9 +3,10 @@ body{
 }
 
 .spacer{
+    float: left;
     width: 99.8%;
-    height: 10%;
-    border: 2px solid red;
+    height: 10%;;
+    position: relative;
 }
 
 .forms{
@@ -36,6 +37,30 @@ body{
     padding: 0%;
     border: 2px solid black;
     text-align: center;
+}
+
+.home-button{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translate(0%,-50%);
+}
+
+.home-button a {
+    transition: color .2s linear, border .2s linear;
+    border-bottom: transparent;
+    font-family: 'Raleway', sans-serif;
+    font-size: larger;
+    text-decoration: none;
+    color: #0000009a;
+    text-align: center;
+    text-transform:  uppercase;
+}
+
+.home-button a:hover{
+    border-bottom: 1px dotted;
+    color: #000;
 }
 
 .button-form{
@@ -121,6 +146,6 @@ select:focus, input:focus, textarea:focus{
     margin: 0%;
     padding: 0%;
     overflow: auto;
-    padding-bottom: 5%; 
+    padding-bottom: 5em; 
     float: left;
 }   
