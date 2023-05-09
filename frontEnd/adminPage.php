@@ -1,4 +1,10 @@
-<?php include_once '../users.php'; ?>
+<?php
+    include_once '../users.php'; 
+    $msgCad = '';
+    if(isset($_GET['msgCad'])){
+        $msgCad = $_GET['msgCad'];
+    }
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +40,7 @@
         <br>
         <input type="hidden" name='CadStateAgent' value='CadOp'>
         <button type="submit" name="acao" value="cadastrar">Cadastrar</button>
+        <p><?=$msgCad?></p>
     </form>
         <?php
 
