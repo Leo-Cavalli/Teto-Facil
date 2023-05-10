@@ -75,11 +75,11 @@ if(isset($_GET['msgCad'])){
                     <form action="../login.php" method="post" id="formCad">
                         <div class="forms-inputs">
                             <label for="name">Digite seu nome completo: </label> 
-                            <input type="text" placeholder="Ex: João Pedro Santos" name="name">
+                            <input type="text" placeholder="Ex: João Pedro Santos" name="name" maxLenght="100">
                             <label for="emai">Digite seu email:</label> 
-                            <input input type="email" name="email" id="emailCad" placeholder="Ex: JoãoSantos@gmail.com" maxLenght="30">
+                            <input input type="email" name="email" id="emailCad" placeholder="Ex: JoãoSantos@gmail.com" maxLenght="100">
                             <label for="emai">Digite seu CPF:</label> 
-                            <input type="text" id="cpfCad" name="cpf" >
+                            <input type="text" id="cpfCad" name="cpf" maxlength="100">
                             <label for="password">Digite sua senha: </label>
                             <input type="password" name="password" id="senhaCad" maxLenght='12'>
                             <label for="senhaConf">Confirme sua senha: </label>
