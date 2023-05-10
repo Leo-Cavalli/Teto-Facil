@@ -34,6 +34,7 @@ if(isset($_SESSION['id'])){
     <nav class="main-nav">
 
     </nav>
+    <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo ' CONTA DE CORRETOR'?></h1>
     <table>
         <tr>

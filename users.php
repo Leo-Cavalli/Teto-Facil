@@ -96,6 +96,7 @@ class classUsuario{
         return false;
     }
 
+    //Update Name in BD
     public static function editNameInBd($where, $newName){
         $database = new database('usuarios');
         $database->update('id_usuario = "'.$where.'"', [
@@ -104,6 +105,7 @@ class classUsuario{
         return true;
     }
 
+    //Update Email in BD
     public static function editEmailInBd($where, $newEmail){
         $database = new database('usuarios');
         $database->update('id_usuario = "'.$where.'"', [
@@ -112,6 +114,7 @@ class classUsuario{
         return true;
     }
 
+    //Update CPF in BD
     public static function editTelefoneInBd($where, $newTelefone){
         $database = new database('usuarios');
         $database->update('id_usuario = "'.$where.'"', [
@@ -121,6 +124,7 @@ class classUsuario{
     }
 
 
+    //Update Password in BD
     public static function editPasswordInBd($where, $newPassword){
         $database = new database('usuarios');
         $database->update('id_usuario = "'.$where.'"', [
@@ -129,6 +133,7 @@ class classUsuario{
         return true;
     }
 
+    //Delete User in BD
     public static function deleteUserInBd($where){
         $database = new database('usuarios');
         $database->delete('id_usuario = "'.$where.'"');
@@ -210,6 +215,7 @@ class classCorretor extends classUsuario{
         return false;
     }
 
+    //Retorna uma lista com todos os corretores cadastrados no banco de dados
     public static function getAllStateAgentsfromBd(){
     
         $StateAgents = array();

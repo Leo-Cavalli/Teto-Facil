@@ -6,6 +6,7 @@ require_once "classSession.php";
 //Ação a ser realizada
 $acao = $_POST['acao'];
 
+//Se a ação for cadastrar um corretor, $CadStateAgent = true, se não, $CadStateAgent = false
 $CadStateAgent = false;
 if(isset($_POST['CadStateAgent'])){
     $CadStateAgent = true;
@@ -23,6 +24,7 @@ if($acao == 'cadastrar'){
     //Verifica se o email ja esta cadastrado para algum usuario
     if(classUsuario::getUserByEmail($_POST['email']) instanceof classUsuario){
 
+        //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
         if($CadStateAgent){
             header("Location: frontEnd/adminPage.php?msgCad=Email já cadastrado");
             exit;
@@ -35,6 +37,7 @@ if($acao == 'cadastrar'){
     //Verifica se o email ja esta cadastrado para algum corretor
     if(classCorretor::getUserByEmail($_POST['email']) instanceof classCorretor){
         
+        //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
         if($CadStateAgent){
             header("Location: frontEnd/adminPage.php?msgCad=Email já cadastrado");
             exit;
@@ -47,6 +50,7 @@ if($acao == 'cadastrar'){
     //Verifica se as senhas são iguais
     if($_POST['password'] != $_POST['passwordconfirm']){
         
+        //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
         if($CadStateAgent){
             header("Location: frontEnd/adminPage.php?msgCad=As senhas não estão iguais");
             exit;
@@ -55,6 +59,7 @@ if($acao == 'cadastrar'){
         exit;
     }
 
+    //Cadastro de corretor
     if($CadStateAgent){
         $stateAgent = new classCorretor();
 
@@ -65,9 +70,6 @@ if($acao == 'cadastrar'){
         header('Location: frontEnd/adminPage.php?msgCad=Corretor cadastrado com sucesso');
         exit;
     }
-
-
-
 
     //Cria um objeto usuario
     $usuario = new classUsuario();
