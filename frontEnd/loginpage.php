@@ -33,6 +33,10 @@ if(isset($_GET['msgCad'])){
     <div class="spacer">
         <div class="home-button">
             <a href="homepage.php"> Home</a>
+<body>
+    <div class="spacer">
+        <div class="home-button">
+            <a href="#"> Home</a>
         </div>
     </div>
     <div class="row">
