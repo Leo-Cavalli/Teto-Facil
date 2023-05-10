@@ -42,14 +42,5 @@ class classSession{
         }
         return false;
     }
-
-
-
 }
-
-
-
-
-
-
 ?>
