@@ -19,43 +19,78 @@ if(isset($_GET['msgCad'])){
 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Stylesheets/normalize.css">
+    <link rel="stylesheet" href="Stylesheets/login.css">
     <title>Teto Facil</title>
 </head>
 <body>
+    <div class="spacer">
+        <div class="home-button">
+            <a href="homepage.php"> Home</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cols col-2-4 forms">
+            <div class="forms-title">
+                <p>Login</p>
+            </div>
+            <div class="flexbox-forms">
+                <div class="cols col-1-2">
+                    <form action="../login.php" method="post" id="formLogin">
+                        <div class="forms-inputs">
+                            <label for="email">Email:</label>
+                            <input type="email" id="nomeLogin" name="email" placeholder="Digite seu email: ">
+                            <label for="password"> Senha:</label>
+                            <input type="password" name="password" id="senhaLogin" placeholder="Digite sua senha: ">
+                        </div>
+                        <button class="button-form" type="submit" name="acao" value="logar" id="sendLoginButton">Entrar</button>
+                    </form>
+                </div>
+                <div class="cols col-1-2">
+                    <div class="logo">
+                        <p> insira sua logo aqui</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <p>Login</p>
-    <form action="../login.php" method="post" id="formLogin">
-        Email: <input type="email" id="nomeLogin" name="email" placeholder="Digite seu email: ">
-        <br>
-        Senha: <input type="password" name="password" id="senhaLogin" placeholder="Digite sua senha: ">
-        <br>
-        <p><?=$msgLogin?></p>
-        <button type="submit" name="acao" value="logar" id="sendLoginButton">Entrar</button>
-    </form>
-
-    <br>
-
-
-    <p>Cadastro</p>
-    <form action="../login.php" method="post" id="formCad">
-        Nome: <input type="text" placeholder="Digite seu nome:" name="name" placeholder="Digite seu nome: " maxLenght= "20">
-        <br>
-        Email: <input type="email" name="email" id="emailCad" placeholder="Digite seu email: " maxLenght="30">
-        <br>
-        CPF: <input type="text" placeholder="Digite seu cpf:" id="cpfCad" name="cpf" >
-        <br>
-        Senha: <input type="password" name="password" id="senhaCad" placeholder="Digite sua senha: " maxLenght='12'>
-        <br>
-        Confirme senha: <input type="password" id="senhaConf" name="passwordconfirm" placeholder="Confirme sua senha: " maxlength="12">
-        <br>
-        <p><?=$msgCad?></p>
-        <button type="submit" name="acao" value="cadastrar" id="sendCadButton" >Cadastrar</button>
-    </form>
+    <div class="row">
+        <div class="cols col-2-4 forms">
+            <div class="forms-title">
+                <p>Cadastro</p>
+            </div>
+            <div class="flexbox-forms">
+                <div class="cols col-1-2">
+                    <form action="../login.php" method="post" id="formCad">
+                        <div class="forms-inputs">
+                            <label for="name">Digite seu nome completo: </label> 
+                            <input type="text" placeholder="Ex: João Pedro Santos" name="name">
+                            <label for="emai">Digite seu email:</label> 
+                            <input input type="email" name="email" id="emailCad" placeholder="Ex: JoãoSantos@gmail.com" maxLenght="30">
+                            <label for="emai">Digite seu CPF:</label> 
+                            <input type="text" id="cpfCad" name="cpf" >
+                            <label for="password">Digite sua senha: </label>
+                            <input type="password" name="password" id="senhaCad" maxLenght='12'>
+                            <label for="senhaConf">Confirme sua senha: </label>
+                            <input input type="password" id="senhaConf" name="passwordconfirm" maxlength="12">
+                        </div>
+                        <button class="button-form" type="submit" name="acao" value="cadastrar" id="sendCadButton">Cadastrar</button>
+                    </form>
+                </div>
+                <div class="cols col-1-2">
+                    <div class="logo">
+                        <p> insira sua logo aqui</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

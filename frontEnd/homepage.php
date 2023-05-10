@@ -20,15 +20,20 @@ if(isset($_SESSION['id'])){
 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Stylesheets/normalize.css">
+    <link rel="stylesheet" href="Stylesheets/home.css">
     <title>Homepage</title>
 </head>
 <body>
+    <nav class="main-nav">
+
+    </nav>
     <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo ' CONTA DE CORRETOR'?></h1>
     <table>
         <tr>
