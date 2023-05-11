@@ -85,7 +85,7 @@
                     echo "<li>".$StateAgentsArray[$i]->getTelefone()."</li>";
                     echo "<li>CRECI: ".$StateAgentsArray[$i]->getCreci()."</li>";
                     echo "<li>Senha: ************</li>";
-                    echo "<li><a href='editStateAgent.php?id=".$StateAgentsArray[$i]->getId()."&email=".$StateAgentsArray[$i]->getEmail()."&cpf=".$StateAgentsArray[$i]->getCpf()."&telefone=".$StateAgentsArray[$i]->getTelefone()."&creci=".$StateAgentsArray[$i]->getCreci()."&password=".$StateAgentsArray[$i]->getPassword()."'>Editar</a></li>";
+                    echo "<li><a href='editStateAgent.php?id=".$StateAgentsArray[$i]->getId()."&email=".$StateAgentsArray[$i]->getEmail()."&cpf=".$StateAgentsArray[$i]->getCpf()."&telefone=".$StateAgentsArray[$i]->getTelefone()."&creci=".$StateAgentsArray[$i]->getCreci()."&password=".$StateAgentsArray[$i]->getPassword()."&name=".$StateAgentsArray[$i]->getName()."'>Editar</a></li>";
                     echo "<li><a href='adminPage.php?op=deleteStateAgent&id=".$StateAgentsArray[$i]->getId()."'>Apagar</a></td>";
                     echo "</li>";
                     echo "</table>";
