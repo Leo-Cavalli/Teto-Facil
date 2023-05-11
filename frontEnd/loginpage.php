@@ -42,10 +42,12 @@
     function passwordConfirm(){
         let senha = document.getElementById("senhaCad").value
         let senhaConf = document.getElementById("senhaConf").value
-        if(senha != senhaConf){
+        let form1 = document.getElementById("formCad")
+        if(senha !== senhaConf){
             alert("As senhas nao estao iguais \nDigite senhas iguais !")
+            form1.reset()
         }else{
-            document.formaCad.submit()
+            form1.submit()
         }
     }
 </script>
