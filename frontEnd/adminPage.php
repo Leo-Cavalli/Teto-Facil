@@ -1,9 +1,34 @@
 <?php
-    include_once '../users.php'; 
+    include_once '../users.php';
+
+    session_start();
+    //Verifica se o usuário está logado como administrador
+    if($_SESSION['level'] != 1 || $_SESSION['id'] != 1 && $_SESSION['level'] == 1 || !isset($_SESSION['id'])){
+        header('Location: homepage.php');
+    }
+
     $msgCad = '';
     if(isset($_GET['msgCad'])){
         $msgCad = $_GET['msgCad'];
     }
+    
+    //Mensagem de Erro para Apagar Corretor
+    if(isset($_GET['msgError'])){
+        echo "<script>alert(".$_GET['msgError'].")</script>";
+    }
+
+    //Se o Administrador desejar apagar um corretor
+    $op = '';
+    $id_corretor = '';
+    if(isset($_GET['op'])){
+        $op = $_GET['op'];
+        $id_corretor = $_GET['id'];
+    }
+
+    if($op == 'deleteStateAgent'){
+        
+    }
+
  ?>
 <!DOCTYPE html>
 <html lang="en">

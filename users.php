@@ -237,8 +237,4 @@ class classCorretor extends classUsuario{
         return $StateAgents;
     }
 }
-
-
-
-
 ?>

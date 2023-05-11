@@ -217,5 +217,10 @@ class classImovel{
         return $imoveis;
     }
     
+    public static function getImovelByStateAgentID($id){
+        $database = new database('imoveisdefinitivos');
+
+        $re
+    }
 }
 ?>

@@ -70,3 +70,6 @@ if($op == 'deleteAccount'){
     header('Location: frontEnd/homepage.php');
     exit;
 }
+
+//Operações de Corretor
+
