@@ -220,7 +220,23 @@ class classImovel{
     public static function getImovelByStateAgentID($id){
         $database = new database('imoveisdefinitivos');
 
-        $re
+        $imoveis = array();
+
+        $result = $database->select('id_corretor = "'.$id.'"');
+
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+
+                $imovelAux = new classImovel();
+
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+                
+                array_push($imoveis, $imovelAux);
+            }
+        }
+
+        return $imoveis;
     }
+
 }
 ?>

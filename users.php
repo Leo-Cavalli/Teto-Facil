@@ -236,5 +236,13 @@ class classCorretor extends classUsuario{
         }
         return $StateAgents;
     }
+
+    public static function deleteStateAgent($id){
+        $database = new database('corretores');
+
+        $database->delete('id_corretor = "'.$id.'"');
+
+        return true;
+    }
 }
 ?>

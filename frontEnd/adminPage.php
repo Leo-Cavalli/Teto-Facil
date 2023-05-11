@@ -1,22 +1,18 @@
 <?php
     include_once '../users.php';
+    include_once '../imovel.php';
 
     session_start();
     //Verifica se o usuário está logado como administrador
     if($_SESSION['level'] != 1 || $_SESSION['id'] != 1 && $_SESSION['level'] == 1 || !isset($_SESSION['id'])){
         header('Location: homepage.php');
     }
-
-    $msgCad = '';
-    if(isset($_GET['msgCad'])){
-        $msgCad = $_GET['msgCad'];
-    }
     
     //Mensagem de Erro para Apagar Corretor
-    if(isset($_GET['msgError'])){
-        echo "<script>alert(".$_GET['msgError'].")</script>";
+    if(isset($_GET['Alert'])){
+        echo "<script>alert('".$_GET['Alert']."')</script>";
     }
-
+    
     //Se o Administrador desejar apagar um corretor
     $op = '';
     $id_corretor = '';
@@ -26,7 +22,17 @@
     }
 
     if($op == 'deleteStateAgent'){
-        
+        $ArrayImoveis = classImovel::getImovelByStateAgentID($id_corretor);
+
+        if(sizeof($ArrayImoveis) > 0){
+            header('Location: adminPage.php?Alert=Não é possivel apagar um corretor que possui imoveis cadastrados!');
+            exit;
+        }
+
+        classCorretor::deleteStateAgent($id_corretor);
+
+        header('Location: adminPage.php?Alert=Corretor apagado com sucesso!');
+        exit;
     }
 
  ?>
@@ -65,7 +71,6 @@
         <br>
         <input type="hidden" name='CadStateAgent' value='CadOp'>
         <button type="submit" name="acao" value="cadastrar">Cadastrar</button>
-        <p><?=$msgCad?></p>
     </form>
         <?php
 
@@ -80,7 +85,7 @@
                     echo "<li>".$StateAgentsArray[$i]->getTelefone()."</li>";
                     echo "<li>CRECI: ".$StateAgentsArray[$i]->getCreci()."</li>";
                     echo "<li>Senha: ************</li>";
-                    echo "<li><a href='adminPage.php?op=editStateAgent&id=".$StateAgentsArray[$i]->getId()."'>Editar</a></li>";
+                    echo "<li><a href='editStateAgent.php?id=".$StateAgentsArray[$i]->getId()."&email=".$StateAgentsArray[$i]->getEmail()."&cpf=".$StateAgentsArray[$i]->getCpf()."&telefone=".$StateAgentsArray[$i]->getTelefone()."&creci=".$StateAgentsArray[$i]->getCreci()."&password=".$StateAgentsArray[$i]->getPassword()."'>Editar</a></li>";
                     echo "<li><a href='adminPage.php?op=deleteStateAgent&id=".$StateAgentsArray[$i]->getId()."'>Apagar</a></td>";
                     echo "</li>";
                     echo "</table>";

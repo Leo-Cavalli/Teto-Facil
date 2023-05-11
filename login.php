@@ -26,7 +26,7 @@ if($acao == 'cadastrar'){
 
         //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
         if($CadStateAgent){
-            header("Location: frontEnd/adminPage.php?msgCad=Email já cadastrado");
+            header("Location: frontEnd/adminPage.php?Alert=Email já cadastrado");
             exit;
         }
 
@@ -39,7 +39,7 @@ if($acao == 'cadastrar'){
         
         //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
         if($CadStateAgent){
-            header("Location: frontEnd/adminPage.php?msgCad=Email já cadastrado");
+            header("Location: frontEnd/adminPage.php?Alert=Email já cadastrado");
             exit;
         }
 
@@ -52,7 +52,7 @@ if($acao == 'cadastrar'){
         
         //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
         if($CadStateAgent){
-            header("Location: frontEnd/adminPage.php?msgCad=As senhas não estão iguais");
+            header("Location: frontEnd/adminPage.php?Alert=As senhas não estão iguais");
             exit;
         }
         header("Location: frontEnd/loginpage.php?msgCad=As senhas não estão iguais");
@@ -67,7 +67,7 @@ if($acao == 'cadastrar'){
 
         $stateAgent->signUp();
 
-        header('Location: frontEnd/adminPage.php?msgCad=Corretor cadastrado com sucesso');
+        header('Location: frontEnd/adminPage.php?Alert=Corretor cadastrado com sucesso');
         exit;
     }
 
