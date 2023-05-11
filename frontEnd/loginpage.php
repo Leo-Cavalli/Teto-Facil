@@ -94,3 +94,16 @@ if(isset($_GET['msgCad'])){
     </div>
 </body>
 </html>
+
+<script>
+    let senha = document.getElementById("senhaCad").value
+    let senhaConf = document.getElementById("senhaConf").value
+    let formCad = document.getElementById("formCad")
+
+    if(senha !== senhaConf){
+        alert("As senhas nao coincidem !")
+        formCad.reset()
+    } else{
+        formCad.submit()
+    }
+</script>
