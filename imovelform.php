@@ -9,6 +9,7 @@
         exit();
     }
 
+    //Falta Implementar, não completo ainda;
     $id_corretor = null;
     $situacao = false;
 

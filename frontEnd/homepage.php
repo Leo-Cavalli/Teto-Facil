@@ -1,24 +1,60 @@
 <?php
 
+include_once '../classSession.php';
+
+if(isset($_GET['op']) == 1){
+    classSession::destroySession();
+}
+
 session_start();
 
-echo $_SESSION['id'];
-echo "<br>";
-echo $_SESSION['name'];
-echo "<br>";
-echo $_SESSION['email'];
-echo "<br>";
-echo $_SESSION['level'];
-echo "<br>";
-echo $_SESSION['cpf'];
-echo "<br>";
+$name = "Visitante";
 
-require_once "../imovel.php";
+$level = -1;
 
-$imoveis = classImovel::getAllImoveis();
-
-echo sizeof($imoveis);
-
-
+if(isset($_SESSION['id'])){
+    $name = $_SESSION['name'];
+    $level = $_SESSION['level'];
+    
+}
 
 ?>
+
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Stylesheets/normalize.css">
+    <link rel="stylesheet" href="Stylesheets/home.css">
+    <title>Homepage</title>
+</head>
+<body>
+    <nav class="main-nav">
+
+    </nav>
+    <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
+    <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo ' CONTA DE CORRETOR'?></h1>
+    <table>
+        <tr>
+            <?php
+                //Se o usuário for um corretor ou um cliente
+                if($level == 0 || $level == 1 && $_SESSION['id'] != 1){
+                    echo '<td><a href="userPage.php">Minha Conta</a></td>';
+                    echo '<td><a href="homepage.php?op=1">LogOut</a></td>';
+                }
+                //Se o usuário não estiver logado
+                else if(!isset($_SESSION['id'])){
+                    echo '<td><a href="loginpage.php">Tela de Login</a></td>';
+                }
+                //Se o usuário estiver logado como administrador
+                else if($level != null && $level == 1 && $_SESSION['id'] == 1){
+                    echo '<td><a href="adminPage.php">Painel de Admin</a></td>';
+                    echo '<td><a href="homepage.php?op=1">LogOut</a></td>';
+                }
+            ?>
+        </tr>
+    </table>
+</body>
+</html>

@@ -4,18 +4,19 @@ require_once "database/database.php";
 
 class classUsuario{
 
-    private $id;
-    private $name;
-    private $email;
-    private $password;
-    private $cpf;
+    protected $id;
+    protected $name;
+    protected $email;
+    protected $password;
+    protected $cpf;
+    protected $telefone;
 
     //Metodo responsavel por setar os valores do objeto usuario, utilizado para cadastro
     public function setUser($name, $email, $password, $cpf){
         $this->name = $name;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
-        $this->cpf = password_hash($cpf, PASSWORD_DEFAULT);
+        $this->cpf = $cpf;
     }
 
     //Metodos responsaveis por retornar os valores do objeto usuario
@@ -39,14 +40,19 @@ class classUsuario{
         return $this->cpf;
     }
 
+    public function getTelefone(){
+        return $this->telefone;
+    }
+
     
     //Metodo responsavel por setar os valores do objeto usuario, utilizado durante o login
-    public function setUserFromDatabase($id, $name, $email, $password, $cpf){
+    public function setUserFromDatabase($id, $name, $email, $password, $cpf, $telefone){
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->cpf = $cpf;
+        $this->telefone = $telefone;
     }
 
     //Metodo responsavel por cadastrar um usuario no banco de dados
@@ -80,7 +86,7 @@ class classUsuario{
             $auxUser = new classUsuario();
 
             //Seta os valores do objeto usuario
-            $auxUser->setUserFromDatabase($row['id_usuario'], $row['nome'], $row['email'], $row['senha'], $row['cpf']);
+            $auxUser->setUserFromDatabase($row['id_usuario'], $row['nome'], $row['email'], $row['senha'], $row['cpf'], $row['telefone']);
             
             //Retorna o objeto usuario
             return $auxUser;
@@ -89,6 +95,51 @@ class classUsuario{
         //Retorna falso caso não encontre o usuario
         return false;
     }
+
+    //Update Name in BD
+    public static function editNameInBd($where, $newName){
+        $database = new database('usuarios');
+        $database->update('id_usuario = "'.$where.'"', [
+            'nome' => $newName
+        ]);
+        return true;
+    }
+
+    //Update Email in BD
+    public static function editEmailInBd($where, $newEmail){
+        $database = new database('usuarios');
+        $database->update('id_usuario = "'.$where.'"', [
+            'email' => $newEmail
+        ]);
+        return true;
+    }
+
+    //Update CPF in BD
+    public static function editTelefoneInBd($where, $newTelefone){
+        $database = new database('usuarios');
+        $database->update('id_usuario = "'.$where.'"', [
+            'telefone' => $newTelefone
+        ]);
+        return true;
+    }
+
+
+    //Update Password in BD
+    public static function editPasswordInBd($where, $newPassword){
+        $database = new database('usuarios');
+        $database->update('id_usuario = "'.$where.'"', [
+            'senha' => $newPassword
+        ]);
+        return true;
+    }
+
+    //Delete User in BD
+    public static function deleteUserInBd($where){
+        $database = new database('usuarios');
+        $database->delete('id_usuario = "'.$where.'"');
+        return true;
+    }
+
 }
 
 class classCorretor extends classUsuario{
@@ -100,20 +151,23 @@ class classCorretor extends classUsuario{
     }
 
     //Metodo responsavel por setar os valores do objeto corretor, utilizado para login
-    public function setUserFromDatabase($id, $name, $email, $password, $cpf, $creci = null){
+    public function setUserFromDatabase($id, $name, $email, $password, $cpf, $telefone, $creci = null){
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->cpf = $cpf;
+        $this->telefone = $telefone;
         $this->creci = $creci;
     }
 
     //Metodo responsavel por setar os atributos do objeto corretor
-    public function setUser($name, $email, $password, $creci = null){
+    public function setUser($name, $email, $password, $cpf, $telefone = null, $creci = null){
         $this->name = $name;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->cpf = $cpf;
+        $this->telefone = $telefone;
         $this->creci = $creci;
     }
 
@@ -125,7 +179,9 @@ class classCorretor extends classUsuario{
                     'nome' => $this->name,
                     'email' => $this->email,
                     'senha' => $this->password,
-                    'creci' => $this->creci
+                    'creci' => $this->creci,
+                    'cpf' => $this->cpf,
+                    'telefone' => $this->telefone
                     ]);        
         return true;
     }
@@ -149,7 +205,7 @@ class classCorretor extends classUsuario{
             $auxStateAgent = new classCorretor();
 
             //Seta os valores do objeto corretor
-            $auxStateAgent->setUserFromDatabase($row['id_corretor'], $row['nome'], $row['email'], $row['senha'], $row['creci']);
+            $auxStateAgent->setUserFromDatabase($row['id_corretor'], $row['nome'], $row['email'], $row['senha'], $row['telefone'], $row['creci']);
 
             //Retorna o objeto corretor
             return $auxStateAgent;
@@ -158,8 +214,29 @@ class classCorretor extends classUsuario{
         //Retorna falso caso não encontre o corretor
         return false;
     }
-}
 
+    //Retorna uma lista com todos os corretores cadastrados no banco de dados
+    public static function getAllStateAgentsfromBd(){
+    
+        $StateAgents = array();
+
+        $database = new database('corretores');
+
+        $result = $database->select("id_corretor > 1");
+    
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+                $auxStateAgent = new classCorretor();
+                
+                $auxStateAgent->setUserFromDatabase($row['id_corretor'],
+                $row['nome'], $row['email'], $row['senha'], $row['cpf'], $row['telefone'], $row['creci']);
+                
+                array_push($StateAgents, $auxStateAgent);
+            }
+        }
+        return $StateAgents;
+    }
+}
 
 
 
