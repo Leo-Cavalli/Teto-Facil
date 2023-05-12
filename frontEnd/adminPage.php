@@ -21,16 +21,18 @@
         $id_corretor = $_GET['id'];
     }
 
+    //Se o Administrador desejar apagar um corretor, mover para "updateProfile" quando possivel;
     if($op == 'deleteStateAgent'){
         $ArrayImoveis = classImovel::getImovelByStateAgentID($id_corretor);
 
+        //Verifica se o corretor possui imoveis cadastrados
         if(sizeof($ArrayImoveis) > 0){
             header('Location: adminPage.php?Alert=Não é possivel apagar um corretor que possui imoveis cadastrados!');
             exit;
         }
 
+        //Deleta o corretor do banco de dados, direciona a pagina para adminPage.php
         classCorretor::deleteStateAgent($id_corretor);
-
         header('Location: adminPage.php?Alert=Corretor apagado com sucesso!');
         exit;
     }
@@ -50,10 +52,10 @@
     <h2>Adicionar novo Corretor ao Sistema:</h2>
     <form action="../login.php" method="post">
         <label for="name">Nome:</label>
-        <input type="text" name="name" id="name" placeholder="Digite o nome do corretor: " maxlength="20" required>
+        <input type="text" name="name" id="name" placeholder="Digite o nome do corretor: " maxlength="100" required>
         <br>
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" placeholder="Digite o email do corretor: " maxLenght="30" required>
+        <input type="email" name="email" id="email" placeholder="Digite o email do corretor: " maxLenght="100" required>
         <br>
         <label for="cpf">CPF:</label>
         <input type="text" name="cpf" id="cpf" placeholder="Digite o cpf do corretor: " required>
@@ -75,6 +77,7 @@
     </form>
         <?php
 
+            //Esse trecho de código é responsável por listar todos os corretores cadastrados no sistema
             $StateAgentsArray = classCorretor::getAllStateAgentsfromBd();
 
             if(sizeof($StateAgentsArray) > 0){

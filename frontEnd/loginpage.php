@@ -2,10 +2,12 @@
 
 include_once '../classSession.php';
 
+//Se o usuário estiver logado, redireciona para a homepage
 if(classSession::verifySession()){
     header('Location: homepage.php');
 }
 
+//Mensagem de erro para login e cadastro, padrão vazio
 $msgLogin ='';
 $msgCad = '';
 
@@ -15,6 +17,11 @@ if(isset($_GET['msgLogin'])){
 
 if(isset($_GET['msgCad'])){
     $msgCad = $_GET['msgCad'];
+}
+
+//Mensagem alert, melhorar para outras sprints
+if(isset($_GET['Alert'])){
+    echo "<script>alert('".$_GET['Alert']."')</script>";
 }
 
 ?>
@@ -96,6 +103,7 @@ if(isset($_GET['msgCad'])){
 </html>
 
 <script>
+    /*
         function validate(){
         let senha = document.getElementById("senhaCad").value
         let senhaConf = document.getElementById("senhaConf").value

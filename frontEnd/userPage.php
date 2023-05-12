@@ -1,15 +1,20 @@
 <?php
   session_start();
+  //Seta o telefone, inicialmente como não cadastrado, telefone é inicialmente opcional para cliente comum
+  //Essa Variavel é utilizada para exibir a mensagem de "Nenhum telefone cadastrado" ou o telefone do usuario
   $telefone = false;
+
+  //Se o telefone estiver cadastrado, seta como true;
   if(isset($_SESSION['telefone'])){
     $telefone = true;
   }
 
-  $msgServer = '';
-  if(isset($_GET['msg'])){
-    $msgServer = $_GET['msg'];
+  //Mensagem Alert enviada por GET
+  if(isset($_GET['Alert'])){
+    echo "<script>alert('".$_GET['Alert']."')</script>";
   }
 
+  //Operações possiveis na pagina
   $editName = false;
   if(isset($_GET['op'])  && $_GET['op'] == 'editName'){
     $editName = true;
@@ -46,7 +51,6 @@
     </tr>
   </table>
   <h2>Visualizando os dados de: <?=$_SESSION['name']?></h2>
-  <p><?=$msgServer?></p>
   <table>
     <tr>
       <li>Nome: <?=$_SESSION['name']?></li>

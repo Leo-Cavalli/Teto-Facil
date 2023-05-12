@@ -217,6 +217,7 @@ class classImovel{
         return $imoveis;
     }
     
+    //Retorna todos os imoveis de um corretor pelo seu ID
     public static function getImovelByStateAgentID($id){
         $database = new database('imoveisdefinitivos');
 

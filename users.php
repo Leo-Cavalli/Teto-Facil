@@ -237,11 +237,67 @@ class classCorretor extends classUsuario{
         return $StateAgents;
     }
 
+    //Deleta um corretor do banco de dados, mudar nome do metodo para deleteUserInBd
     public static function deleteStateAgent($id){
         $database = new database('corretores');
 
         $database->delete('id_corretor = "'.$id.'"');
 
+        return true;
+    }
+
+
+    //Update Name in BD
+    public static function editNameInBd($where, $newName){
+        $database = new database('corretores');
+        $database->update('id_corretor = "'.$where.'"', [
+            'nome' => $newName
+        ]);
+        return true;
+    }
+
+    //Update Email in BD
+    public static function editEmailInBd($where, $newEmail){
+        $database = new database('corretores');
+        $database->update('id_corretor = "'.$where.'"', [
+            'email' => $newEmail
+        ]);
+        return true;
+    }
+
+    //Update CPF in BD
+    public static function editCpfInBd($where, $newCpf){
+        $database = new database('corretores');
+        $database->update('id_corretor = "'.$where.'"', [
+            'cpf' => $newCpf
+        ]);
+        return true;
+    }
+
+    //Update Creci in BD
+    public static function editCreciInBd($where, $NewCreci){
+        $database = new database('corretores');
+        $database->update('id_corretor = "'.$where.'"', [
+            'creci' => $NewCreci
+        ]);
+        return true;
+    }
+
+    //Update Telefone in BD
+    public static function editTelefoneInBd($where, $newTelefone){
+        $database = new database('corretores');
+        $database->update('id_corretor = "'.$where.'"', [
+            'telefone' => $newTelefone
+        ]);
+        return true;
+    }
+
+    //Update Password in BD
+    public static function editPasswordInBd($where, $newPassword){
+        $database = new database('corretores');
+        $database->update('id_corretor = "'.$where.'"', [
+            'senha' => $newPassword
+        ]);
         return true;
     }
 }

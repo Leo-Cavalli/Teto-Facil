@@ -2,20 +2,23 @@
 
 include_once '../classSession.php';
 
+//Se o usuário desejar fazer logout
 if(isset($_GET['op']) == 1){
     classSession::destroySession();
 }
 
 session_start();
 
+//O nome Exibido no topo da pagina padrão (Visitante)
 $name = "Visitante";
 
+//O nivel de acesso do usuário padrão (Visitante)
 $level = -1;
 
+//Se o usuário estiver logado, define nome e nivel de acesso(0 = Cliente, 1 = Corretor)
 if(isset($_SESSION['id'])){
     $name = $_SESSION['name'];
     $level = $_SESSION['level'];
-    
 }
 
 ?>
