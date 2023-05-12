@@ -46,6 +46,7 @@
 </head>
 <body>
     <h1>Página de Administrador Teto Facil</h1>
+    <a href="homepage.php">Voltar a Homepage!</a>
     <h2>Adicionar novo Corretor ao Sistema:</h2>
     <form action="../login.php" method="post">
         <label for="name">Nome:</label>
