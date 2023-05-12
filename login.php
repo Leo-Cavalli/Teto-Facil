@@ -48,7 +48,7 @@ if($acao == 'cadastrar'){
     }
 
     //Verifica se as senhas são iguais
-    if($_POST['password'] != $_POST['passwordconfirm']){
+    if($_POST['password'] !== $_POST['passwordconfirm']){
         
         //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
         if($CadStateAgent){

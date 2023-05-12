@@ -137,7 +137,7 @@ if($op == 'editStateAgentPassword'){
     //Cria um objeto corretor com os atributos do banco de dados
     $auxCorretor = classCorretor::getUserByEmail($corretor->getEmail());
     //Verifica se a senha nova é igual a anterior
-    if(password_verify(password_hash($_POST['newPassword'], PASSWORD_DEFAULT), $auxCorretor->getPassword())){
+    if(password_verify($_POST['newPassword'], $auxCorretor->getPassword())){
         header('Location: frontEnd/editStateAgent.php?id='.$corretor->getId().'&name='.$corretor->getName().'&email='.$corretor->getEmail().'&cpf='.$corretor->getCpf().'&telefone='.$corretor->getTelefone().'&creci='.$corretor->getCreci().'&password='.$corretor->getPassword().'&msg=Senha igual a anterior!');
         exit;
     }
