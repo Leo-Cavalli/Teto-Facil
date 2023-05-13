@@ -26,7 +26,7 @@ $auxUser->setUserFromDatabase($_GET['id'], $_GET['name'], $_GET['email'], $_GET[
 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

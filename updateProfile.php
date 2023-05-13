@@ -9,6 +9,8 @@ session_start();
 //Identifica a operação que o usuário deseja realizar
 $op = $_POST['op'];
 
+//para baixo é usuario (antigo método, novo se encontra em updateMyUser.php)
+
 //Se a operação for editar nome do usuario
 if($op == 'editName'){
     $newName = $_POST['newName'];
@@ -78,6 +80,8 @@ if($op == 'deleteAccount'){
     header('Location: frontEnd/homepage.php');
     exit;
 }
+
+//pra cima é de usuario (antigo método, novo se encontra em updateMyUser.php)
 
 //Operações de Corretor
 //Cria uma instancia de corretor, auxilia na verificação de dados

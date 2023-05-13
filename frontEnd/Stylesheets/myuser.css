@@ -1,0 +1,41 @@
+
+/* Grid */
+
+.cols{
+    padding: 0%;
+    margin: 0%;
+    display: inline-block;
+}
+
+.col-1-2{
+    margin-top: 1em;
+    width: 49.5%;
+    float: left;
+    border-radius: 5px;
+}
+
+.col-3-5{
+    overflow: auto;
+    margin-left: 12.4%;
+    margin-right: 12.4%;
+    width: 75%;
+    box-sizing: content-box;
+    float: left;
+}
+
+.col-2-4{
+    margin-left: 24.9%;
+    margin-right: 24.9%;
+    width: 50%;
+    box-sizing: content-box;
+    float: left;
+}
+
+.row{
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow: auto;
+    padding-bottom: 5em; 
+    float: left;
+}   
