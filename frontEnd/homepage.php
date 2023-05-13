@@ -36,21 +36,21 @@ if(isset($_SESSION['id'])){
 <body>
     <nav class="main-nav">
         <ul>
-            <li><a href="homepage.php">Home</a></li>
+            <li class="first-li lefts-li"><a href="homepage.php"> Home</a></li>
             <?php
                 //Se o usuário for um corretor ou um cliente
                 if($level == 0 || $level == 1 && $_SESSION['id'] != 1){
                     echo '<li><a href="userPage.php">Minha Conta</a></li>';
-                    echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
+                    echo '<li class="rigths-li"><a href="homepage.php?op=1">LogOut</a></li>';
                 }
                 //Se o usuário não estiver logado
                 else if(!isset($_SESSION['id'])){
-                    echo '<li><a class="lasts-li" href="loginpage.php">Log In</a></li>';
+                    echo '<li class="rigths-li"><a class="lasts-li" href="loginpage.php">Login</a></li>';
                 }
                 //Se o usuário estiver logado como administrador
                 else if($level != null && $level == 1 && $_SESSION['id'] == 1){
                     echo '<li ><a href="adminPage.php">Painel de Admin</a></li>';
-                    echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
+                    echo '<li class="rigths-li"><a href="homepage.php?op=1">LogOut</a></li>';
                 }
             ?>
         </ul>
@@ -58,7 +58,6 @@ if(isset($_SESSION['id'])){
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
         <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo ' CONTA DE CORRETOR'?></h1>
-        
     </div>
 
 </body>
