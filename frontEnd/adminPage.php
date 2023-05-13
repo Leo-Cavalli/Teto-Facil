@@ -107,7 +107,7 @@
                 }
             }else{
                 echo "<tr>";
-                echo "<td colspan='7'>Não há corretores cadastrados</td>";
+                echo "<td colspan='7'><h2 style= text-align:center ,>Não há corretores cadastrados</h2></td>";
                 echo "</tr>";
             }
 
