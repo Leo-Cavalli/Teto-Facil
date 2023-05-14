@@ -85,6 +85,7 @@
     </div>
 
     <script>
+        //validacao dos campos do corretor
         function validate(){
         let senha = document.getElementById("password")
         let senhaConf = document.getElementById("passwordconfirm")
