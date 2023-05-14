@@ -83,9 +83,11 @@ if(isset($_GET['Alert'])){
           </input>
           <label for="update_senha">Senha: </label>
           <input type="textbox" name="update_senha" placeholder="************"></input>
-          <button class="button-form" type="submit" name="acao" value="logar" id="updateData">Alterar Dados</button>    
-          </form>
-            <button class="button-form"><a  href="../deletarconta.php"> Deletar</a></button>
+          <button class="button-form" type="submit" name="acao" value="logar" id="updateData">Alterar Dados</button>  
+          <form action="../deletarconta.php" method="post">
+            <button type="submit" class="button-form">Deletar</button>
+          </form>  
+        </form>
         </div>
     </div>
 
