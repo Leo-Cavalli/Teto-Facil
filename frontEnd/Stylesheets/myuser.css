@@ -1,3 +1,125 @@
+body{
+    background-color: #CCC;
+}
+
+.main-nav{
+    position: fixed;
+    top: 0;
+    width: 94%;
+    margin: 11px 3% 2em 3%;
+    border-radius: 15px;
+    background-color: black;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+}
+
+.main-nav ul{
+    margin: 0%;
+    padding: 0%;
+}
+
+.main-nav li{
+    list-style: none;
+    text-transform: uppercase;
+    display: inline;
+    float: left;
+    font-family: 'Raleway', sans-serif;
+}
+
+.main-nav li a{
+    float: left;
+    border: inherit;
+    padding: 1.5em 1.5em;
+    margin: 0%;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.main-nav li:first-child ,.main-nav li:first-child a{
+    border-radius: 15px 0px 0px 15px;
+}
+
+.main-nav li:last-child, .main-nav li:last-child a{
+    float: right;
+    border-radius: 0px 15px 15px 0px;
+}
+
+.main-nav a:hover{
+    background-color: #fff;
+    color: black;
+}
+
+.main-content{
+    font-family: 'Raleway', sans-serif;
+    margin-top: 9em;
+    float: left;
+    height: 100%;
+    background-color: white;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+    border-radius: 5px;
+    margin-bottom: 5em;
+}
+
+.main-content h1:nth-child(1){
+    margin-left: 25px;
+    font-size: 36px;
+    padding-left: 5px;
+    border-left: 2px solid #ccc;
+    font-family: 'Raleway', sans-serif;
+}
+
+.forms-content{
+    padding: 0%;
+    margin-left: 25px;
+    width: 50%;
+}
+
+.forms-content input{
+    border-left: 2px solid #000;
+    border-right: 0;
+    border-top:0;
+    border-bottom: 0;
+}
+
+.forms-content input,.forms-content label {
+    margin-bottom: 1em;
+    width: 100%;
+    font-size: 32px;
+    background-color: #fff;
+}
+
+.forms-content input:hover{
+    background-color: #ccc;
+}
+
+.forms-content input:focus{
+    border: 2px solid #000;
+    outline: none;
+}
+
+.button-form{
+    text-align: center;
+    border: 2px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;
+    font-size: 100%;
+    height: 2em;
+    width: 54%;
+    margin-top: 0.8em;
+    margin-right: 23%;
+    margin-left: 23%;
+}
+
+.button-form a{
+    text-decoration: none;
+    color: #000;
+}
+
+.button-form:focus{
+    border: 2px solid #000;
+    outline: none;
+}
 
 /* Grid */
 

@@ -21,6 +21,7 @@ body{
     list-style: none;
     text-transform: uppercase;
     display: inline;
+    float: left;
     font-family: 'Raleway', sans-serif;
 }
 
