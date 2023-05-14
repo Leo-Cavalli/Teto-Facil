@@ -116,13 +116,13 @@ if(isset($_GET['Alert'])){
         if(senha !== senhaConf){
             alert("As senhas nao coincidem !")
             formCad.reset()
-        } if(emailRegex.test(email) !== true){
+        } else if(emailRegex.test(email) !== true){
             alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx")
             formCad.reset()
-        } if(cpfRegex.test(cpf) !== true){
+        } else if(cpfRegex.test(cpf) !== true){
             alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx")
             formCad.reset()
-        } else{ 
+        } else if(cpfRegex.test(cpf) !== false && emailRegex.test(email) !== false && senha == senhaConf) { 
             formCad.submit()
         }
 
