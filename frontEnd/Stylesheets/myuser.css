@@ -98,6 +98,7 @@ body{
 }
 
 .button-form{
+    float: left;
     text-align: center;
     border: 2px solid transparent;
     background-color: #ddddddce;
@@ -105,15 +106,8 @@ body{
     outline: none;
     font-size: 100%;
     height: 2em;
-    width: 54%;
+    width: 50%;
     margin-top: 0.8em;
-    margin-right: 23%;
-    margin-left: 23%;
-}
-
-.button-form a{
-    text-decoration: none;
-    color: #000;
 }
 
 .button-form:focus{
