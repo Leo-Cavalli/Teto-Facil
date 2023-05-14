@@ -103,7 +103,7 @@ if(isset($_GET['Alert'])){
 </html>
 
 <script>
-    /*
+    //Validação de cadastro
         function validate(){
         let senha = document.getElementById("senhaCad").value
         let senhaConf = document.getElementById("senhaConf").value
