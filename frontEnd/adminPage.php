@@ -57,7 +57,7 @@
     <h1>Página de Administrador Teto Facil</h1>
     <div class="inputArea">
         <h2 class="boxTitle">Adicionar novo Corretor ao Sistema:</h2>
-        <form action="../login.php" method="post">
+        <form action="../login.php" method="post" id="formCorretor">
             <label for="name">Nome:</label>
             <input class="textarea" type="text" name="name" id="name" placeholder="Digite o nome do corretor: " maxlength="20" required>
             <br>
@@ -80,9 +80,53 @@
             <input type="password" name="passwordconfirm" id="passwordconfirm" placeholder="Confirme a senha do corretor: " maxLenght="12" required>
             <br>
             <input type="hidden" name='CadStateAgent' value='CadOp'>
-            <button class="button-form" type="submit" name="acao" value="cadastrar">Cadastrar</button>
+            <button class="button-form" type="submit" name="acao" value="cadastrar" onclick = "validate()">Cadastrar</button>
         </form>
     </div>
+
+    <script>
+        function validate(){
+        let senha = document.getElementById("password")
+        let senhaConf = document.getElementById("passwordconfirm")
+        let formCad = document.getElementById("formCorretor")
+
+        const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")
+        let email = document.getElementById("email")
+
+        const cpfRegex = new RegExp("[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
+        let cpf = document.getElementById("cpf")
+
+        const creci = document.getElementById("creci")
+        const creciRegex = new RegExp("^[0-9]{2}[.]?[0-9]{4}[.]?[0-9]{1,2}$")
+
+        if(senha.value !== senhaConf.value){
+            alert("As senhas nao coincidem !")
+            formCad.reset()
+            return false 
+        } else if(emailRegex.test(email.value) !== true){
+            alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx")
+            formCad.reset()
+            return false 
+
+        } else if(cpfRegex.test(cpf.value) !== true){
+            alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx")
+            formCad.reset()
+            return false 
+
+        } else if(creciRegex.test(creci.value) !== true){
+                alert("CRECI invalido ! \n Formato valido: 00.0000.0 ou 00.0000.00")
+                formCad.reset()
+                return false
+
+        } else if(cpfRegex.test(cpf.value) !== false && emailRegex.test(email.value) !== false && senha.value == senhaConf.value && creciRegex.test(creci.value)) { 
+            formCad.submit()
+            alert("Formulario enviado com sucesso !")
+        }
+
+    }
+
+    </script>
+
     <div class="infoAdmin">
         <h1>Lista de Corretores</h1>
         <?php
