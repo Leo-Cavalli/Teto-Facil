@@ -64,47 +64,39 @@ if(isset($_GET['Alert'])){
   </nav>
     <div class="col-3-5 main-content">
       <h1>Aqui estão seus dados <?=$_SESSION['name']?>.</h1>
+
         <div class="forms-content">
-          <form action= "../updateMyUser.php" method="post" id="updateform">
+          <form action= "../updateMyUser.php" method="post" id="updateform" submit='false'>
             <label for="update_name">Nome: </label>
             <input type="textbox" name="update_name" value="<?=$_SESSION['name']?>"></input>
             <label for="cpf">CPF: </label>
             <input type="textbox" name="update_cpf" id="cpf" value="<?=$_SESSION['cpf']?>" disabled></input>
             <label for="update_email">Email: </label>
             <input type="email" name="update_email" id="email" value="<?=$_SESSION['email']?>"></input>
-            <label for="update_telefone">Telefone: </label>
-            <input type="telefone" name="update_telefone" id="telefone" value="<?php
-              if($telefone == true){
-                echo $_SESSION['telefone'];
-              }
-              else{
-                echo "Nenhum telefone cadastrado";
-              }
-            ?>">
-            </input>
             <label for="update_senha">Senha: </label>
             <input type="textbox" name="update_senha" placeholder="************"></input>
             <button class="button-form" type="submit" name="acao" value="logar" id="updateData" onclick = "validate()">Alterar Dados</button>
           </form>
+
           <form action="../deletarconta.php" method="post">
             <button type="submit" class="button-form">Deletar</button>
           </form>  
-        </form>
+        
         </div>
     </div>
 
     <script>
       function validate(){
-        const form = document.getElementById("updateData")
+        let form = document.getElementById("updateform")
 
         const cpf = document.getElementById("cpf")
-        const cpfRegex = new RegExp("[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
+        const cpfRegex = new RegExp("{3}[0-9]\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
         
         const email = document.getElementById("email")
         const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")
 
-        const telefone = document.getElementById("telefone")
-        const telefoneRegex = new RegExp("^(\(0[0-9]{2}\))?[0-9]{4}-[0-9]{4}$")
+        const telefone = document.getElementById("telefone_user")
+        const telefoneRegex = new RegExp("^(\(0[0-9]{2}\))?[0-9]{5}-[0-9]{4}$")
 
         if(cpfRegex.test(cpf.value) === false){
           alert("CPF Invalido! \n Formato valido: xxx.xxx.xxx-xx")
@@ -116,16 +108,10 @@ if(isset($_GET['Alert'])){
           return false
         }
 
-        if(telefone.value != "Nenhum telefone cadastrado" ){
-          if(telefoneRegex.test(telefone.value) === false){
-            alert("Telefone Invalido! \n Formato valido: (0xx)xxxx-xxxx")
-            return false
-          }
+        if(telefoneRegex.test(telefone.value) === false){
+          alert("Telefone Invalido! \n Formato valido: (xx)xxxxx-xxxx")
+          return false
         }
-        
-
-        form.submit()
-
       }
     </script>
 
