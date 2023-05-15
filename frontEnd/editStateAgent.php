@@ -57,6 +57,9 @@ $auxUser->setUserFromDatabase($_GET['id'], $_GET['name'], $_GET['email'], $_GET[
             <td>Senha: ************ <a href="editStateAgent.php?id=<?=$auxUser->getId()?>&email=<?=$auxUser->getEmail()?>&cpf=<?=$auxUser->getCpf()?>&telefone=<?=$auxUser->getTelefone()?>&creci=<?=$auxUser->getCreci()?>&password=<?=$auxUser->getPassword()?>&name=<?=$auxUser->getName()?>&op=editPassword">Editar Senha</a></td>
         </tr>
     </table>
+
+
+
     <?php
 
         //Exibe um formulário para cada operação de edição, passada por essa propria pagina para ela mesma por GET
