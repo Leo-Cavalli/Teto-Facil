@@ -19,7 +19,7 @@ if(isset($_SESSION['id'])){
 $telefone = false;
 
 //Se o telefone estiver cadastrado, seta como true;
-if(isset($_SESSION['telefone'])){
+if($_SESSION['telefone'] != null){
   $telefone = true;
 }
 
@@ -66,24 +66,26 @@ if(isset($_GET['Alert'])){
       <h1>Aqui estão seus dados <?=$_SESSION['name']?>.</h1>
         <div class="forms-content">
           <form action= "../updateMyUser.php" method="post" id="updateform">
-          <label for="update_name">Nome: </label>
-          <input type="textbox" name="update_name" value="<?=$_SESSION['name']?>"></input>
-          <label for="cpf">CPF: </label>
-          <input type="textbox" name="update_cpf" value="<?=$_SESSION['cpf']?>" disabled></input>
-          <label for="update_email">Email: </label>
-          <input type="email" name="update_email" value="<?=$_SESSION['email']?>"></input>
-          <label for="update_telefone">Telefone: </label>
-          <input type="telefone" name="update_telefone" value="<?php 
-          if($telefone){
-            echo $_SESSION['telefone'];
-          }else{
-            echo 'Não cadastrado';
-          }
-          ?>">
-          </input>
-          <label for="update_senha">Senha: </label>
-          <input type="textbox" name="update_senha" placeholder="************"></input>
-          <button class="button-form" type="submit" name="acao" value="logar" id="updateData">Alterar Dados</button>  
+            <label for="update_name">Nome: </label>
+            <input type="textbox" name="update_name" value="<?=$_SESSION['name']?>"></input>
+            <label for="cpf">CPF: </label>
+            <input type="textbox" name="update_cpf" value="<?=$_SESSION['cpf']?>" disabled></input>
+            <label for="update_email">Email: </label>
+            <input type="email" name="update_email" value="<?=$_SESSION['email']?>"></input>
+            <label for="update_telefone">Telefone: </label>
+            <input type="telefone" name="update_telefone" value="<?php
+              if($telefone == true){
+                echo $_SESSION['telefone'];
+              }
+              else{
+                echo "Nenhum telefone cadastrado";
+              }
+            ?>">
+            </input>
+            <label for="update_senha">Senha: </label>
+            <input type="textbox" name="update_senha" placeholder="************"></input>
+            <button class="button-form" type="submit" name="acao" value="logar" id="updateData">Alterar Dados</button>
+          </form>
           <form action="../deletarconta.php" method="post">
             <button type="submit" class="button-form">Deletar</button>
           </form>  

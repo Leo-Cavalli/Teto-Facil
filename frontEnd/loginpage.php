@@ -87,8 +87,9 @@ if(isset($_GET['Alert'])){
                             <input type="password" name="password" id="senhaCad" maxLenght='12'>
                             <label for="senhaConf">Confirme sua senha: </label>
                             <input input type="password" id="senhaConf" name="passwordconfirm" maxlength="12">
+                            <input type="hidden" name='acao' value='cadastrar'>
                         </div>
-                        <button class="button-form" type="submit" name="acao" value="cadastrar" id="sendCadButton" onclick="validate()">Cadastrar</button>
+                        <button class="button-form" type="button" name="acao" value="cadastrar" id="sendCadButton" onclick="validate()">Cadastrar</button>
                     </form>
                 </div>
                 <div class="cols col-1-2">
@@ -114,25 +115,23 @@ if(isset($_GET['Alert'])){
         let cpf = document.getElementById("cpfCad").value 
 
         if(senha !== senhaConf){
-            alert("As senhas nao coincidem !")
-            formCad.reset()
-            return false
-
-        } else if(emailRegex.test(email) !== true){
-            alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx")
-            formCad.reset()
-            return false 
-
-        } else if(cpfRegex.test(cpf) !== true){
-            alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx")
-            formCad.reset()
-            return false
-
-        } else if(cpfRegex.test(cpf) !== false && emailRegex.test(email) !== false && senha == senhaConf) { 
-            formCad.submit()
-            alert("Usuario cadastrado com sucesso! ")
-            return true
+            alert("As senhas não são iguais !");
+            formCad.reset();
+            return false;
         }
 
+        if(emailRegex.test(email) === false){
+            alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx");
+            formCad.reset();
+            return false;
+        }
+
+        if(cpfRegex.test(cpf) === false){
+            alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx");
+            formCad.reset();
+            return false;
+        }
+
+        formCad.submit();
     }
 </script>

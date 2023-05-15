@@ -103,6 +103,8 @@ if($acao == 'logar'){
         }
         //Inicia a sessão, redireciona para a homepage.php e encerra o script
         classSession::setSession($obusuario->getId(), $obusuario->getName(), $obusuario->getEmail(), 0, $obusuario->getCpf(). $obusuario->getTelefone());
+        //Gambiarra para passar o telefone para a homepage
+        $_SESSION['telefone'] = $obusuario->getTelefone();
         header('Location: frontEnd/homepage.php');
         exit;
     }
