@@ -104,6 +104,7 @@
             alert("As senhas nao coincidem !")
             formCad.reset()
             return false 
+            
         } else if(emailRegex.test(email.value) !== true){
             alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx")
             formCad.reset()
@@ -119,9 +120,7 @@
                 formCad.reset()
                 return false
 
-        } else if(cpfRegex.test(cpf.value) !== false && emailRegex.test(email.value) !== false && senha.value == senhaConf.value && creciRegex.test(creci.value)) { 
-            formCad.submit()
-            alert("Formulario enviado com sucesso !")
+        formCad.submit()
         }
 
     }
