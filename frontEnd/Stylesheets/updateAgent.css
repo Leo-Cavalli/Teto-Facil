@@ -1,0 +1,238 @@
+body{
+    background-color: #CCC;
+}
+
+.spacer{
+    float: left;
+    width: 100%;
+    height: 5em;
+    position: relative;
+}
+
+.forms{
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.forms-title{
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    text-transform:  uppercase;
+}
+
+.forms-title p{
+    padding: 0%;
+    margin-bottom: .5em;
+}
+
+.logo{
+    width: 40%;
+    margin-top: 1em;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 5em;
+    padding: 0%;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.home-button{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translate(0%,-50%);
+}
+
+.home-button a {
+    transition: color .2s linear, border .2s linear;
+    border-bottom: transparent;
+    font-family: 'Raleway', sans-serif;
+    font-size: larger;
+    text-decoration: none;
+    color: #0000009a;
+    text-align: center;
+    text-transform:  uppercase;
+}
+
+.home-button a:hover{
+    border-bottom: 1px dotted;
+    color: #000;
+}
+
+.button-form{
+    border: 2px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;
+    font-size: 100%;
+    height: 2.3em;
+    width: 50%;
+    margin-top: 0.8em;
+    margin-right: 23%;
+    margin-left: 23%;
+}
+
+.button-form:focus{
+    border: 2px solid #000;
+    outline: none;
+}
+
+input{
+    width: 90%;
+}
+
+label{
+    padding-bottom: 5px;
+}
+
+label,input{
+    margin-left: 4%;
+}
+
+label, textarea, select{
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input, textarea, select{
+    background: #ddddddce;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    margin-bottom: 15px;
+}
+
+select:focus, input:focus, textarea:focus{
+    border: 2px solid #000;
+    outline: none;
+}   
+
+
+/* Grid */
+
+.flexbox-forms{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.cols{
+    padding: 0%;
+    margin: 0%;
+    display: inline-block;
+    background-color: #fff;
+}
+
+.col-1-2{
+    margin-top: 1em;
+    width: 49.5%;
+    float: left;
+    border-radius: 5px;
+}
+
+.col-2-4{
+    margin-left: 24.9%;
+    margin-right: 24.9%;
+    width: 50%;
+    box-sizing: content-box;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+    float: left;
+}
+
+.row{
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow: auto;
+    padding-bottom: 5em; 
+    float: left;
+}   
+
+.inputArea{
+    background-color: #fff;
+    margin-left: 5em;
+    margin-right: 5em;
+    border-radius: 10px;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+    margin-bottom: 3em;
+    padding-bottom: 1em;
+}
+
+.boxTitle{
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.logo{
+    width: 50%;
+    margin-top: 1em;
+    margin-left: 24.9%;
+    margin-right: 24.9%;
+    height: 8em;
+    padding: 0%;
+    border: 2px solid black;
+    text-align: center;
+}
+
+button{
+    border: 2px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;
+    font-size: 100%;
+    height: 2em;
+    width: 54%;
+    margin-top: 0.8em;
+    margin-right: 23%;
+    margin-left: 23%;
+}
+
+.infoAdmin{
+    background-color: #fff;
+    margin-left: 5em;
+    margin-right: 5em;
+    border-radius: 10px;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+    margin-bottom: 5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+.msgCad{
+    text-align: center;
+    font-size: 10px;
+    padding-bottom: 1em;
+}
+
+.divAdmin{
+    padding-left: 5em;
+    border-color: #000;
+}
+
+/*.button-edit-delete{
+    border: 1px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;  
+    font-size: 100%;
+    height: 1.3em;
+    width: 7.5%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}*/
+
+.link{
+    text-align: center;
+}
+
+.label{
+    font-size: 2em;
+    margin-left: 6%;
+    margin-bottom: 1em;
+}
