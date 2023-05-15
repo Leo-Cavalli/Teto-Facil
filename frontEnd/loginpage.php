@@ -87,8 +87,9 @@ if(isset($_GET['Alert'])){
                             <input type="password" name="password" id="senhaCad" maxLenght='12'>
                             <label for="senhaConf">Confirme sua senha: </label>
                             <input input type="password" id="senhaConf" name="passwordconfirm" maxlength="12">
+                            <input type="hidden" name='acao' value='cadastrar'>
                         </div>
-                        <button class="button-form" type="submit" name="acao" value="cadastrar" id="sendCadButton" onclick="validate()">Cadastrar</button>
+                        <button class="button-form" type="button" name="acao" value="cadastrar" id="sendCadButton" onclick="validate()">Cadastrar</button>
                     </form>
                 </div>
                 <div class="cols col-1-2">
@@ -103,28 +104,34 @@ if(isset($_GET['Alert'])){
 </html>
 
 <script>
-    /*
+    //Validação de cadastro
         function validate(){
-        let senha = document.getElementById("senhaCad").value
-        let senhaConf = document.getElementById("senhaConf").value
-        let formCad = document.getElementById("formCad")
-        const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")
-        let email = document.getElementById("emailCad").value
-        const cpfRegex = new RegExp("[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
-        let cpf = document.getElementById("cpfCad").value 
+            let senha = document.getElementById("senhaCad").value
+            let senhaConf = document.getElementById("senhaConf").value
+            let formCad = document.getElementById("formCad")
+            const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")
+            let email = document.getElementById("emailCad").value
+            const cpfRegex = new RegExp("[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
+            let cpf = document.getElementById("cpfCad").value 
 
-        if(senha !== senhaConf){
-            alert("As senhas nao coincidem !")
-            formCad.reset()
-        } if(emailRegex.test(email) !== true){
-            alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx")
-            formCad.reset()
-        } if(cpfRegex.test(cpf) !== true){
-            alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx")
-            formCad.reset()
-        } else{ 
-            formCad.submit()
+            if(senha !== senhaConf){
+                alert("As senhas não são iguais !");
+                formCad.reset();
+                return false;
+            }
+
+            if(emailRegex.test(email) === false){
+                alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx");
+                formCad.reset();
+                return false;
+            }
+
+            if(cpfRegex.test(cpf) === false){
+                alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx");
+                formCad.reset();
+                return false;
+            }
+
+            formCad.submit();
         }
-
-    }
 </script>
