@@ -104,7 +104,7 @@ if(isset($_GET['Alert'])){
         const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")
 
         const telefone = document.getElementById("telefone")
-        const telefoneRegex = new RegEp("^(\(0xx[0-9]{2}\))?[0-9]{4}-[0-9]{4}$")
+        const telefoneRegex = new RegExp("^(\(0[0-9]{2}\))?[0-9]{4}-[0-9]{4}$")
 
         if(cpfRegex.test(cpf.value) === false){
           alert("CPF Invalido! \n Formato valido: xxx.xxx.xxx-xx")
