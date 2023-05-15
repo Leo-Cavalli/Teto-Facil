@@ -73,7 +73,7 @@ body{
     width: 50%;
     margin-top: 0.8em;
     margin-right: 23%;
-    margin-left: 23%;
+    margin-left: 25%;
 }
 
 .button-form:focus{
@@ -233,6 +233,12 @@ button{
 
 .label{
     font-size: 2em;
+    margin-left: 2.7em;
+    margin-bottom: 1em;
+}
+
+.input{
+    width: 98em;
     margin-left: 6%;
     margin-bottom: 1em;
 }
