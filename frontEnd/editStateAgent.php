@@ -104,10 +104,17 @@ $auxUser->setUserFromDatabase($_GET['id'], $_GET['name'], $_GET['email'], $_GET[
                     <input type="hidden" name="oldName" value="'.$auxUser->getName().'">
                     <input type="hidden" name="oldPassword" value="'.$auxUser->getPassword().'">
                     <input type="hidden" name="oldEmail" value="'.$auxUser->getEmail().'">
-                    <input type="hidden" name="oldCpf" value="'.$auxUser->getCpf().'">
+                    <input type="hidden" name="oldCpf" id="cpf" value="'.$auxUser->getCpf().'">
                     <input type="hidden" name="oldTelefone" value="'.$auxUser->getTelefone().'">
                     <input type="hidden" name="oldCreci" value="'.$auxUser->getCreci().'">
                     <input type="submit" value="Editar CPF">
+                    <script>
+                        let cpf = document.getElementById("cpf")
+                        let cpfRegex = new RegExp("[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
+
+                        if(cpfRegex.test(cpf.value) === false){
+                            alert("CPF inválido \n Formato aceito: xxx.xxx.xxx-xx")
+                        }
                 </form>';
         }
 
