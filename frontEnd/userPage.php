@@ -98,7 +98,7 @@ if(isset($_GET['Alert'])){
         const form = document.getElementById("updateData")
 
         const cpf = document.getElementById("cpf")
-        const cpfRegex = new RegExp("[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
+        const cpfRegex = new RegExp("{3}[0-9]\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")
         
         const email = document.getElementById("email")
         const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")

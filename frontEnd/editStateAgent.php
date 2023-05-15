@@ -73,7 +73,8 @@ $auxUser->setUserFromDatabase($_GET['id'], $_GET['name'], $_GET['email'], $_GET[
                     <input type="hidden" name="oldTelefone" value="'.$auxUser->getTelefone().'">
                     <input type="hidden" name="oldCreci" value="'.$auxUser->getCreci().'">
                     <input type="submit" value="Editar Nome">
-                </form>';
+                </form>'
+                ;
         }
 
         if(isset($_GET['op']) && $_GET['op'] == 'editEmail'){
