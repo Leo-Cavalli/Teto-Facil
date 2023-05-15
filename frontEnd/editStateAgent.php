@@ -70,7 +70,7 @@ $auxUser->setUserFromDatabase($_GET['id'], $_GET['name'], $_GET['email'], $_GET[
         if(isset($_GET['op']) && $_GET['op'] == 'editName'){
             echo '<form action="../updateProfile.php" method="post">
                     <label class="label" for="newName">Novo Nome:</label>
-                    <input type="text" name="newName" id="newName" placeholder="Digite o novo nome do corretor: " maxlength="100" required>
+                    <input class = "input" type="text" name="newName" id="newName" placeholder="Digite o novo nome do corretor: " maxlength="100" required>
                     <input type="hidden" name="op" value="editStateAgentName">
                     <input type="hidden" name="id_corretor" value="'.$auxUser->getId().'">
                     <input type="hidden" name="oldName" value="'.$auxUser->getName().'">
@@ -158,7 +158,7 @@ $auxUser->setUserFromDatabase($_GET['id'], $_GET['name'], $_GET['email'], $_GET[
         if(isset($_GET['op']) && $_GET['op'] == 'editPassword'){
             echo '<form action="../updateProfile.php" method="post">
                     <label class="label" for="newPassword">Nova Senha:</label>
-                    <input type="text" name="newPassword" id="newPassword" placeholder="Digite o novo Password do corretor: " maxlength="100" required>
+                    <input type="text" name="newPassword" id="newPassword" placeholder="Digite a nova senha do corretor: " maxlength="100" required>
                     <input type="hidden" name="op" value="editStateAgentPassword">
                     <input type="hidden" name="id_corretor" value="'.$auxUser->getId().'">
                     <input type="hidden" name="oldPassword" value="'.$auxUser->getPassword().'">
