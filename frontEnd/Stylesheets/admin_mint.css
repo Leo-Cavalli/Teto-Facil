@@ -2,11 +2,51 @@ body{
     background-color: #CCC;
 }
 
-.spacer{
+.main-nav{
+    position: fixed;
+    top: 0;
+    width: 94%;
+    margin: 11px 3% 2em 3%;
+    border-radius: 15px;
+    background-color: black;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+}
+
+.main-nav ul{
+    margin: 0%;
+    padding: 0%;
+}
+
+.main-nav li{
+    list-style: none;
+    text-transform: uppercase;
+    display: inline;
     float: left;
-    width: 100%;
-    height: 5em;
-    position: relative;
+    font-family: 'Raleway', sans-serif;
+}
+
+.main-nav li a{
+    float: left;
+    border: inherit;
+    padding: 1.5em 1.5em;
+    margin: 0%;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.main-nav li:first-child ,.main-nav li:first-child a{
+    border-radius: 15px 0px 0px 15px;
+}
+
+.main-nav li:last-child, .main-nav li:last-child a{
+    float: right;
+    border-radius: 0px 15px 15px 0px;
+}
+
+.main-nav a:hover{
+    background-color: #fff;
+    color: black;
 }
 
 .forms{
@@ -26,41 +66,6 @@ body{
 .forms-title p{
     padding: 0%;
     margin-bottom: .5em;
-}
-
-.logo{
-    width: 40%;
-    margin-top: 1em;
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 5em;
-    padding: 0%;
-    border: 2px solid black;
-    text-align: center;
-}
-
-.home-button{
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 40px;
-    transform: translate(0%,-50%);
-}
-
-.home-button a {
-    transition: color .2s linear, border .2s linear;
-    border-bottom: transparent;
-    font-family: 'Raleway', sans-serif;
-    font-size: larger;
-    text-decoration: none;
-    color: #0000009a;
-    text-align: center;
-    text-transform:  uppercase;
-}
-
-.home-button a:hover{
-    border-bottom: 1px dotted;
-    color: #000;
 }
 
 .button-form{

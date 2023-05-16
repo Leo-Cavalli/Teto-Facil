@@ -1,9 +1,16 @@
 <?php
     include_once '../users.php';
     include_once '../imovel.php';
+    include_once '../classSession.php';
 
     session_start();
     //Verifica se o usuário está logado como administrador
+
+    //Se o usuário estiver logado, define nome e nivel de acesso(0 = Cliente, 1 = Corretor)
+    if(isset($_SESSION['id'])){
+    $name = $_SESSION['name'];
+    $level = $_SESSION['level'];
+    }
     if($_SESSION['level'] != 1 || $_SESSION['id'] != 1 && $_SESSION['level'] == 1 || !isset($_SESSION['id'])){
         header('Location: homepage.php');
     }
@@ -49,12 +56,27 @@
     <title>Página de Administrador</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h2>Insira sua logo</h2>
-            <h3><a href="homepage.php">Home</a></h3>
-        </div>
-    </header>
+    <nav class="main-nav">
+    <ul>
+          <li><a href="homepage.php">Home</a></li>
+          <?php
+              //Se o usuário for um corretor ou um cliente
+              if($level == 0 || $level == 1 && $_SESSION['id'] != 1){
+                  echo '<li><a href="userPage.php">Minha Conta</a></li>';
+                  echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
+              }
+              //Se o usuário não estiver logado
+              else if(!isset($_SESSION['id'])){
+                  echo '<li><a class="lasts-li" href="loginpage.php">Log In</a></li>';
+              }
+              //Se o usuário estiver logado como administrador
+              else if($level != null && $level == 1 && $_SESSION['id'] == 1){
+                  echo '<li ><a href="adminPage.php">Painel de Admin</a></li>';
+                  echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
+              }
+          ?>
+      </ul>
+  </nav>
     <h1>Página de Administrador Teto Facil</h1>
     <div class="inputArea">
         <h2 class="boxTitle">Adicionar novo Corretor ao Sistema:</h2>
