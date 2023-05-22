@@ -77,10 +77,10 @@
           ?>
       </ul>
   </nav>
-    <h1>Página de Administrador Teto Facil</h1>
+    <h1 class="pagetitle">Página de Administrador Teto Facil</h1>
     <div class="inputArea">
-        <h2 class="boxTitle">Adicionar novo Corretor ao Sistema:</h2>
-        <form action="../login.php" method="post" id="formCorretor">
+        <h2>Adicionar novo Corretor ao Sistema:</h2>
+        <form class="forms" action="../login.php" method="post" id="formCorretor">
             <label for="name">Nome:</label>
             <input class="textarea" type="text" name="name" id="name" placeholder="Digite o nome do corretor: " maxlength="20" required>
             <br>
