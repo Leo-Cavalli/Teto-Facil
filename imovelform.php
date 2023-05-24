@@ -1,5 +1,8 @@
 <?php
 
+    //NÃO FAZ PARTE DA SPRINT 1
+
+
     require_once "database/database.php";
     require_once "imovel.php";
     require_once "classSession.php";

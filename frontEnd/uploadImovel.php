@@ -9,6 +9,9 @@
 
   print_r($_SESSION);
 
+  //PAGINA NÃO INCLUIDA NA SPRINT 1, NÃO PRECISA APLICAR CSS AINDA!!!!!!
+
+
 ?>
 
 

@@ -4,8 +4,8 @@ body{
 
 .spacer{
     float: left;
-    width: 99.8%;
-    height: 10%;;
+    width: 100%;
+    height: 5em;
     position: relative;
 }
 
@@ -29,11 +29,11 @@ body{
 }
 
 .logo{
-    width: 50%;
+    width: 40%;
     margin-top: 1em;
-    margin-left: 24.9%;
-    margin-right: 24.9%;
-    height: 8em;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 5em;
     padding: 0%;
     border: 2px solid black;
     text-align: center;
@@ -68,11 +68,12 @@ body{
     background-color: #ddddddce;
     border-radius: 5px;
     outline: none;
-    height: 2em;
-    width: 54%;
+    font-size: 100%;
+    height: 2.3em;
+    width: 50%;
     margin-top: 0.8em;
     margin-right: 23%;
-    margin-left: 23%;
+    margin-left: 25%;
 }
 
 .button-form:focus{
@@ -149,3 +150,95 @@ select:focus, input:focus, textarea:focus{
     padding-bottom: 5em; 
     float: left;
 }   
+
+.inputArea{
+    background-color: #fff;
+    margin-left: 5em;
+    margin-right: 5em;
+    border-radius: 10px;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+    margin-bottom: 3em;
+    padding-bottom: 1em;
+}
+
+.boxTitle{
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.logo{
+    width: 50%;
+    margin-top: 1em;
+    margin-left: 24.9%;
+    margin-right: 24.9%;
+    height: 8em;
+    padding: 0%;
+    border: 2px solid black;
+    text-align: center;
+}
+
+button{
+    border: 2px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;
+    font-size: 100%;
+    height: 2em;
+    width: 54%;
+    margin-top: 0.8em;
+    margin-right: 23%;
+    margin-left: 23%;
+}
+
+.infoAdmin{
+    background-color: #fff;
+    margin-left: 5em;
+    margin-right: 5em;
+    border-radius: 10px;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+    margin-bottom: 5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+.msgCad{
+    text-align: center;
+    font-size: 10px;
+    padding-bottom: 1em;
+}
+
+.divAdmin{
+    padding-left: 5em;
+    border-color: #000;
+}
+
+/*.button-edit-delete{
+    border: 1px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;  
+    font-size: 100%;
+    height: 1.3em;
+    width: 7.5%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}*/
+
+.link{
+    text-align: center;
+}
+
+.label{
+    font-size: 2em;
+    margin-left: 2.7em;
+    margin-bottom: 1em;
+}
+
+.input{
+    width: 98em;
+    margin-left: 6%;
+    margin-bottom: 1em;
+}

@@ -50,6 +50,7 @@ body{
 }
 
 .main-content{
+    font-family: 'Raleway', sans-serif;
     margin-top: 9em;
     float: left;
     height: 100%;
@@ -65,6 +66,55 @@ body{
     padding-left: 5px;
     border-left: 2px solid #ccc;
     font-family: 'Raleway', sans-serif;
+}
+
+.forms-content{
+    padding: 0%;
+    margin-left: 25px;
+    width: 50%;
+}
+
+.forms-content input{
+    border-left: 2px solid #000;
+    border-right: 0;
+    border-top:0;
+    border-bottom: 0;
+}
+
+.forms-content input,.forms-content label {
+    margin-bottom: 1em;
+    width: 100%;
+    font-size: 32px;
+    background-color: #fff;
+}
+
+.forms-content input:hover{
+    background-color: #ccc;
+}
+
+.forms-content input:focus{
+    border: 2px solid #000;
+    outline: none;
+}
+
+.button-form{
+    float: left;
+    text-align: center;
+    border: 2px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;
+    font-size: 100%;
+    height: 2em;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    margin-top: 0.8em;
+}
+
+.button-form:focus{
+    border: 2px solid #000;
+    outline: none;
 }
 
 /* Grid */
