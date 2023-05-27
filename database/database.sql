@@ -68,6 +68,17 @@ ALTER TABLE favoritos ADD CONSTRAINT
     ON DELETE CASCADE
     ON UPDATE CASCADE;
 
+CREATE TABLE IF NOT EXISTS imagens(
+    id_imagem INT PRIMARY KEY AUTO_INCREMENT,
+    id_imovel INT NOT NULL,
+    dir VARCHAR(100) NOT NULL
+);
+
+ALTER TABLE imagens ADD CONSTRAINT
+    FOREIGN KEY (id_imovel)
+    REFERENCES imoveisDefinitivos(id_imovel)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 INSERT INTO corretores(nome, email, senha, creci, cpf, telefone) VALUES
 ('ADMINISTRADOR', 'admin@tfadmin', '$2y$10$.UnGwtF0zG/I6YxPT6eoyunkpE13/ZbzYw52RWF.Y7rGr2CukjG8q', '000', '000', '000');

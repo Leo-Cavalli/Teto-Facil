@@ -45,11 +45,20 @@ if(isset($_GET['Alert'])){
       <ul>
           <li><a href="homepage.php">Home</a></li>
           <?php
-              //Se o usuário for um corretor ou um cliente
-              if($level == 0 || $level == 1 && $_SESSION['id'] != 1){
+              //Se o usuário for cliente
+              if($level == 0){
+                  echo '<li><a href="userPage.php">Minha Conta</a></li>';
+                  echo '<li><a href="meusImoveis.php">Meus Imoveis</a></li>';
+                  echo '<li><a href="uploadImovel.php">Gerar Pedido de Anuncio</a></li>';
+                  echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
+              }
+
+              //Se o usuário for corretor
+              else if($level == 1 && $_SESSION['id'] != 1){
                   echo '<li><a href="userPage.php">Minha Conta</a></li>';
                   echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
               }
+
               //Se o usuário não estiver logado
               else if(!isset($_SESSION['id'])){
                   echo '<li><a class="lasts-li" href="loginpage.php">Log In</a></li>';

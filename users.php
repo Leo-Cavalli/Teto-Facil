@@ -28,6 +28,10 @@ class classUsuario{
         return $this->name;
     }
 
+    public function setName($name){
+        $this->name = $name;
+    }
+
     public function getEmail(){
         return $this->email;
     }
@@ -237,6 +241,24 @@ class classCorretor extends classUsuario{
         $database = new Database('corretores');
 
         $result = $database->select('cpf = "'.$cpf.'"');
+
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+
+            $auxStateAgent = new classCorretor();
+
+            $auxStateAgent->setUserFromDatabase($row['id_corretor'], $row['nome'], $row['email'], $row['senha'], $row['telefone'], $row['creci']);
+
+            return $auxStateAgent;
+        }
+
+        return false;
+    }
+
+    public static function getStateAgentById($id){
+        $database = new Database('corretores');
+
+        $result = $database->select('id_corretor = "'.$id.'"');
 
         if($result->rowCount() > 0){
             $row = $result->fetch();

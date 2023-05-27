@@ -1,0 +1,120 @@
+body{
+    background-color: #CCC;
+}
+
+.main-nav{
+    position: fixed;
+    top: 0;
+    width: 94%;
+    margin: 11px 3% 2em 3%;
+    border-radius: 15px;
+    background-color: black;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+}
+
+.main-nav ul{
+    margin: 0%;
+    padding: 0%;
+}
+
+.main-nav li{
+    list-style: none;
+    text-transform: uppercase;
+    display: inline;
+    float: left;
+    font-family: 'Raleway', sans-serif;
+}
+
+.main-nav li a{
+    float: left;
+    border: inherit;
+    padding: 1.5em 1.5em;
+    margin: 0%;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.main-nav li:first-child ,.main-nav li:first-child a{
+    border-radius: 15px 0px 0px 15px;
+}
+
+.main-nav li:last-child, .main-nav li:last-child a{
+    float: right;
+    border-radius: 0px 15px 15px 0px;
+}
+
+.main-nav a:hover{
+    background-color: #fff;
+    color: black;
+}
+
+.main-content{
+    margin-top: 9em;
+    float: left;
+    height: 100%;
+    background-color: white;
+    box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
+    border-radius: 5px;
+    margin-bottom: 5em;
+}
+
+.main-content h1:nth-child(1){
+    margin-left: 25px;
+    font-size: 36px;
+    padding-left: 5px;
+    border-left: 2px solid #ccc;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Grid */
+
+.cols{
+    padding: 0%;
+    margin: 0%;
+    display: inline-block;
+}
+
+.col-1-2{
+    margin-top: 1em;
+    width: 49.5%;
+    float: left;
+    border-radius: 5px;
+}
+
+.col-3-5{
+    overflow: auto;
+    margin-left: 12.4%;
+    margin-right: 12.4%;
+    width: 75%;
+    box-sizing: content-box;
+    float: left;
+}
+
+.col-2-4{
+    margin-left: 24.9%;
+    margin-right: 24.9%;
+    width: 50%;
+    box-sizing: content-box;
+    float: left;
+}
+
+.row{
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow: auto;
+    padding-bottom: 5em; 
+    float: left;
+}
+
+.formUploadImovel{
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 5px;
+    display: flex;
+}
+

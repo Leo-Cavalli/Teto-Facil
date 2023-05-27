@@ -17,6 +17,7 @@ class classImovel{
     private $complemento;
     private $descricao;
     private $situacao;
+    private $dir;
 
     //Getters and Setters
     public function getId() {
@@ -117,8 +118,16 @@ class classImovel{
         $this->situacao = $value;
     }
 
+    public function getDir() {
+        return $this->dir;
+    }
+
+    public function setDir($value) {
+        $this->dir = $value;
+    }
+
     //Metodo responsavel por setar os valores do objeto imovel, sem id.
-    public function setImovel($id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao){
+    public function setImovel($id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao, $dir){
         $this->id_anunciante = $id_anunciante;
         $this->id_corretor = $id_corretor;
         $this->tipo_imovel = $tipo_imovel;
@@ -132,6 +141,7 @@ class classImovel{
         $this->complemento = $complemento;
         $this->descricao = $descricao;
         $this->situacao = $situacao;
+        $this->dir = $dir;
     }
 
     //Metodo responsavel por cadastrar um imovel no banco de dados
@@ -157,7 +167,7 @@ class classImovel{
     }
 
     //Metodo responsavel por setar os valores do objeto imovel, com id.
-    public function setImovelFromBD($id, $id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao){
+    public function setImovelFromBD($id, $id_anunciante, $id_corretor, $tipo_imovel, $cep, $rua, $numero, $bairro, $cidade, $estado, $valor, $complemento, $descricao, $situacao, $dir){
         $this->id = $id;
         $this->id_anunciante = $id_anunciante;
         $this->id_corretor = $id_corretor;
@@ -172,6 +182,7 @@ class classImovel{
         $this->complemento = $complemento;
         $this->descricao = $descricao;
         $this->situacao = $situacao;
+        $this->dir = $dir;
     }
 
     //Retorna uma lista com os imoveis de um usuario pelo seu ID
@@ -186,9 +197,21 @@ class classImovel{
 
             while($row = $result->fetch()){
 
+                $databaseDir = new Database('imagens');
+
+                $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
+
+                $dir = array();
+
+                if($databaseDirResult->rowCount() > 0){
+                    while($rowDir = $databaseDirResult->fetch()){
+                        array_push($dir, $rowDir['dir']);
+                    }
+                }
+
                 $imovelAux = new classImovel();
 
-                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao'], $dir);
 
                 array_push($imoveis, $imovelAux);
             }
@@ -207,9 +230,22 @@ class classImovel{
         if($result->rowCount() > 0){
 
             while($row = $result->fetch()){
+
+                $databaseDir = new Database('imagens');
+
+                $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
+
+                $dir = array();
+
+                if($databaseDirResult->rowCount() > 0){
+                    while($rowDir = $databaseDirResult->fetch()){
+                        array_push($dir, $rowDir['dir']);
+                    }
+                }
+
                 $imovelAux = new classImovel();
 
-                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao'], $dir);
                 
                 array_push($imoveis, $imovelAux);
             }
@@ -228,9 +264,21 @@ class classImovel{
         if($result->rowCount() > 0){
             while($row = $result->fetch()){
 
+                $databaseDir = new Database('imagens');
+
+                $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
+
+                $dir = array();
+
+                if($databaseDirResult->rowCount() > 0){
+                    while($rowDir = $databaseDirResult->fetch()){
+                        array_push($dir, $rowDir['dir']);
+                    }
+                }
+
                 $imovelAux = new classImovel();
 
-                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao']);
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao'], $dir);
                 
                 array_push($imoveis, $imovelAux);
             }
@@ -238,6 +286,7 @@ class classImovel{
 
         return $imoveis;
     }
+
 
 }
 ?>

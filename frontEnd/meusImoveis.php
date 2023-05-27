@@ -1,6 +1,8 @@
 <?php
 
 include_once '../classSession.php';
+include_once '../imovel.php';
+include_once '../users.php';
 
 //Se o usuário desejar fazer logout
 if(isset($_GET['op']) == 1){
@@ -19,6 +21,13 @@ $level = -1;
 if(isset($_SESSION['id'])){
     $name = $_SESSION['name'];
     $level = $_SESSION['level'];
+}
+
+//Função que monta a tabela de imoveis
+$arrayImoveis = classImovel::getImovelByUserId($_SESSION['id']);
+$existeImoveis = false;
+if(sizeof($arrayImoveis) > 0){
+    $existeImoveis = true;
 }
 
 ?>
@@ -64,10 +73,44 @@ if(isset($_SESSION['id'])){
             ?>
         </ul>
     </nav>
-    <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
-        <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo ' CONTA DE CORRETOR'?></h1>
-        
+    
+        <?php if(!$existeImoveis) echo '<h1> Você não possui imoveis cadastrados </h1>'?>
+
+        <?php if($existeImoveis){
+            for($i = 0; $i < sizeof($arrayImoveis); $i++){
+                $nome_corretor = "Nenhum Corretor Associado";
+                $situacao = "Não Anunciado";
+                $corretor = classCorretor::getStateAgentById($arrayImoveis[$i]->getId());
+                if($corretor instanceof classCorretor){
+                    $nome_corretor = $corretor->getName();
+                }
+                if($arrayImoveis[$i]->getSituacao()){
+                    $situacao = "Anunciado";
+                }
+                echo '
+                    <h1> Imovel '.($i+1).' </h1>
+                    <br>
+                    <img src="../'.$arrayImoveis[$i]->getDir()[0].'" alt="Imagem do Imovel" width="300" height="300">
+                    <br>
+                    <p> Valor: '.$arrayImoveis[$i]->getValor().'</p>
+                    <p> Tipo de Imovel: '.$arrayImoveis[$i]->getTipo_imovel().'</p>
+                    <p> CEP: '.$arrayImoveis[$i]->getCep().'</p>
+                    <p> Rua: '.$arrayImoveis[$i]->getRua().'</p>
+                    <p> Numero: '.$arrayImoveis[$i]->getNumero().'</p>
+                    <p> Bairro: '.$arrayImoveis[$i]->getBairro().'</p>
+                    <p> Cidade: '.$arrayImoveis[$i]->getCidade().'</p>
+                    <p> Estado: '.$arrayImoveis[$i]->getEstado().'</p>
+                    <p> Corretor: '.$nome_corretor.'</p>
+                    <br>
+                    <p> Complemento: '.$arrayImoveis[$i]->getComplemento().'</p>
+                    <p> Descrição: '.$arrayImoveis[$i]->getDescricao().'</p>
+                    <p> Situação: '.$situacao.'</p>
+                    <br>
+                ';
+            }
+        } ?>
+
     </div>
 
 </body>
