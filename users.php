@@ -96,6 +96,24 @@ class classUsuario{
         return false;
     }
 
+    public static function getUserByCpf($cpf){
+        $database = new Database('usuarios');
+
+        $result = $database->select('cpf = "'.$cpf.'"');
+
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+
+            $auxUser = new classUsuario();
+
+            $auxUser->setUserFromDatabase($row['id_usuario'], $row['nome'], $row['email'], $row['senha'], $row['cpf'], $row['telefone']);
+
+            return $auxUser;
+        }
+
+        return false;
+    }
+
     //Update Name in BD
     public static function editNameInBd($where, $newName){
         $database = new database('usuarios');
@@ -212,6 +230,42 @@ class classCorretor extends classUsuario{
 
         }
         //Retorna falso caso não encontre o corretor
+        return false;
+    }
+
+    public static function getUserByCpf($cpf){
+        $database = new Database('corretores');
+
+        $result = $database->select('cpf = "'.$cpf.'"');
+
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+
+            $auxStateAgent = new classCorretor();
+
+            $auxStateAgent->setUserFromDatabase($row['id_corretor'], $row['nome'], $row['email'], $row['senha'], $row['telefone'], $row['creci']);
+
+            return $auxStateAgent;
+        }
+
+        return false;
+    }
+
+    public static function getUserByCreci($creci){
+        $database = new Database('corretores');
+
+        $result = $database->select('creci = "'.$creci.'"');
+
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+
+            $auxStateAgent = new classCorretor();
+
+            $auxStateAgent->setUserFromDatabase($row['id_corretor'], $row['nome'], $row['email'], $row['senha'], $row['telefone'], $row['creci']);
+
+            return $auxStateAgent;
+        }
+
         return false;
     }
 

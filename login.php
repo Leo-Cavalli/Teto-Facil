@@ -47,6 +47,40 @@ if($acao == 'cadastrar'){
         exit;
     }
 
+    //Verifica se o cpf ja esta cadastrado para algum usuario
+    if(classUsuario::getUserByCpf($_POST['cpf']) instanceof classUsuario){
+
+        //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
+        if($CadStateAgent){
+            header("Location: frontEnd/adminPage.php?Alert=CPF já cadastrado");
+            exit;
+        }
+
+        header("Location: frontEnd/loginpage.php?Alert=CPF já cadastrado");
+        exit;
+    }
+
+    //Verifica se o cpf ja esta cadastrado para algum corretor
+    if(classCorretor::getUserByCpf($_POST['cpf']) instanceof classCorretor){
+        
+        //Se o cadastro for de um corretor, redireciona para a pagina de cadastro de corretor
+        if($CadStateAgent){
+            header("Location: frontEnd/adminPage.php?Alert=CPF já cadastrado");
+            exit;
+        }
+
+        header("Location: frontEnd/loginpage.php?Alert=CPF já cadastrado");
+        exit;
+    }
+
+    //Verifica se o creci ja esta cadastrado para algum corretor, caso seja um cadastro de corretor
+    if($CadStateAgent){
+        if(classCorretor::getUserByCreci($_POST['creci']) instanceof classCorretor){
+            header("Location: frontEnd/adminPage.php?Alert=CRECI já cadastrado");
+            exit;
+        }
+    }
+
     //Verifica se as senhas são iguais
     if($_POST['password'] !== $_POST['passwordconfirm']){
         
