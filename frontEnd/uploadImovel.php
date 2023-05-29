@@ -72,7 +72,7 @@ if(isset($_GET['Alert'])){
       <h1>Solicitar Novo Anuncio</h1>
 
       <div class="formUploadImovel" >
-        <form action="../imovelform.php" method="post" enctype="multipart/form-data">
+        <form action="../imovelform.php" method="post" enctype="multipart/form-data" id="form">
           <label for="">Rua: </label>
           <input type="text" name="rua" id="rua" placeholder="Rua" required>
           <br>
@@ -117,7 +117,7 @@ if(isset($_GET['Alert'])){
           </select>
           <br>
           <label for="cep">Cep:</label>
-          <input type="text" name="cep" id="cep" placeholder="Cep" required>
+          <input type="text" name="cep" id="cep" placeholder="Cep" onfocus = "validate()"required >
           <br>
           <label for="tipo_imovel">Tipo Imóvel</label>
           <select name="tipo_imovel" id="tipo_imovel" required>
@@ -127,7 +127,7 @@ if(isset($_GET['Alert'])){
           </select>
           <br>
           <label for="complemento">Complemento:</label>
-          <input type="text" name="complemento" id="complemento" placeholder="Complemento" required>
+          <input type="text" name="complemento" id="complemento" placeholder="Complemento">
           <br>
           <label for="descricao">Descrição:</label>
           <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Descrição" required></textarea>
@@ -137,11 +137,25 @@ if(isset($_GET['Alert'])){
           <br>
           <input type="file" name="foto" required>
           <br>
-          <input type="submit" value='Enviar Solicitação'>
+          <input type="submit" value='Enviar Solicitação' onclick="validateForm()">
 
         </form>
       </div>
     </div>
+
+    <script>
+        function validateForm() {
+            var cep = document.getElementById("cep").value;
+            var pattern = /^\d{5}-\d{3}$/;
+
+            if (pattern.test(cep)) {
+                form.submit()
+            } else {
+                alert("CEP inválido. Por favor, insira um CEP válido.\nModelo valido: xxxxx-xxx");
+                event.preventDefault(); 
+            }
+        }
+    </script>
 
 </body>
 </html>

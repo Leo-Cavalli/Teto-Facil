@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS imagens(
     id_imovel INT NOT NULL,
     dir VARCHAR(100) NOT NULL
 );
-
+    
 ALTER TABLE imagens ADD CONSTRAINT
     FOREIGN KEY (id_imovel)
     REFERENCES imoveisDefinitivos(id_imovel)

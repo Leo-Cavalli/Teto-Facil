@@ -115,21 +115,18 @@ if(isset($_GET['Alert'])){
             let cpf = document.getElementById("cpfCad").value 
 
             if(senha !== senhaConf){
-                alert("As senhas não são iguais !");
-                formCad.reset();
-                return false;
+                alert("As senhas não são iguais !")
+                return false
             }
 
             if(emailRegex.test(email) === false){
-                alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx");
-                formCad.reset();
+                alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx")
                 return false;
             }
 
             if(cpfRegex.test(cpf) === false){
-                alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx");
-                formCad.reset();
-                return false;
+                alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx")
+                return false
             }
 
             formCad.submit();
