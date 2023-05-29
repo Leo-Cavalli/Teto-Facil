@@ -81,10 +81,6 @@ if(sizeof($arrayImoveis) > 0){
             for($i = 0; $i < sizeof($arrayImoveis); $i++){
                 $nome_corretor = "Nenhum Corretor Associado";
                 $situacao = "Não Anunciado";
-                $corretor = classCorretor::getStateAgentById($arrayImoveis[$i]->getId());
-                if($corretor instanceof classCorretor){
-                    $nome_corretor = $corretor->getName();
-                }
                 if($arrayImoveis[$i]->getSituacao()){
                     $situacao = "Anunciado";
                 }

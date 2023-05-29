@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS imoveisDefinitivos(
     bairro VARCHAR(100) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
     estado VARCHAR(100) NOT NULL,
-    valor VARCHAR(32),
+    valor VARCHAR(32) NOT NULL,
     complemento VARCHAR(100),
-    descricao VARCHAR(256),
+    descricao VARCHAR(256) NOT NULL,
     situacao BOOLEAN NOT NULL
 );
 
