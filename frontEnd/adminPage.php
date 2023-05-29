@@ -125,22 +125,18 @@
 
         if(senha.value !== senhaConf.value){
             alert("As senhas nao coincidem !")
-            formCad.reset()
             return false 
 
         } else if(emailRegex.test(email.value) !== true){
             alert("Email invalido ! \n Formato valido: xxxxx@xxxxx.xxx")
-            formCad.reset()
             return false 
 
         } else if(cpfRegex.test(cpf.value) !== true){
             alert("CPF invalido ! \n Formato valido: xxx.xxx.xxx-xx")
-            formCad.reset()
             return false 
 
         } else if(creciRegex.test(creci.value) !== true){
                 alert("CRECI invalido ! \n Formato valido: 00.0000.0 ou 00.0000.00")
-                formCad.reset()
                 return false
         }
 
