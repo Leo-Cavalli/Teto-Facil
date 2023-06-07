@@ -4,7 +4,6 @@ include_once '../classSession.php';
 include_once '../imovel.php';
 
 
-
 //Se o usuário desejar fazer logout
 if(isset($_GET['op']) == 1){
     classSession::destroySession();
@@ -26,9 +25,10 @@ if($level != 1 || $_SESSION['id'] == 1){
 
 $imoveis = classImovel::getImoveisPendentes();
 
-if(sizeof($imoveis) == 0){
-    echo '<h1>Não há pedidos de anuncios pendentes</h1>';
+if(isset($_GET['Alert'])){
+    echo "<script>alert('".$_GET['Alert']."')</script>";
 }
+
 
 ?>
 
@@ -76,13 +76,17 @@ if(sizeof($imoveis) == 0){
     </nav>
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
-        <h1>Imóveis Aguardando Liberação de Anúncio</h1>
         <?php
-            for($i = 0; $i < sizeof($imoveis); $i++){
-                echo '<h2>Imóvel '.($i+1).'</h2>
-                    <a href="imovelPage.php?id='.$imoveis[$i]->getId().'">Editar Imóvel</a>
-                ';
-            }
+            if(sizeof($imoveis) == 0){
+                echo '<h1>Não há pedidos de anuncios pendentes</h2>';
+            }else{
+                echo '<h1>Imóveis Pendentes</h2>';
+                for($i = 0; $i < sizeof($imoveis); $i++){
+                    echo '<h2>Imóvel '.($i+1).'</h2>
+                        <a href="imovelPage.php?id='.$imoveis[$i]->getId().'">Editar Imóvel</a>
+                    ';
+                    }
+                }
         ?>
     </div>
 

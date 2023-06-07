@@ -89,23 +89,9 @@ if(sizeof($arrayImoveis) > 0){
                 }
                 echo '
                     <h1> Imovel '.($i+1).' </h1>
-                    <br>
-                    <img src="../'.$arrayImoveis[$i]->getDir()[0].'" alt="Imagem do Imovel" width="300" height="300">
-                    <br>
-                    <p> Valor: '.$arrayImoveis[$i]->getValor().'</p>
-                    <p> Tipo de Imovel: '.$arrayImoveis[$i]->getTipo_imovel().'</p>
-                    <p> CEP: '.$arrayImoveis[$i]->getCep().'</p>
-                    <p> Rua: '.$arrayImoveis[$i]->getRua().'</p>
-                    <p> Numero: '.$arrayImoveis[$i]->getNumero().'</p>
-                    <p> Bairro: '.$arrayImoveis[$i]->getBairro().'</p>
-                    <p> Cidade: '.$arrayImoveis[$i]->getCidade().'</p>
-                    <p> Estado: '.$arrayImoveis[$i]->getEstado().'</p>
-                    <p> Corretor: '.$nome_corretor.'</p>
-                    <br>
-                    <p> Complemento: '.$arrayImoveis[$i]->getComplemento().'</p>
-                    <p> Descrição: '.$arrayImoveis[$i]->getDescricao().'</p>
-                    <p> Situação: '.$situacao.'</p>
-                    <br>
+                    <h2>'.$arrayImoveis[$i]->getTipo_imovel().' em '.$arrayImoveis[$i]->getCidade().'</h2>
+                    <h3>'.$situacao.'</h3>
+                    <a href="imovelPage.php?id='.$arrayImoveis[$i]->getId().'">Ver Anuncio</a>
                 ';
             }
         } ?>

@@ -118,6 +118,18 @@ class classUsuario{
         return false;
     }
 
+    public static function getUserById($id){
+        $database = new Database('usuarios');
+        $result = $database->select('id_usuario = "'.$id.'"');
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+            $auxUser = new classUsuario();
+            $auxUser->setUserFromDatabase($row['id_usuario'], $row['nome'], $row['email'], $row['senha'], $row['cpf'], $row['telefone']);
+            return $auxUser;
+        }
+        return false;
+    }
+
     //Update Name in BD
     public static function editNameInBd($where, $newName){
         $database = new database('usuarios');

@@ -1,6 +1,7 @@
 <?php
 
 include_once '../classSession.php';
+include_once '../imovel.php';
 
 //Se o usuário desejar fazer logout
 if(isset($_GET['op']) == 1){
@@ -20,6 +21,8 @@ if(isset($_SESSION['id'])){
     $name = $_SESSION['name'];
     $level = $_SESSION['level'];
 }
+
+$imoveis = classImovel::getImoveisAprovados();
 
 ?>
 
@@ -68,7 +71,19 @@ if(isset($_SESSION['id'])){
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
         <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo ' CONTA DE CORRETOR'?></h1>
-        
+            <?php
+                if(sizeof($imoveis) == 0){
+                    echo '<h2>Não há imoveis cadastrados no momento</h2>';
+                }else{
+                    for($i = 0; $i < sizeof($imoveis); $i++){
+                        echo '
+                                <h2>'.$imoveis[$i]->getTipo_imovel().' em '.$imoveis[$i]->getCidade().'</h2>
+                                <a href="imovelPage.php?id='.$imoveis[$i]->getId().'">Ver Anuncio</a>
+                            ';
+                    }
+                }
+
+            ?>
     </div>
 
 </body>

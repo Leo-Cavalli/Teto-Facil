@@ -292,7 +292,39 @@ class classImovel{
 
         $imoveis = array();
 
-        $result = $database->select('situacao = "false"');
+        $result = $database->select('situacao = "0"');
+
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+                $databaseDir = new Database('imagens');
+
+                $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
+
+                $dir = array();
+
+                if($databaseDirResult->rowCount() > 0){
+                    while($rowDir = $databaseDirResult->fetch()){
+                        array_push($dir, $rowDir['dir']);
+                    }
+                }
+
+                $imovelAux = new classImovel();
+
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao'], $dir);
+                
+                array_push($imoveis, $imovelAux);
+            }
+        }
+
+        return $imoveis;
+    }
+
+    public static function getImoveisAprovados(){
+        $database = new database('imoveisdefinitivos');
+
+        $imoveis = array();
+
+        $result = $database->select('situacao = "1"');
 
         if($result->rowCount() > 0){
             while($row = $result->fetch()){
@@ -366,6 +398,43 @@ class classImovel{
             }
         }
     }
+
+    public static function deleteImovel($id){
+        $database = new Database('imoveisdefinitivos');
+        $database->delete('id_imovel = "'.$id.'"');
+        $databaseDir = new Database('imagens');
+        $databaseDir->delete('id_imovel = "'.$id.'"');
+        return true;
+    }
+
+    public static function situacaoImovel($id, $aprove, $id_corretor){
+        $database = new Database('imoveisdefinitivos');
+        if($aprove && $id_corretor != null){
+            $database->update('id_imovel = "'.$id.'"', ['id_corretor'=> $id_corretor, 'situacao' => True]);
+            return true;
+        }
+        else{
+            $database->update('id_imovel = "'.$id.'"', ['id_corretor' => null ,'situacao' => False]);
+            return true;
+        }
+    }
+
+    public static function updateImovel($id, $tipo, $estado, $cep, $cidade, $bairo, $rua, $numero, $complemento, $valor, $descricao){
+        $database = new Database('imoveisdefinitivos');
+        $database->update('id_imovel = "'.$id.'"', ['tipo_imovel' => $tipo, 'estado' => $estado, 'cep' => $cep, 'cidade' => $cidade, 'bairro' => $bairo, 'rua' => $rua, 'numero' => $numero, 'complemento' => $complemento, 'valor' => $valor, 'descricao' => $descricao]);
+        return true;
+    }
+
+    public static function getImovelOwner($id_imovel){
+        $database = new Database('imoveisdefinitivos');
+        $result = $database->select('id_imovel = "'.$id_imovel.'"');
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+            return $row['id_anunciante'];
+        }
+    }
+
+
 
 }
 ?>
