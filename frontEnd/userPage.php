@@ -109,19 +109,19 @@ if(isset($_GET['Alert'])){
         <div class="forms-content">
           <form action= "../updateMyUser.php" method="post" id="updateform" submit='false'>
             <label for="update_name">Nome: </label>
-            <input type="textbox" name="update_name" value="<?=$name?>"></input>
+            <input type="textbox" name="update_name" value="<?=$name?>" <?php if($level == 1) echo 'disabled'?>></input>
             <label for="update_email">Email: </label>
-            <input type="email" name="update_email" id="email" value="<?=$email?>"></input>
+            <input type="email" name="update_email" id="email" value="<?=$email?>" <?php if($level == 1) echo 'disabled'?>></input>
             <label for="cpf">CPF: </label>
             <input type="textbox" name="update_cpf" id="cpf" value="<?=$cpf?>" disabled></input>
             <label for="telefone">Telefone:</label>
-            <input type="text" name='update_telefone' id='telefone' value="<?=$telefoneValue?>">
+            <input type="text" name='update_telefone' id='telefone' value="<?=$telefoneValue?>" <?php if($level == 1) echo 'disabled'?>>
             <?php if($level == 1){
               echo '<label for="creci">CRECI: </label>';
-              echo '<input type="textbox" name="update_creci" value="'.$creci.'"></input>';
+              echo '<input type="textbox" name="update_creci" value="'.$creci.'" disabled></input>';
             } ?>
             <label for="update_senha">Senha: </label>
-            <input type="textbox" name="update_senha" placeholder="************"></input>
+            <input type="textbox" name="update_senha" placeholder="************" <?php if($level == 1) echo 'disabled'?>></input>
             <?php if ($level == 0){
               echo '<button class="button-form" type="submit" name="acao" value="logar" id="updateData" onclick = "validate()">Alterar Dados</button>';
             } ?>

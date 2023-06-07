@@ -10,6 +10,7 @@
     $update_telefone = $_POST['update_telefone'];
     $update_senha = $_POST['update_senha'];
     $user = classUsuario::getUserByEmail($_SESSION['email']);
+    $GlobalUpdate = false;
 
     echo $update_telefone;
 
@@ -17,6 +18,7 @@
     if($_SESSION['name'] != $update_name){
         classUsuario::editNameInBd($_SESSION['id'], $update_name);
         $_SESSION['name'] = $update_name;
+        $GlobalUpdate = true;
     }
 
     //Alterar email caso o email enviado seja diferente do email já cadastrado
@@ -32,6 +34,7 @@
 
         classUsuario::editEmailInBd($_SESSION['id'], $update_email);
         $_SESSION['email'] = $update_email;
+        $GlobalUpdate = true;
     }
 
     //Alterar telefone caso o telefone enviado seja diferente do telefone já cadastrado
@@ -39,6 +42,7 @@
         if($_SESSION['telefone'] != $update_telefone){
             classUsuario::editTelefoneInBd($_SESSION['id'], $update_telefone);
             $_SESSION['telefone'] = $update_telefone;
+            $GlobalUpdate = true;
         }
     }
 
@@ -52,9 +56,15 @@
 
         $update_senha = password_hash($update_senha, PASSWORD_DEFAULT);
         classUsuario::editPasswordInBd($_SESSION['id'], $update_senha);
+        $GlobalUpdate = true;
+    }
+    
+    if($GlobalUpdate == true){
+        header('Location: frontEnd/userPage.php?Alert= Dados alterados com sucesso!');
+        exit;
     }
 
-    header('Location: frontEnd/userPage.php?Alert= Dados alterados com sucesso!');
+    header('Location: frontEnd/userPage.php?Alert= Nenhum dado alterado!');
     exit;
     
 ?>

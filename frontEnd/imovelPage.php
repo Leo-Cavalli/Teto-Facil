@@ -10,6 +10,8 @@ if(isset($_GET['op']) == 1){
 
 session_start();
 
+error_reporting(E_ERROR | E_PARSE);
+
 //Se o usuário estiver logado, define nome e nivel de acesso(0 = Cliente, 1 = Corretor)
 if(isset($_SESSION['id'])){
     $name = $_SESSION['name'];
@@ -21,17 +23,14 @@ if(!isset($_GET['id'])){
     header('location: homepage.php');
 }
 
-//Verificar se Usuario é dono do imovel
+//Dar permissão de edit para o dono do imovel e corretores
 if($level == 0){
     if(classImovel::isDono($_SESSION['id'], $_GET['id'])){
         $edit = true;
     }else{
         $edit = false;
     }
-}
-
-//Verificar se Corretor é responsável pelo anuncio
-if($level){
+}else{
     $edit = true;
 }
 
@@ -104,7 +103,7 @@ if($imovel->getSituacao() == false){
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
         <div class="forms-content">
-            <form action="">
+            <form action="" id="formImovel">
                 <Label for='imovel'>Detalhes do Imóvel</Label>
                 <br>
                 <label for="imagem">Imagem:</label>
@@ -114,42 +113,54 @@ if($imovel->getSituacao() == false){
                 <label for="titulo"><?=$imovel->getTipo_imovel()?> em <?=$imovel->getCidade()?></label>
                 <br>
                 <label for="tipo">Tipo de Imóvel:</label>
-                <input type="text" value="<?=$imovel->getTipo_imovel()?>" required>
+                <input type="text" value="<?=$imovel->getTipo_imovel()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="estado">Estado: </label>
-                <input type="text" value="<?=$imovel->getEstado()?>" required>
+                <input type="text" value="<?=$imovel->getEstado()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="cep">Cep: </label>
-                <input type="text" value="<?=$imovel->getCep()?>" required>
+                <input type="text" value="<?=$imovel->getCep()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="cidade">Cidade: </label>
-                <input type="text" value="<?=$imovel->getCidade()?>" required>
+                <input type="text" value="<?=$imovel->getCidade()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="bairro">Bairro: </label>
-                <input type="text" value="<?=$imovel->getBairro()?>" required>
+                <input type="text" value="<?=$imovel->getBairro()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="rua">Rua: </label>
-                <input type="text" value="<?=$imovel->getRua()?>" required>
+                <input type="text" value="<?=$imovel->getRua()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="numero">Numero: </label>
-                <input type="text" value="<?=$imovel->getNumero()?>" required>
+                <input type="text" value="<?=$imovel->getNumero()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="complemento">Complemento: </label>
-                <input type="text" value="<?=$imovel->getComplemento()?>" required>
+                <input type="text" value="<?=$imovel->getComplemento()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="valor">Valor: </label>
-                <input type="text" value="<?=$imovel->getValor()?>" required>
+                <input type="text" value="<?=$imovel->getValor()?>" required <?php if(!$edit) echo 'disabled'?>> 
                 <br>
                 <label for="descricao">Descrição: </label>
-                <input type="text" value="<?=$imovel->getDescricao()?>" required>
+                <input type="text" value="<?=$imovel->getDescricao()?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
                 <label for="situacao">Situação: </label>
-                <input type="text" value="<?=$situacaoImovel?>" required>
+                <input type="text" value="<?=$situacaoImovel?>" required <?php if(!$edit) echo 'disabled'?>>
                 <br>
+                <?php if($edit) echo '<button class="button-form" type="submit" name="acao" value="logar" id="updateData">Alterar Dados</button>'; ?>
             </form>
-            <form action="" method="post">
-                <button type="submit" class="button-form">Deletar Anuncio</button>
-            </form>
+            <?php if($edit) echo '
+                <form action="" method="post">
+                    <input type="hidden" name="id" value="'.$imovel->getId().'">
+                    <input type="hidden" name="op" value="delete">
+                    <button type="submit" class="button-form">Deletar Anuncio</button>
+                </form>'; 
+            ?>
+            <?php if($edit && $level == 1) echo '
+                <form action="" method="post">
+                    <input type="hidden" name="id" value="'.$imovel->getId().'">
+                    <input type="hidden" name="op" value="aprove">
+                    <button type="submit" class="button-form">Aprovar Anuncio</button>
+                </form>'; 
+            ?>
          
          
         </div>
