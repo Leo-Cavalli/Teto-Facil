@@ -21,6 +21,8 @@ $level = -1;
 if(isset($_SESSION['id'])){
     $name = $_SESSION['name'];
     $level = $_SESSION['level'];
+}else{
+    header('Location: homepage.php');
 }
 
 //Função que monta a tabela de imoveis
@@ -58,6 +60,7 @@ if(sizeof($arrayImoveis) > 0){
                 //Se o usuário for corretor
                 else if($level == 1 && $_SESSION['id'] != 1){
                     echo '<li><a href="userPage.php">Minha Conta</a></li>';
+                    echo '<li><a href="pedidosAnuncios.php">Pedidos de Anuncios</a></li>';
                     echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
                 }
 

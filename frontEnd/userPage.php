@@ -1,6 +1,9 @@
 <?php
 
 include_once '../classSession.php';
+include_once '../users.php';
+include_once '../database/database.php';
+
 
 //Se o usuário desejar fazer logout
 if(isset($_GET['op']) == 1){
@@ -13,14 +16,42 @@ session_start();
 if(isset($_SESSION['id'])){
   $name = $_SESSION['name'];
   $level = $_SESSION['level'];
+  if($level == 0){
+    $user = classUsuario:: getUserByEmail($_SESSION['email']);
+    $name = $user->getName();
+    $cpf = $user->getCpf();
+    $email = $user->getEmail();
+    $telefoneValue = $user->getTelefone();
+    if($telefoneValue == null){
+      $telefoneValue = "Não cadastrado";
+    }
+
+  }else{
+    $user = classCorretor:: getUserByEmail($_SESSION['email']);
+    
+    //Sim, isso mesmo
+    $name = $user->getName();
+    $email = $user->getEmail();
+    $telefoneValue = $user->getCpf();
+    $creci = $user->getTelefone();
+
+    $database = new Database('corretores');
+    $result = $database->select('cpf', 'email = '.$_SESSION['id']);
+    if($result->rowCount() > 0){
+      $row = $result->fetch();
+      $cpf = $row['cpf'];
+    }
+
+  }
+}else{
+  header('Location: homepage.php');
 }
-//Seta o telefone, inicialmente como não cadastrado, telefone é inicialmente opcional para cliente comum
-//Essa Variavel é utilizada para exibir a mensagem de "Nenhum telefone cadastrado" ou o telefone do usuario
-$telefone = false;
 
 //Se o telefone estiver cadastrado, seta como true;
-if($_SESSION['telefone'] != null){
+if($telefoneValue != null){
   $telefone = true;
+}else{
+  $telefone = false;
 }
 
 //Mensagem Alert enviada por GET
@@ -56,6 +87,7 @@ if(isset($_GET['Alert'])){
               //Se o usuário for corretor
               else if($level == 1 && $_SESSION['id'] != 1){
                   echo '<li><a href="userPage.php">Minha Conta</a></li>';
+                  echo '<li><a href="pedidosAnuncios.php">Pedidos de Anuncios</a></li>';
                   echo '<li><a href="homepage.php?op=1">Log Out</a></li>';
               }
 
@@ -77,20 +109,31 @@ if(isset($_GET['Alert'])){
         <div class="forms-content">
           <form action= "../updateMyUser.php" method="post" id="updateform" submit='false'>
             <label for="update_name">Nome: </label>
-            <input type="textbox" name="update_name" value="<?=$_SESSION['name']?>"></input>
-            <label for="cpf">CPF: </label>
-            <input type="textbox" name="update_cpf" id="cpf" value="<?=$_SESSION['cpf']?>" disabled></input>
+            <input type="textbox" name="update_name" value="<?=$name?>"></input>
             <label for="update_email">Email: </label>
-            <input type="email" name="update_email" id="email" value="<?=$_SESSION['email']?>"></input>
+            <input type="email" name="update_email" id="email" value="<?=$email?>"></input>
+            <label for="cpf">CPF: </label>
+            <input type="textbox" name="update_cpf" id="cpf" value="<?=$cpf?>" disabled></input>
+            <label for="telefone">Telefone:</label>
+            <input type="text" name='update_telefone' id='telefone' value="<?=$telefoneValue?>">
+            <?php if($level == 1){
+              echo '<label for="creci">CRECI: </label>';
+              echo '<input type="textbox" name="update_creci" value="'.$creci.'"></input>';
+            } ?>
             <label for="update_senha">Senha: </label>
             <input type="textbox" name="update_senha" placeholder="************"></input>
-            <button class="button-form" type="submit" name="acao" value="logar" id="updateData" onclick = "validate()">Alterar Dados</button>
+            <?php if ($level == 0){
+              echo '<button class="button-form" type="submit" name="acao" value="logar" id="updateData" onclick = "validate()">Alterar Dados</button>';
+            } ?>
           </form>
 
-          <form action="../deletarconta.php" method="post">
-            <button type="submit" class="button-form">Deletar</button>
-          </form>  
-        
+          <?php if($level == 0){
+            echo '<form action="../deletarconta.php" method="post">
+                    <button type="submit" class="button-form">Deletar</button>
+                  </form>';
+          }
+          ?>
+         
         </div>
     </div>
 

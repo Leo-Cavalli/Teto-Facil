@@ -11,6 +11,7 @@
     $update_senha = $_POST['update_senha'];
     $user = classUsuario::getUserByEmail($_SESSION['email']);
 
+    echo $update_telefone;
 
     //Alterar Nome caso o nome enviado  seja diferente do nome já cadastrado
     if($_SESSION['name'] != $update_name){
@@ -34,17 +35,26 @@
     }
 
     //Alterar telefone caso o telefone enviado seja diferente do telefone já cadastrado
-    if($_SESSION['telefone'] != $update_telefone){
-        classUsuario::editTelefoneInBd($_SESSION['id'], $update_telefone);
-        $_SESSION['telefone'] = $update_telefone;
+    if($update_telefone != 'Não cadastrado'){
+        if($_SESSION['telefone'] != $update_telefone){
+            classUsuario::editTelefoneInBd($_SESSION['id'], $update_telefone);
+            $_SESSION['telefone'] = $update_telefone;
+        }
     }
 
     //Alterar Senha caso a senha enviada seja diferente da senha já cadastrada
     //Verifica se a senha nova é igual a anterior
-    if(!password_verify($update_senha, $user->getPassword())){
-        classUsuario::editPasswordInBd($_SESSION['id'], password_hash($update_senha, PASSWORD_DEFAULT)); 
+    if($update_senha != ''){
+        if(password_verify($update_senha, $user->getPassword())){
+            header('Location: frontEnd/userPage.php?Alert=Senha igual a anterior!');
+            exit;   
+        }
+
+        $update_senha = password_hash($update_senha, PASSWORD_DEFAULT);
+        classUsuario::editPasswordInBd($_SESSION['id'], $update_senha);
     }
 
     header('Location: frontEnd/userPage.php?Alert= Dados alterados com sucesso!');
+    exit;
     
 ?>
