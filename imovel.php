@@ -287,6 +287,85 @@ class classImovel{
         return $imoveis;
     }
 
+    public static function getImoveisPendentes(){
+        $database = new database('imoveisdefinitivos');
+
+        $imoveis = array();
+
+        $result = $database->select('situacao = "false"');
+
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+                $databaseDir = new Database('imagens');
+
+                $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
+
+                $dir = array();
+
+                if($databaseDirResult->rowCount() > 0){
+                    while($rowDir = $databaseDirResult->fetch()){
+                        array_push($dir, $rowDir['dir']);
+                    }
+                }
+
+                $imovelAux = new classImovel();
+
+                $imovelAux->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao'], $dir);
+                
+                array_push($imoveis, $imovelAux);
+            }
+        }
+
+        return $imoveis;
+    }
+
+    public static function isDono($id_user, $id_imovel){
+        $database = new Database('imoveisdefinitivos');
+        $result = $database->select('id_imovel = "'.$id_imovel.'"');
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+            if($row['id_anunciante'] == $id_user){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
+    public static function isStateAgent($id_user, $id_imovel){
+        $database = new Database('imoveisdefinitivos');
+        $result = $database->select('id_imovel = "'.$id_imovel.'"');
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+            if($row['id_corretor'] == $id_user){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
+    public static function getImovelById($id){
+        $database = new Database('imoveisdefinitivos');
+        $result = $database->select('id_imovel = "'.$id.'"');
+        if($result->rowCount() > 0){
+            while($row = $result->fetch()){
+                $databaseDir = new Database('imagens');
+                $dirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
+                $dir = array();
+                if($dirResult->rowCount() > 0){
+                    while($rowDir = $dirResult->fetch()){
+                        array_push($dir, $rowDir['dir']);
+                    }
+                }
+            $imovel = new classImovel();
+            $imovel->setImovelFromBD($row['id_imovel'], $row['id_anunciante'], $row['id_corretor'], $row['tipo_imovel'], $row['cep'], $row['rua'], $row['numero'], $row['bairro'], $row['cidade'], $row['estado'], $row['valor'], $row['complemento'], $row['descricao'], $row['situacao'], $dir);
+            return $imovel;
+            }
+        }
+    }
 
 }
 ?>
