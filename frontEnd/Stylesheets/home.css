@@ -1,3 +1,7 @@
+html{
+    font-family: 'Raleway', sans-serif;
+}
+
 body{
     background-color: #CCC;
 }
@@ -63,6 +67,14 @@ body{
 .main-content h1:nth-child(1){
     margin-left: 25px;
     font-size: 36px;
+    padding-left: 5px;
+    border-left: 2px solid #ccc;
+    font-family: 'Raleway', sans-serif;
+}
+
+.noImovel{
+    margin-left: 25px;
+    font-size: 32px;
     padding-left: 5px;
     border-left: 2px solid #ccc;
     font-family: 'Raleway', sans-serif;
