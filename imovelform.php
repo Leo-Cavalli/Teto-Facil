@@ -5,7 +5,7 @@ include_once "database/database.php";
 
 session_start();
 
-$database = new Database('imoveisdefinitivos');
+$database = new Database('imovel');
 
 $id_imovel = $database->insert([
     "id_anunciante" => $_SESSION['id'],
@@ -39,7 +39,7 @@ $novoDestino = "{$pasta}/foto_arquivo_".uniqid('', true) . '.' . $extensao;
 
 move_uploaded_file ($foto , $novoDestino );
 
-$database = new Database('imagens');
+$database = new Database('imagem');
 
 $database->insert([
     "id_imovel" => $id_imovel,

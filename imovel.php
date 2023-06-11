@@ -146,7 +146,7 @@ class classImovel{
 
     //Metodo responsavel por cadastrar um imovel no banco de dados
     public function ImovelToBd(){
-        $database = new database('imoveisdefinitivos');
+        $database = new database('imovel');
         
         $this->id = $database->insert([
             'id_anunciante' => $this->id_anunciante,
@@ -187,7 +187,7 @@ class classImovel{
 
     //Retorna uma lista com os imoveis de um usuario pelo seu ID
     public static function getImovelByUserId($userID){
-        $database = new database('imoveisdefinitivos');
+        $database = new database('imovel');
         
         $result = $database->select('id_anunciante = "'.$userID.'"');
 
@@ -197,7 +197,7 @@ class classImovel{
 
             while($row = $result->fetch()){
 
-                $databaseDir = new Database('imagens');
+                $databaseDir = new Database('imagem');
 
                 $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
 
@@ -221,7 +221,7 @@ class classImovel{
 
     //Retorna uma lista com todos os imoveis cadastrados no banco de dados
     public static function getAllImoveis(){
-        $database = new database('imoveisdefinitivos');
+        $database = new database('imovel');
 
         $result = $database->select();
 
@@ -231,7 +231,7 @@ class classImovel{
 
             while($row = $result->fetch()){
 
-                $databaseDir = new Database('imagens');
+                $databaseDir = new Database('imagem');
 
                 $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
 
@@ -255,7 +255,7 @@ class classImovel{
     
     //Retorna todos os imoveis de um corretor pelo seu ID
     public static function getImovelByStateAgentID($id){
-        $database = new database('imoveisdefinitivos');
+        $database = new database('imovel');
 
         $imoveis = array();
 
@@ -264,7 +264,7 @@ class classImovel{
         if($result->rowCount() > 0){
             while($row = $result->fetch()){
 
-                $databaseDir = new Database('imagens');
+                $databaseDir = new Database('imagem');
 
                 $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
 
@@ -288,7 +288,7 @@ class classImovel{
     }
 
     public static function getImoveisPendentes(){
-        $database = new database('imoveisdefinitivos');
+        $database = new database('imovel');
 
         $imoveis = array();
 
@@ -296,7 +296,7 @@ class classImovel{
 
         if($result->rowCount() > 0){
             while($row = $result->fetch()){
-                $databaseDir = new Database('imagens');
+                $databaseDir = new Database('imagem');
 
                 $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
 
@@ -320,7 +320,7 @@ class classImovel{
     }
 
     public static function getImoveisAprovados(){
-        $database = new database('imoveisdefinitivos');
+        $database = new database('imovel');
 
         $imoveis = array();
 
@@ -328,7 +328,7 @@ class classImovel{
 
         if($result->rowCount() > 0){
             while($row = $result->fetch()){
-                $databaseDir = new Database('imagens');
+                $databaseDir = new Database('imagem');
 
                 $databaseDirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
 
@@ -352,7 +352,7 @@ class classImovel{
     }
 
     public static function isDono($id_user, $id_imovel){
-        $database = new Database('imoveisdefinitivos');
+        $database = new Database('imovel');
         $result = $database->select('id_imovel = "'.$id_imovel.'"');
         if($result->rowCount() > 0){
             $row = $result->fetch();
@@ -366,7 +366,7 @@ class classImovel{
     }
 
     public static function isStateAgent($id_user, $id_imovel){
-        $database = new Database('imoveisdefinitivos');
+        $database = new Database('imovel');
         $result = $database->select('id_imovel = "'.$id_imovel.'"');
         if($result->rowCount() > 0){
             $row = $result->fetch();
@@ -380,11 +380,11 @@ class classImovel{
     }
 
     public static function getImovelById($id){
-        $database = new Database('imoveisdefinitivos');
+        $database = new Database('imovel');
         $result = $database->select('id_imovel = "'.$id.'"');
         if($result->rowCount() > 0){
             while($row = $result->fetch()){
-                $databaseDir = new Database('imagens');
+                $databaseDir = new Database('imagem');
                 $dirResult = $databaseDir->select('id_imovel = "'.$row['id_imovel'].'"');
                 $dir = array();
                 if($dirResult->rowCount() > 0){
@@ -400,15 +400,15 @@ class classImovel{
     }
 
     public static function deleteImovel($id){
-        $database = new Database('imoveisdefinitivos');
+        $database = new Database('imovel');
         $database->delete('id_imovel = "'.$id.'"');
-        $databaseDir = new Database('imagens');
+        $databaseDir = new Database('imagem');
         $databaseDir->delete('id_imovel = "'.$id.'"');
         return true;
     }
 
     public static function situacaoImovel($id, $aprove, $id_corretor){
-        $database = new Database('imoveisdefinitivos');
+        $database = new Database('imovel');
         if($aprove && $id_corretor != null){
             $database->update('id_imovel = "'.$id.'"', ['id_corretor'=> $id_corretor, 'situacao' => True]);
             return true;
@@ -420,21 +420,18 @@ class classImovel{
     }
 
     public static function updateImovel($id, $tipo, $estado, $cep, $cidade, $bairo, $rua, $numero, $complemento, $valor, $descricao){
-        $database = new Database('imoveisdefinitivos');
+        $database = new Database('imovel');
         $database->update('id_imovel = "'.$id.'"', ['tipo_imovel' => $tipo, 'estado' => $estado, 'cep' => $cep, 'cidade' => $cidade, 'bairro' => $bairo, 'rua' => $rua, 'numero' => $numero, 'complemento' => $complemento, 'valor' => $valor, 'descricao' => $descricao]);
         return true;
     }
 
     public static function getImovelOwner($id_imovel){
-        $database = new Database('imoveisdefinitivos');
+        $database = new Database('imovel');
         $result = $database->select('id_imovel = "'.$id_imovel.'"');
         if($result->rowCount() > 0){
             $row = $result->fetch();
             return $row['id_anunciante'];
         }
     }
-
-
-
 }
 ?>
