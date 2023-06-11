@@ -32,7 +32,7 @@ class classUsuario{
     }
 
     public function signUp(){
-        $database = new database('usuarios');
+        $database = new database('usuario');
             
         $this->id = $database->insert([
                     'nome' => $this->name,
@@ -45,13 +45,8 @@ class classUsuario{
     public static function getUserByEmail($email){
         //Where email = $email, verificar arquivo database.php!
         //Ordem: where, order, limit
-        return (new Database('usuarios')) -> select('email = "'.$email.'"')->fetchObject(self::class);
+        return (new Database('usuario')) -> select('email = "'.$email.'"')->fetchObject(self::class);
     }
-
-    
-
-
-
 
 }
 

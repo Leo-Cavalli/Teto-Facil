@@ -61,7 +61,7 @@ class classUsuario{
 
     //Metodo responsavel por cadastrar um usuario no banco de dados
     public function signUp(){
-        $database = new database('usuarios');
+        $database = new database('usuario');
             
         $this->id = $database->insert([
                     'nome' => $this->name,
@@ -75,7 +75,7 @@ class classUsuario{
     public static function getUserByEmail($email){
 
         //Cria uma instacia de database na tabela usuários
-        $database = new database('usuarios');
+        $database = new database('usuario');
 
         //Realiza o select no banco de dados
         $result = $database->select('email = "'.$email.'"');
@@ -101,7 +101,7 @@ class classUsuario{
     }
 
     public static function getUserByCpf($cpf){
-        $database = new Database('usuarios');
+        $database = new Database('usuario');
 
         $result = $database->select('cpf = "'.$cpf.'"');
 
@@ -119,7 +119,7 @@ class classUsuario{
     }
 
     public static function getUserById($id){
-        $database = new Database('usuarios');
+        $database = new Database('usuario');
         $result = $database->select('id_usuario = "'.$id.'"');
         if($result->rowCount() > 0){
             $row = $result->fetch();
@@ -132,7 +132,7 @@ class classUsuario{
 
     //Update Name in BD
     public static function editNameInBd($where, $newName){
-        $database = new database('usuarios');
+        $database = new database('usuario');
         $database->update('id_usuario = "'.$where.'"', [
             'nome' => $newName
         ]);
@@ -141,7 +141,7 @@ class classUsuario{
 
     //Update Email in BD
     public static function editEmailInBd($where, $newEmail){
-        $database = new database('usuarios');
+        $database = new database('usuario');
         $database->update('id_usuario = "'.$where.'"', [
             'email' => $newEmail
         ]);
@@ -150,7 +150,7 @@ class classUsuario{
 
     //Update CPF in BD
     public static function editTelefoneInBd($where, $newTelefone){
-        $database = new database('usuarios');
+        $database = new database('usuario');
         $database->update('id_usuario = "'.$where.'"', [
             'telefone' => $newTelefone
         ]);
@@ -160,7 +160,7 @@ class classUsuario{
 
     //Update Password in BD
     public static function editPasswordInBd($where, $newPassword){
-        $database = new database('usuarios');
+        $database = new database('usuario');
         $database->update('id_usuario = "'.$where.'"', [
             'senha' => $newPassword
         ]);
@@ -169,7 +169,7 @@ class classUsuario{
 
     //Delete User in BD
     public static function deleteUserInBd($where){
-        $database = new database('usuarios');
+        $database = new database('usuario');
         $database->delete('id_usuario = "'.$where.'"');
         return true;
     }
@@ -207,7 +207,7 @@ class classCorretor extends classUsuario{
 
     //Insere o objeto corretor no banco de dados
     public function signUp(){
-        $database = new database('corretores');
+        $database = new database('corretor');
             
         $this->id = $database->insert([
                     'nome' => $this->name,
@@ -223,8 +223,8 @@ class classCorretor extends classUsuario{
     //Metodo responsavel por retornar um objeto do tipo corretor por seu email
     public static function getUserByEmail($email){
 
-        //Cria uma instancia de database na tabela corretores
-        $database = new database('corretores');
+        //Cria uma instancia de database na tabela corretor
+        $database = new database('corretor');
 
         //Realiza o select no banco de dados
         $result = $database->select('email = "'.$email.'"');
@@ -250,7 +250,7 @@ class classCorretor extends classUsuario{
     }
 
     public static function getUserByCpf($cpf){
-        $database = new Database('corretores');
+        $database = new Database('corretor');
 
         $result = $database->select('cpf = "'.$cpf.'"');
 
@@ -268,7 +268,7 @@ class classCorretor extends classUsuario{
     }
 
     public static function getStateAgentById($id){
-        $database = new Database('corretores');
+        $database = new Database('corretor');
 
         $result = $database->select('id_corretor = "'.$id.'"');
 
@@ -286,7 +286,7 @@ class classCorretor extends classUsuario{
     }
 
     public static function getUserByCreci($creci){
-        $database = new Database('corretores');
+        $database = new Database('corretor');
 
         $result = $database->select('creci = "'.$creci.'"');
 
@@ -303,12 +303,12 @@ class classCorretor extends classUsuario{
         return false;
     }
 
-    //Retorna uma lista com todos os corretores cadastrados no banco de dados
+    //Retorna uma lista com todos os corretor cadastrados no banco de dados
     public static function getAllStateAgentsfromBd(){
     
         $StateAgents = array();
 
-        $database = new database('corretores');
+        $database = new database('corretor');
 
         $result = $database->select("id_corretor > 1");
     
@@ -327,7 +327,7 @@ class classCorretor extends classUsuario{
 
     //Deleta um corretor do banco de dados, mudar nome do metodo para deleteUserInBd
     public static function deleteStateAgent($id){
-        $database = new database('corretores');
+        $database = new database('corretor');
 
         $database->delete('id_corretor = "'.$id.'"');
 
@@ -337,7 +337,7 @@ class classCorretor extends classUsuario{
 
     //Update Name in BD
     public static function editNameInBd($where, $newName){
-        $database = new database('corretores');
+        $database = new database('corretor');
         $database->update('id_corretor = "'.$where.'"', [
             'nome' => $newName
         ]);
@@ -346,7 +346,7 @@ class classCorretor extends classUsuario{
 
     //Update Email in BD
     public static function editEmailInBd($where, $newEmail){
-        $database = new database('corretores');
+        $database = new database('corretor');
         $database->update('id_corretor = "'.$where.'"', [
             'email' => $newEmail
         ]);
@@ -355,7 +355,7 @@ class classCorretor extends classUsuario{
 
     //Update CPF in BD
     public static function editCpfInBd($where, $newCpf){
-        $database = new database('corretores');
+        $database = new database('corretor');
         $database->update('id_corretor = "'.$where.'"', [
             'cpf' => $newCpf
         ]);
@@ -364,7 +364,7 @@ class classCorretor extends classUsuario{
 
     //Update Creci in BD
     public static function editCreciInBd($where, $NewCreci){
-        $database = new database('corretores');
+        $database = new database('corretor');
         $database->update('id_corretor = "'.$where.'"', [
             'creci' => $NewCreci
         ]);
@@ -373,7 +373,7 @@ class classCorretor extends classUsuario{
 
     //Update Telefone in BD
     public static function editTelefoneInBd($where, $newTelefone){
-        $database = new database('corretores');
+        $database = new database('corretor');
         $database->update('id_corretor = "'.$where.'"', [
             'telefone' => $newTelefone
         ]);
@@ -382,7 +382,7 @@ class classCorretor extends classUsuario{
 
     //Update Password in BD
     public static function editPasswordInBd($where, $newPassword){
-        $database = new database('corretores');
+        $database = new database('corretor');
         $database->update('id_corretor = "'.$where.'"', [
             'senha' => $newPassword
         ]);
