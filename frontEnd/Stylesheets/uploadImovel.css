@@ -52,7 +52,7 @@ body{
 .main-content{
     margin-top: 9em;
     float: left;
-    height: 100%;
+    height: fit-content;
     background-color: white;
     box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
     border-radius: 5px;

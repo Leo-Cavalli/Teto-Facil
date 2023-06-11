@@ -66,7 +66,7 @@ $anunciante = classUsuario::getUserById($id_anunciante);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Stylesheets/normalize.css">
-    <link rel="stylesheet" href="Stylesheets/myuser.css">
+    <link rel="stylesheet" href="Stylesheets/imovelPage.css">
     <title>Homepage</title>
 </head>
 <body>
@@ -103,56 +103,76 @@ $anunciante = classUsuario::getUserById($id_anunciante);
         </ul>
     </nav>
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
-    <div class="col-3-5 main-content">
+    <div class="cols col-3-5 main-content">
+    <h1 class="main-content-title">Detalhes do Imóvel</h1>
+        <section class="apresentacao_imovel cols col-1-2">
+                <img src="../<?=$imovel->getDir()[0]?>" alt="imagem_imovel" height="200" width="200">
+        </section>
+        <section class="conteudo_imovel cols col-1-2">
         <div class="forms-content">
             <form action="../crudImovel.php" id="formImovel" method="POST">
-                <Label for='imovel'>Detalhes do Imóvel</Label>
-                <br>
-                <label for="imagem">Imagem:</label>
-                <br>
-                <img src="../<?=$imovel->getDir()[0]?>" alt="imagem_imovel" height="200" width="200">
-                <br>
-                <label for="titulo"><?=$imovel->getTipo_imovel()?> em <?=$imovel->getCidade()?></label>
-                <br>
+                <div class="row">
+                    <h1 class="forms-content-title"><?=$imovel->getTipo_imovel()?> em <?=$imovel->getCidade()?></h1>
+                </div>
+                <div class="cols col-1-2">
+                    <div class="blocks">
                 <label for="tipo">Tipo de Imóvel:</label>
                 <input type="text" name="edit_tipo" value="<?=$imovel->getTipo_imovel()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
+                    </div>
+                    <div class="blocks">
                 <label for="estado">Estado: </label>
                 <input type="text" name="edit_estado" value="<?=$imovel->getEstado()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
+                    </div>
+                    <div class="blocks">
                 <label for="cep">Cep: </label>
                 <input type="text" name="edit_cep" value="<?=$imovel->getCep()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
+                    </div>
+                    <div class="blocks">
                 <label for="cidade">Cidade: </label>
                 <input type="text" name="edit_cidade" value="<?=$imovel->getCidade()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
+                    </div>
+                    <div class="blocks">
                 <label for="bairro">Bairro: </label>
                 <input type="text" name="edit_bairro" value="<?=$imovel->getBairro()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
-                <label for="rua">Rua: </label>
-                <input type="text" name="edit_rua" value="<?=$imovel->getRua()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
-                <label for="numero">Número: </label>
-                <input type="text" name="edit_numero" value="<?=$imovel->getNumero()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
-                <label for="complemento">Complemento: </label>
-                <input type="text" name="edit_complemento" value="<?=$imovel->getComplemento()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
-                <label for="valor">Valor: </label>
-                <input type="text" name="edit_valor" value="<?=$imovel->getValor()?>" required <?php if(!$edit) echo 'disabled'?>> 
-                <br>
-                <label for="descricao">Descrição: </label>
-                <input type="text" name="edit_descricao" value="<?=$imovel->getDescricao()?>" required <?php if(!$edit) echo 'disabled'?>>
-                <br>
+                    </div>    
+                    <div class="blocks">
                 <label for="situacao">Situação: </label>
                 <input type="text" value="<?=$situacaoImovel?>" required disabled>
-                <br>
+                    </div>
+            </div>
+                <div class="cols col-1-2">
+                    <div class="blocks">
+                <label for="rua">Rua: </label>
+                <input type="text" name="edit_rua" value="<?=$imovel->getRua()?>" required <?php if(!$edit) echo 'disabled'?>>
+                    </div>
+                    <div class="blocks">
+                <label for="numero">Número: </label>
+                <input type="text" name="edit_numero" value="<?=$imovel->getNumero()?>" required <?php if(!$edit) echo 'disabled'?>>
+                    </div>
+                    <div class="blocks">
+                <label for="complemento">Complemento: </label>
+                <input type="text" name="edit_complemento" value="<?=$imovel->getComplemento()?>" required <?php if(!$edit) echo 'disabled'?>>
+                    </div>
+                    <div class="blocks">
+                <label for="valor">Valor: </label>
+                <input type="text" name="edit_valor" value="<?=$imovel->getValor()?>" required <?php if(!$edit) echo 'disabled'?>> 
+                    </div>
+                    <div class="blocks">
+                <label for="descricao">Descrição: </label>
+                <textarea form="formImovel" name="edit_descricao" required <?php if(!$edit) echo 'disabled'?>><?=$imovel->getDescricao()?></textarea>        
+                    </div>
                 <input type="hidden" name="op" value="update">
                 <input type="hidden" name="id" value="<?=$imovel->getId()?>">
+                    <div class="blocks">
                 <label for="owner">Anunciante: <?=$anunciante->getName()?></label>
+                    </div>
                 <?php if($edit) echo '<button class="button-form" type="submit" name="op" value="update" id="updateData">Alterar Dados</button>'; ?>
+                </div>
             </form>
-            <?php if($edit) echo '
+        </div>
+        </section>
+        <section class="edicoes_imovel">
+        <?php if($edit) echo '
                 <form action="../crudImovel.php" method="post">
                     <input type="hidden" name="id" value="'.$imovel->getId().'">
                     <input type="hidden" name="op" value="delete">
@@ -174,7 +194,7 @@ $anunciante = classUsuario::getUserById($id_anunciante);
                     <button type="submit" class="button-form">Retirar Anuncio</button>
                 </form>'; 
             ?>
-        </div>
+        </section>
     </div>
 </body>
 </html>

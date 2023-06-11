@@ -70,7 +70,7 @@ $imoveis = classImovel::getImoveisAprovados();
     </nav>
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
-        <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo ' CONTA DE CORRETOR'?></h1>
+        <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo '<p>(Conta de Corretor)</p>'?></h1>
             <?php
                 if(sizeof($imoveis) == 0){
                     echo '<h2>Não há imoveis cadastrados no momento</h2>';

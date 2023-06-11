@@ -50,9 +50,10 @@ body{
 }
 
 .main-content{
+    overflow: auto;
     margin-top: 9em;
+    height: fit-content;
     float: left;
-    height: 100%;
     background-color: white;
     box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
     border-radius: 5px;
