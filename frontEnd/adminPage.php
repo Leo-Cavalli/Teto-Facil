@@ -20,30 +20,6 @@
         echo "<script>alert('".$_GET['Alert']."')</script>";
     }
     
-    //Se o Administrador desejar apagar um corretor
-    $op = '';
-    $id_corretor = '';
-    if(isset($_GET['op'])){
-        $op = $_GET['op'];
-        $id_corretor = $_GET['id'];
-    }
-
-    //Se o Administrador desejar apagar um corretor, mover para "updateProfile" quando possivel;
-    if($op == 'deleteStateAgent'){
-        $ArrayImoveis = classImovel::getImovelByStateAgentID($id_corretor);
-
-        //Verifica se o corretor possui imoveis cadastrados
-        if(sizeof($ArrayImoveis) > 0){
-            header('Location: adminPage.php?Alert=Não é possivel apagar um corretor que possui imoveis cadastrados!');
-            exit;
-        }
-
-        //Deleta o corretor do banco de dados, direciona a pagina para adminPage.php
-        classCorretor::deleteStateAgent($id_corretor);
-        header('Location: adminPage.php?Alert=Corretor apagado com sucesso!');
-        exit;
-    }
-
  ?>
 <!DOCTYPE html5>
 <html lang="en">
@@ -163,7 +139,6 @@
                     echo "<li>CRECI: ".$StateAgentsArray[$i]->getCreci()."</li>";
                     echo "<li>Senha: ************</li>";
                     echo "<li ><a href='editStateAgent.php?id=".$StateAgentsArray[$i]->getId()."&email=".$StateAgentsArray[$i]->getEmail()."&cpf=".$StateAgentsArray[$i]->getCpf()."&telefone=".$StateAgentsArray[$i]->getTelefone()."&creci=".$StateAgentsArray[$i]->getCreci()."&password=".$StateAgentsArray[$i]->getPassword()."&name=".$StateAgentsArray[$i]->getName()."'>Editar</a></li>";
-                    echo "<li><a href='adminPage.php?op=deleteStateAgent&id=".$StateAgentsArray[$i]->getId()."'>Apagar</a></td>";
                     echo "</li>";
                     echo "<br>";
                     echo "</div>";
