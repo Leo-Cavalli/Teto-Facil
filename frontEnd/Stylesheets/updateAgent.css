@@ -2,6 +2,10 @@ body{
     background-color: #CCC;
 }
 
+html{
+    font-family: 'Raleway', sans-serif;
+}
+
 .spacer{
     float: left;
     width: 100%;

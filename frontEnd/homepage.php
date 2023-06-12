@@ -73,7 +73,7 @@ $imoveis = classImovel::getImoveisAprovados();
         <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo '<p>(Conta de Corretor)</p>'?></h1>
             <?php
                 if(sizeof($imoveis) == 0){
-                    echo '<h2>Não há imoveis cadastrados no momento</h2>';
+                    echo '<h2 class="noImovel">Não há imoveis cadastrados no momento</h2>';
                 }else{
                     for($i = 0; $i < sizeof($imoveis); $i++){
                         echo '
