@@ -90,17 +90,17 @@ $level = 1;
             <form action="../updateMyStateAgent.php" method="POST">
                 <input type="hidden" name="id" value="<?=$auxUser->getId()?>">
                 <label for="name">Nome: </label>
-                <input type="text" name="new_name" id="new_name" value="<?=$auxUser->getName()?>">
+                <input type="text" name="new_name" id="new_name" value="<?=$auxUser->getName()?>" required>
                 <label for="email">Email: </label>
-                <input type="email" name="new_email" id="new_email" value="<?=$auxUser->getEmail()?>">
+                <input type="email" name="new_email" id="new_email" value="<?=$auxUser->getEmail()?>" required>
                 <label for="cpf">CPF: </label>
-                <input type="text" name="new_cpf" id="new_cpf" value="<?=$auxUser->getCpf()?>">
+                <input type="text" name="new_cpf" id="new_cpf" value="<?=$auxUser->getCpf()?>" required>
                 <label for="creci">Creci: </label>
-                <input type="text" name="new_creci" id="new_creci" value="<?=$auxUser->getCreci()?>">
+                <input type="text" name="new_creci" id="new_creci" value="<?=$auxUser->getCreci()?>" required>
                 <label for="telefone">Telefone: </label>
-                <input type="text" name="new_telefone" id="new_telefone" value="<?=$auxUser->getTelefone()?>">
+                <input type="text" name="new_telefone" id="new_telefone" value="<?=$auxUser->getTelefone()?>" required>
                 <label for="senha">Senha: </label>
-                <input type="text" name="new_senha" id="new_password" value="********">
+                <input type="text" name="new_senha" id="new_password" value="********" required>
                 <button class="button-form" type="submit" name="acao" value="atualizar" id="updateData">Alterar Dados</button>
             </form>
             <form action="../updateMyStateAgent.php" method="POST">
