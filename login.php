@@ -132,7 +132,7 @@ if($acao == 'logar'){
         //Verifica se a senha esta correta
         if(!password_verify($_POST['password'], $obusuario->getPassword())){
             echo "<script>alert('Email ou senha Inválidos')</script>";
-            header('Location: frontEnd/loginpage.php?Alert=senha Inválidos');
+            header('Location: frontEnd/loginpage.php?Alert=E-mail ou senha Inválidos');
             exit;
         }
         //Inicia a sessão, redireciona para a homepage.php e encerra o script
@@ -148,7 +148,7 @@ if($acao == 'logar'){
         //Verifica se a senha esta correta
         if(!password_verify($_POST['password'], $obcorretor->getPassword())){
             echo "<script>alert('Email ou senha Inválidos')</script>";
-            header('Location: frontEnd/loginpage.php?Alert=senha Inválidos');
+            header('Location: frontEnd/loginpage.php?Alert=E-mail ou senha Inválidos');
             exit;
         }
         //Inicia a sessão, redireciona para a homepage.php e encerra o script

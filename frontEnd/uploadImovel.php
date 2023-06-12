@@ -77,22 +77,22 @@ if(isset($_GET['Alert'])){
     <div class="col-3-5 main-content">
       <h1>Solicitar Novo Anuncio</h1>
 
-      <div class="formUploadImovel" >
+      <div class="formUploadImovel">
         <form action="../imovelform.php" method="post" enctype="multipart/form-data" id="form">
-          <label for="">Rua: </label>
-          <input type="text" name="rua" id="rua" placeholder="Rua" required>
-          <br>
-          <label for="">Numero: </label>
-          <input type="text" name="numero" id="numero" placeholder="Numero" required>
-          <br>
-          <label for="">Bairro: </label>
-          <input type="text" name="bairro" id="bairro" placeholder="Bairro" required>
-          <br>
-          <label for="">Cidade: </label>
-          <input type="text" name="cidade" id="cidade" placeholder="Cidade" required>
-          <br>
-          <label for="">Estado: </label>
-          <select id="estado" name="estado" required>
+            <label for="rua">Rua:</label>
+            <input type="text" name="rua" id="rua" placeholder="Rua" required class="input-field">
+            <br>
+            <label for="numero">Numero:</label>
+            <input type="text" name="numero" id="numero" placeholder="Numero" required class="input-field">
+            <br>
+            <label for="bairro">Bairro:</label>
+            <input type="text" name="bairro" id="bairro" placeholder="Bairro" required class="input-field">
+            <br>
+            <label for="cidade">Cidade:</label>
+            <input type="text" name="cidade" id="cidade" placeholder="Cidade" required class="input-field">
+            <br>
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado" required class="input-field">
             <option value="AC">Acre</option>
             <option value="AL">Alagoas</option>
             <option value="AP">Amapá</option>
@@ -120,48 +120,62 @@ if(isset($_GET['Alert'])){
             <option value="SP">São Paulo</option>
             <option value="SE">Sergipe</option>
             <option value="TO">Tocantins</option>
-          </select>
-          <br>
-          <label for="cep">Cep:</label>
-          <input type="text" name="cep" id="cep" placeholder="Cep" onfocus = "validate()"required >
-          <br>
-          <label for="tipo_imovel">Tipo Imóvel</label>
-          <select name="tipo_imovel" id="tipo_imovel" required>
+            </select>
+            <br>
+            <label for="cep">CEP:</label>
+            <input type="text" name="cep" id="cep" placeholder="CEP" required class="input-field">
+            <br>
+            <label for="tipo_imovel">Tipo Imóvel:</label>
+            <select name="tipo_imovel" id="tipo_imovel" required class="input-field">
             <option value="Casa">Casa</option>
             <option value="Apartamento">Apartamento</option>
             <option value="Sobrado">Sobrado</option>
-          </select>
-          <br>
-          <label for="complemento">Complemento:</label>
-          <input type="text" name="complemento" id="complemento" placeholder="Complemento">
-          <br>
-          <label for="descricao">Descrição:</label>
-          <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Descrição" required></textarea>
-          <br>
-          <label for="valor">Valor:</label>
-          <input type="text" name="valor" id="valor" placeholder="Valor" required>
-          <br>
-          <input type="file" name="foto" required>
-          <br>
-          <input type="submit" value='Enviar Solicitação' onclick="validateForm()">
-
+            </select>
+            <br>
+            <label for="complemento">Complemento:</label>
+            <input type="text" name="complemento" id="complemento" placeholder="Complemento" required class="input-field">
+            <br>
+            <label for="descricao">Descrição:</label>
+            <br>
+            <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Descrição" required class="input-field"></textarea>
+            <br>
+            <label for="valor">Valor:</label>
+            <input type="text" name="valor" id="valor" placeholder="Valor" required class="input-field">
+            <br>
+            <input type="file" name="foto" required>
+            <br>
+            <input type="submit" value="Enviar Solicitação">
         </form>
-      </div>
+</div>
     </div>
 
     <script>
-        function validateForm() {
-            var cep = document.getElementById("cep").value;
-            var pattern = /^\d{5}-\d{3}$/;
+    function validateForm() {
+        var rua = document.getElementById("rua").value;
+        var numero = document.getElementById("numero").value;
+        var bairro = document.getElementById("bairro").value;
+        var cidade = document.getElementById("cidade").value;
+        var estado = document.getElementById("estado").value;
+        var cep = document.getElementById("cep").value;
+        var tipoImovel = document.getElementById("tipo_imovel").value;
+        var descricao = document.getElementById("descricao").value;
+        var valor = document.getElementById("valor").value;
 
+        if (rua === "" || numero === "" || bairro === "" || cidade === "" || estado === "" || cep === "" || tipoImovel === "" || descricao === "" || valor === "") {
+            alert("Por favor, preencha todos os campos obrigatórios.");
+            event.preventDefault();
+        } else {
+            var pattern = /^\d{5}-\d{3}$/;
             if (pattern.test(cep)) {
-                form.submit()
+                form.submit();
             } else {
-                alert("CEP inválido. Por favor, insira um CEP válido.\nModelo valido: xxxxx-xxx");
-                event.preventDefault(); 
+                alert("CEP inválido. Por favor, insira um CEP válido.\nModelo válido: xxxxx-xxx");
+                event.preventDefault();
             }
         }
-    </script>
+    }
+</script>
+
 
 </body>
 </html>

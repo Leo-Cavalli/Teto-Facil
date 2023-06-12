@@ -77,6 +77,7 @@ if(sizeof($arrayImoveis) > 0){
         </ul>
     </nav>
     <div class="col-3-5 main-content">
+        <section class="imoveislist">
     
         <?php if(!$existeImoveis) echo '<h1> Você não possui imoveis cadastrados </h1>'?>
 
@@ -88,14 +89,19 @@ if(sizeof($arrayImoveis) > 0){
                     $situacao = "Anunciado";
                 }
                 echo '
-                    <h1> Imovel '.($i+1).' </h1>
+                    <div class="imovelblock", onclick="gotoimovel('.$arrayImoveis[$i]->getId().')">
                     <h2>'.$arrayImoveis[$i]->getTipo_imovel().' em '.$arrayImoveis[$i]->getCidade().'</h2>
-                    <h3>'.$situacao.'</h3>
-                    <a href="imovelPage.php?id='.$arrayImoveis[$i]->getId().'">Ver Anuncio</a>
+                    <h2>'.$situacao.'</h3>
+                    </div>
                 ';
             }
         } ?>
-
+            <script>
+                function gotoimovel(idimovel){
+                    location.href="imovelPage.php?id=" + idimovel;
+                }
+            </script>
+        </section>
     </div>
 
 </body>

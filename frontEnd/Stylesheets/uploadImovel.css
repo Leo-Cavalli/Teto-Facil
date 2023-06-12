@@ -2,6 +2,10 @@ body{
     background-color: #CCC;
 }
 
+html{
+    font-family: 'Raleway', sans-serif;
+}
+
 .main-nav{
     position: fixed;
     top: 0;
@@ -49,10 +53,55 @@ body{
     color: black;
 }
 
+input{
+    width: 90%;
+}
+
+label{
+    padding-bottom: 5px;
+}
+
+label,input{
+    margin-left: 4%;
+}
+
+label, textarea, select{
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input, textarea, select{
+    background: #ddddddce;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    margin-bottom: 15px;
+}
+
+select:focus, input:focus, textarea:focus{
+    border: 2px solid #000;
+    outline: none;
+}   
+
+
+
+button{
+    border: 2px solid transparent;
+    background-color: #ddddddce;
+    border-radius: 5px;
+    outline: none;
+    font-size: 100%;
+    height: 2em;
+    width: 54%;
+    margin-top: 0.8em;
+    margin-right: 23%;
+    margin-left: 23%;
+}
+
 .main-content{
     margin-top: 9em;
     float: left;
-    height: 100%;
+    height: fit-content;
     background-color: white;
     box-shadow: -41px 40px 55px -21px rgba(0, 0, 0, 0.586);
     border-radius: 5px;

@@ -115,7 +115,7 @@ if(isset($_GET['Alert'])){
             <label for="cpf">CPF: </label>
             <input type="textbox" name="update_cpf" id="cpf" value="<?=$cpf?>" disabled></input>
             <label for="telefone">Telefone:</label>
-            <input type="text" name='update_telefone' id='telefone' value="<?=$telefoneValue?>" <?php if($level == 1) echo 'disabled'?>>
+            <input type="text" name='update_telefone' id='telefone' value="<?=$telefoneValue?>" <?php if($level == 1) echo 'disabled'?> maxlength = "11">
             <?php if($level == 1){
               echo '<label for="creci">CRECI: </label>';
               echo '<input type="textbox" name="update_creci" value="'.$creci.'" disabled></input>';
@@ -128,9 +128,10 @@ if(isset($_GET['Alert'])){
           </form>
 
           <?php if($level == 0){
-            echo '<form action="../deletarconta.php" method="post">
-                    <button type="submit" class="button-form">Deletar</button>
+            echo '<form action="../deletarconta.php" method="post" id="formDelete">
+                    <button type="submit" class="button-form" onclick="confirmar()">Deletar</button>
                   </form>';
+                  
           }
           ?>
          
@@ -165,6 +166,18 @@ if(isset($_GET['Alert'])){
           return false
         }
       }
+
+
+      function confirmar(){
+        let confirm = window.confirm("Tem certeza que deseja deletar a sua conta ?")
+        if(confirm){
+            document.getElementById("formDelete").submit()
+        }else{
+            event.preventDefault()
+        }
+    }
+      
+
     </script>
 
 </body>
