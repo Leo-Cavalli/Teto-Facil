@@ -118,7 +118,7 @@ $level = 1;
 
         let formCad = document.getElementById("editStateAgent")
 
-        let cpfRegex = new RegExp("/^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}")
+        let cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
         let cpf = document.getElementById("new_cpf").value 
 
         let creci = document.getElementById("new_creci").value 
@@ -127,14 +127,15 @@ $level = 1;
         if(!cpfRegex.test(cpf)){
             alert("CPF inválido")
             event.preventDefault()
-            return false
+            
         }
 
         if(!creciRegex.test(creci)){
             alert("Creci inválido")
             event.preventDefault()
-            return false
         }
+
+        
 
     }
        
