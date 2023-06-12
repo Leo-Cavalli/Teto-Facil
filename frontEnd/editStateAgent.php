@@ -87,7 +87,7 @@ $level = 1;
     <div class="col-3-5 main-content">
         <h1>Edição de Corretor(a): <?php echo $auxUser->getName()?></h1>
         <div class="forms-content">
-            <form action="../updateMyStateAgent.php" method="POST">
+            <form action="../updateMyStateAgent.php" method="POST" id="editStateAgent">
                 <input type="hidden" name="id" value="<?=$auxUser->getId()?>">
                 <label for="name">Nome: </label>
                 <input type="text" name="new_name" id="new_name" value="<?=$auxUser->getName()?>">
@@ -101,7 +101,7 @@ $level = 1;
                 <input type="text" name="new_telefone" id="new_telefone" value="<?=$auxUser->getTelefone()?>">
                 <label for="senha">Senha: </label>
                 <input type="text" name="new_senha" id="new_password" value="********">
-                <button class="button-form" type="submit" name="acao" value="atualizar" id="updateData">Alterar Dados</button>
+                <button class="button-form" type="submit" name="acao" value="atualizar" id="updateData" onclick="validate()">Alterar Dados</button>
             </form>
             <form action="../updateMyStateAgent.php" method="POST">
                 <input type="hidden" name="id" value="<?=$auxUser->getId()?>">
@@ -111,4 +111,35 @@ $level = 1;
         </div>
     </div>
 </body>
+
+<script>
+        //validacao dos campos do corretor
+    function validate(){
+
+        let formCad = document.getElementById("editStateAgent")
+
+        let cpfRegex = new RegExp("/^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}")
+        let cpf = document.getElementById("new_cpf").value 
+
+        let creci = document.getElementById("new_creci").value 
+        let creciRegex = new RegExp("^[0-9]{2}[.]?[0-9]{4}[.]?[0-9]{1,2}$")
+
+        if(!cpfRegex.test(cpf)){
+            alert("CPF inválido")
+            event.preventDefault()
+            return false
+        }
+
+        if(!creciRegex.test(creci)){
+            alert("Creci inválido")
+            event.preventDefault()
+            return false
+        }
+
+    }
+       
+
+    
+
+    </script>
 </html>
