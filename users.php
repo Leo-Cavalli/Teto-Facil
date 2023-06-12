@@ -461,6 +461,9 @@ class classCorretor extends classUsuario{
         return false;
     }
 
+    public function getId(){
+        return $this->id;
+    }
     
 }
 ?>

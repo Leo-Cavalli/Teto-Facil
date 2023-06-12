@@ -29,6 +29,11 @@ if(!isset($_GET['id'])){
     header('Location: homepage.php');
 }
 
+$verifyUser = classCorretor::getUserById($_GET['id']);
+if(!$verifyUser instanceof classCorretor){
+    header('Location: adminPage.php');
+}
+
 //Cria um objeto corretor com os dados passados por get, deixa o codigo mais limpo
 $auxUser = new classCorretor();
 $auxUser->setUserFromDatabase($_GET['id'], $_GET['name'], $_GET['email'], $_GET['password'], $_GET['cpf'], $_GET['telefone'], $_GET['creci']);
