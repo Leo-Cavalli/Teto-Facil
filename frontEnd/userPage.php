@@ -35,7 +35,7 @@ if(isset($_SESSION['id'])){
     $telefoneValue = $user->getCpf();
     $creci = $user->getTelefone();
 
-    $database = new Database('corretores');
+    $database = new Database('corretor');
     $result = $database->select('cpf', 'email = '.$_SESSION['id']);
     if($result->rowCount() > 0){
       $row = $result->fetch();

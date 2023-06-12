@@ -173,7 +173,6 @@ class classUsuario{
         $database->delete('id_usuario = "'.$where.'"');
         return true;
     }
-
 }
 
 class classCorretor extends classUsuario{
@@ -388,5 +387,7 @@ class classCorretor extends classUsuario{
         ]);
         return true;
     }
+
+    
 }
 ?>
