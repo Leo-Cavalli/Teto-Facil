@@ -106,7 +106,7 @@ $level = 1;
             <form action="../updateMyStateAgent.php" method="POST">
                 <input type="hidden" name="id" value="<?=$auxUser->getId()?>">
                 <input type="hidden" name="acao" value="apagar">
-                <button type="submit" class="button-form">Deletar</button>
+                <button type="submit" class="button-form" onclick="confirmar()">Deletar</button>
             </form>
         </div>
     </div>
@@ -135,8 +135,15 @@ $level = 1;
             event.preventDefault()
         }
 
-        
+    }
 
+    function confirmar(){
+        let confirm = window.confirm("Tem certeza que deseja deletar o corretor?")
+        if(confirm){
+            window.location.href = "../updateMyStateAgent.php?id=<?=$auxUser->getId()?>&acao=apagar"
+        }else{
+            event.preventDefault()
+        }
     }
        
 

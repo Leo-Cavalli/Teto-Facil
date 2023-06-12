@@ -128,9 +128,10 @@ if(isset($_GET['Alert'])){
           </form>
 
           <?php if($level == 0){
-            echo '<form action="../deletarconta.php" method="post">
-                    <button type="submit" class="button-form">Deletar</button>
+            echo '<form action="../deletarconta.php" method="post" id="formDelete">
+                    <button type="submit" class="button-form" onclick="confirmar()">Deletar</button>
                   </form>';
+                  
           }
           ?>
          
@@ -165,6 +166,18 @@ if(isset($_GET['Alert'])){
           return false
         }
       }
+
+
+      function confirmar(){
+        let confirm = window.confirm("Tem certeza que deseja deletar a sua conta ?")
+        if(confirm){
+            document.getElementById("formDelete").submit()
+        }else{
+            event.preventDefault()
+        }
+    }
+      
+
     </script>
 
 </body>

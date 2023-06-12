@@ -173,10 +173,10 @@ $anunciante = classUsuario::getUserById($id_anunciante);
         </section>
         <section class="edicoes_imovel">
         <?php if($edit) echo '
-                <form action="../crudImovel.php" method="post">
+                <form action="../crudImovel.php" method="post" id="formDelete">
                     <input type="hidden" name="id" value="'.$imovel->getId().'">
                     <input type="hidden" name="op" value="delete">
-                    <button type="submit" class="button-form">Deletar Anuncio</button>
+                    <button type="submit" class="button-form" onclick="confirmar()">Deletar Anuncio</button>
                 </form>'; 
             ?>
             <?php if($edit && $level == 1 && $imovel->getSituacao() == false) echo '
@@ -197,4 +197,15 @@ $anunciante = classUsuario::getUserById($id_anunciante);
         </section>
     </div>
 </body>
+
+<script>
+    function confirmar(){
+        let confirm = window.confirm("Tem certeza que deseja deletar o anuncio?")
+        if(confirm){
+            document.getElementById("formDelete").submit()
+        }else{
+            event.preventDefault()
+        }
+    }
+</script>
 </html>
