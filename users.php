@@ -36,16 +36,32 @@ class classUsuario{
         return $this->email;
     }
 
+    public function setEmail($email){
+        $this->email = $email;
+    }
+
     public function getPassword(){
         return $this->password;
+    }
+
+    public function setPassword($password){
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     public function getCpf(){
         return $this->cpf;
     }
 
+    public function setCpf($cpf){
+        $this->cpf = $cpf;
+    }
+
     public function getTelefone(){
         return $this->telefone;
+    }
+
+    public function setTelefone($telefone){
+        $this->telefone = $telefone;
     }
 
     
@@ -183,6 +199,11 @@ class classCorretor extends classUsuario{
         return $this->creci;
     }
 
+    //Metodo responsavel por setar o valor do atributo creci
+    public function setCreci($creci){
+        $this->creci = $creci;
+    }
+
     //Metodo responsavel por setar os valores do objeto corretor, utilizado para login
     public function setUserFromDatabase($id, $name, $email, $password, $cpf, $telefone, $creci = null){
         $this->id = $id;
@@ -301,6 +322,7 @@ class classCorretor extends classUsuario{
 
         return false;
     }
+    
 
     //Retorna uma lista com todos os corretor cadastrados no banco de dados
     public static function getAllStateAgentsfromBd(){
@@ -386,6 +408,57 @@ class classCorretor extends classUsuario{
             'senha' => $newPassword
         ]);
         return true;
+    }
+
+    public static function verifyIfEmailAlreadExists($id, $email){
+        $databaseCorretores = new database('corretor');
+        $databaseClientes = new database('usuario');
+
+        $resultCorretores = $databaseCorretores->select('email = "'.$email.'" AND id_corretor != "'.$id.'"');
+        $resultClientes = $databaseClientes->select('email = "'.$email.'"');
+        if($resultCorretores->rowCount() > 0 || $resultClientes->rowCount() > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public static function verifyIfCpfAlreadExists($id, $cpf){
+        $databaseCorretores = new database('corretor');
+        $databaseClientes = new database('usuario');
+
+        $resultCorretores = $databaseCorretores->select('cpf = "'.$cpf.'" AND id_corretor != "'.$id.'"');
+        $resultClientes = $databaseClientes->select('cpf = "'.$cpf.'"');
+        if($resultCorretores->rowCount() > 0 || $resultClientes->rowCount() > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public static function verifyIfCreciAlreadExists($id, $cpf){
+        $databaseCorretores = new database('corretor');
+
+        $resultCorretores = $databaseCorretores->select('creci = "'.$cpf.'" AND id_corretor != "'.$id.'"');
+        if($resultCorretores->rowCount() > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public static function getUserById($id)
+    {
+        $database = new Database('corretor');
+        $result = $database->select('id_corretor = "'.$id.'"');
+        if($result->rowCount() > 0){
+            $row = $result->fetch();
+            $auxStateAgent = new classCorretor();
+            $auxStateAgent->setName($row['nome']);
+            $auxStateAgent->setEmail($row['email']);
+            $auxStateAgent->setCpf($row['cpf']);
+            $auxStateAgent->setTelefone($row['telefone']);
+            $auxStateAgent->setCreci($row['creci']);
+            return $auxStateAgent;
+        }
+        return false;
     }
 
     
