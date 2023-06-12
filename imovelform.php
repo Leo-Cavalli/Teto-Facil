@@ -29,6 +29,7 @@ $pasta = 'fotos';
 $file = getimagesize($foto);
 
 if(!preg_match('/^image\/(?:gif|jpg|jpeg|png)$/i', $file['mime'])){
+    $database->delete($id_imovel);
     header("Location: frontEnd/uploadImovel.php?Alert=Formato de imagem inválido");
     exit();
 }
