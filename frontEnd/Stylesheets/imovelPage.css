@@ -50,7 +50,21 @@ section{
     float: left;
 }
 
+/* fim da grid */
+
+.apresentacao_imovel{
+    position: relative;
+}
+
+.apresentacao_imovel img{
+    z-index: 2;
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
 .main-nav{
+    z-index: 1000;
     position: fixed;
     top: 0;
     width: 94%;
@@ -140,10 +154,16 @@ section{
     color: #000;
 }
 
+.forms-content textarea:disabled{
+    background-color: transparent;
+    color: #000;
+}
+
 .blocks{
     display: inline-block;
-    width: calc(100%-2em);
+    width: calc(100% - 2em);
     height: fit-content;
+    min-height: 70px;
     margin: 0 2em 0.9em 0;
     padding: 0;
     border-radius: 5px;
@@ -154,16 +174,24 @@ section{
 .blocks input{
     display: block;
     border: none;
-    width: calc(100%-1em);
+    width: calc(100% - 1em);
     margin: 0 0.5em 0.5em 0.5em;
     background-color: transparent;
     border-left: #000 2px solid;
 }
 
+.blocks p{
+    display: block;
+    border: none;
+    width: calc(100% - 1em);
+    margin: 0 0.5em 0.5em 0.5em;
+    background-color: transparent;
+}
+
 .blocks textarea{
     display: block;
     border: none;
-    width: calc(100%-1em);
+    width: calc(100% - 1em);
     margin: 0 0.5em 0.5em 0.5em;
     background-color: transparent;
     border-left: #000 2px solid;
@@ -184,6 +212,11 @@ section{
 .blocks label:last-child{
     padding-right: 2em;
     margin-bottom: 1em;
+}
+
+.blocks p{
+    width: calc(100% - 1em);
+    margin: 0 0.5em 0.5em 0.5em;
 }
 
 .button-form{

@@ -71,19 +71,27 @@ $imoveis = classImovel::getImoveisAprovados();
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
         <h1>Olá, <?=$name?><?php if($level == 1 && $_SESSION['id'] != 1) echo '<p>(Conta de Corretor)</p>'?></h1>
+        <section class="imoveislist"> 
             <?php
                 if(sizeof($imoveis) == 0){
                     echo '<h2 class="noImovel">Não há imoveis cadastrados no momento</h2>';
                 }else{
                     for($i = 0; $i < sizeof($imoveis); $i++){
-                        echo '
-                                <h2>'.$imoveis[$i]->getTipo_imovel().' em '.$imoveis[$i]->getCidade().'</h2>
-                                <a href="imovelPage.php?id='.$imoveis[$i]->getId().'">Ver Anuncio</a>
-                            ';
+                        echo '  
+                                    <div class="imovelblock", onclick="gotoimovel('.$imoveis[$i]->getId().')">
+                                    <h2>'.$imoveis[$i]->getTipo_imovel().' em '.$imoveis[$i]->getCidade().'</h2>
+                                    </div>
+                                    ';
                     }
                 }
 
             ?>
+            <script>
+                function gotoimovel(idimovel){
+                    location.href="imovelPage.php?id=" + idimovel;
+                }
+            </script>
+        </section>
     </div>
 
 </body>

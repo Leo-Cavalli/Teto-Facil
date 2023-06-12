@@ -39,7 +39,7 @@ if(isset($_GET['Alert'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Stylesheets/normalize.css">
-    <link rel="stylesheet" href="Stylesheets/myuser.css">
+    <link rel="stylesheet" href="Stylesheets/home.css">
     <title>Pedidos de Anuncio</title>
 </head>
 <body>
@@ -76,18 +76,27 @@ if(isset($_GET['Alert'])){
     </nav>
     <!--Se p usuário logar com conta de Corretor, Exibir CONTA DE CORRETOR, se Logar como administrador, mostra nada!-->
     <div class="col-3-5 main-content">
+        <section class="imoveislist">
         <?php
             if(sizeof($imoveis) == 0){
-                echo '<h1>Não há pedidos de anuncios pendentes</h2>';
+                echo '<h1>Não há pedidos de anuncios pendentes</h1>';
             }else{
-                echo '<h1>Imóveis Pendentes</h2>';
+                echo '<h1>Imóveis Pendentes</h1>';
                 for($i = 0; $i < sizeof($imoveis); $i++){
-                    echo '<h2>Imóvel '.($i+1).'</h2>
-                        <a href="imovelPage.php?id='.$imoveis[$i]->getId().'">Editar Imóvel</a>
-                    ';
+                    echo '
+                    <div class="imovelblock", onclick="gotoimovel('.$imoveis[$i]->getId().')">
+                    <h2>'.$imoveis[$i]->getTipo_imovel().' em '.$imoveis[$i]->getCidade().'</h2>
+                    </div>
+                        ';
                     }
                 }
         ?>
+            <script>
+                function gotoimovel(idimovel){
+                    location.href="imovelPage.php?id=" + idimovel;
+                }
+            </script>
+        </section>
     </div>
 
 </body>
