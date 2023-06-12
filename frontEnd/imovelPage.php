@@ -117,15 +117,15 @@ $anunciante = classUsuario::getUserById($id_anunciante);
                 <div class="cols col-1-2">
                     <div class="blocks">
                 <label for="tipo">Tipo de Imóvel:</label>
-                <input type="text" name="edit_tipo" value="<?=$imovel->getTipo_imovel()?>" required <?php if(!$edit) echo 'disabled'?>>
+                <input type="text" name="edit_tipo" id = "tipo" value="<?=$imovel->getTipo_imovel()?>" required <?php if(!$edit) echo 'disabled'?>>
                     </div>
                     <div class="blocks">
                 <label for="estado">Estado: </label>
-                <input type="text" name="edit_estado" value="<?=$imovel->getEstado()?>" required <?php if(!$edit) echo 'disabled'?>>
+                <input type="text" name="edit_estado" id = "estado" value="<?=$imovel->getEstado()?>" required <?php if(!$edit) echo 'disabled'?>>
                     </div>
                     <div class="blocks">
                 <label for="cep">Cep: </label>
-                <input type="text" name="edit_cep" value="<?=$imovel->getCep()?>" required <?php if(!$edit) echo 'disabled'?>>
+                <input type="text" name="edit_cep" id = "cep" value="<?=$imovel->getCep()?>" required <?php if(!$edit) echo 'disabled'?>>
                     </div>
                     <div class="blocks">
                 <label for="cidade">Cidade: </label>
@@ -166,7 +166,7 @@ $anunciante = classUsuario::getUserById($id_anunciante);
                     <div class="blocks">
                 <label for="owner">Anunciante: <?=$anunciante->getName()?></label>
                     </div>
-                <?php if($edit) echo '<button class="button-form" type="submit" name="op" value="update" id="updateData">Alterar Dados</button>'; ?>
+                <?php if($edit) echo '<button class="button-form" type="button" name="op" value="update" id="updateData" onclick = "validateForm()">Alterar Dados</button>'; ?>
                 </div>
             </form>
         </div>
@@ -196,5 +196,62 @@ $anunciante = classUsuario::getUserById($id_anunciante);
             ?>
         </section>
     </div>
+    <script>
+        let estados = [
+            'AC',
+            'AL',
+            'AP',
+            'AM',
+            'BA',
+            'CE',
+            'DF',
+            'ES',
+            'GO',
+            'MA',
+            'MT',
+            'MS',
+            'MG',
+            'PA',
+            'PB',
+            'PR',
+            'PE',
+            'PI',
+            'RJ',
+            'RN',
+            'RS',
+            'RO',
+            'RR',
+            'SC',
+            'SP',
+            'SE',
+            'TO',
+        ];
+
+        let tipos = ['Casa', 'Apartamento', 'Sobrado']
+
+        function validateForm() {
+            var estado = document.getElementById("estado").value.toString()
+            var form = document.getElementById("formImovel")
+            if (!estados.includes(estado)){
+                alert("Estado Inválido")
+                return false
+            } 
+
+            var tipo = document.getElementById("tipo").value
+            if (!tipos.includes(tipo)){
+                alert("Tipo Inválido")
+                return false
+            }
+
+            var cep = document.getElementById("cep").value
+            var pattern = /^\d{5}-\d{3}$/;
+            if (pattern.test(cep)) {
+                form.submit();
+            } else {
+                alert("CEP inválido. Por favor, insira um CEP válido.\nModelo válido: xxxxx-xxx");
+                event.preventDefault();
+            }
+        }
+    </script>
 </body>
 </html>
