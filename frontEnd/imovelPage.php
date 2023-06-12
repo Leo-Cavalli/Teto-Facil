@@ -158,6 +158,9 @@ $anunciante = classUsuario::getUserById($id_anunciante);
                 <input type="text" name="edit_valor" value="<?=$imovel->getValor()?>" required <?php if(!$edit) echo 'disabled'?>> 
                     </div>
                     <div class="blocks">
+                <label for="owner">Anunciante: <?=$anunciante->getName()?></label>
+                    </div>
+                    <div class="blocks">
                 <label for="descricao">Descrição: </label>
                 <textarea form="formImovel" name="edit_descricao" required <?php if(!$edit) echo 'disabled'?>><?=$imovel->getDescricao()?></textarea>        
                     </div>
