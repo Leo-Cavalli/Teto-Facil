@@ -125,7 +125,7 @@ if(isset($_GET['Alert'])){
           <label for="cep">Cep:</label>
           <input type="text" name="cep" id="cep" placeholder="Cep" onfocus = "validate()"required >
           <br>
-          <label for="tipo_imovel">Tipo Imóvel</label>
+          <label for="tipo_imovel">Tipo Imóvel:</label>
           <select name="tipo_imovel" id="tipo_imovel" required>
             <option value="Casa">Casa</option>
             <option value="Apartamento">Apartamento</option>
