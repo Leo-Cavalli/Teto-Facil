@@ -108,6 +108,7 @@ if(isset($_GET['Alert'])){
         function validate(){
             let senha = document.getElementById("senhaCad").value
             let senhaConf = document.getElementById("senhaConf").value
+            var reggggex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
             let formCad = document.getElementById("formCad")
             const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")
             let email = document.getElementById("emailCad").value
@@ -116,6 +117,11 @@ if(isset($_GET['Alert'])){
 
             if(senha !== senhaConf){
                 alert("As senhas não são iguais !")
+                return false
+            }
+
+            if(reggggex.test(senha) === false){
+                alert("Senha invalida ! \n A senha deve conter no minimo 8 caracteres, uma letra maiuscula, uma minuscula, um numero e um caracter especial")
                 return false
             }
 
